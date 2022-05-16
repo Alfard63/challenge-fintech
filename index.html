@@ -1,0 +1,35 @@
+<?php session_start() ?>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Welcome</title>
+ <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=fqJcItR9oVaCnJlepiZO1JVmqhfA_gGy743Ke1gmPZ4Mytor4pTfrUFJ2-aiHwf0Nq0Cdh5MS98SUXZSQq7v-z0_x_sgHjsHxlQWJlbsShxQRQ1VxQuxa9-qqT0y563Rih5CVVepWcFyOA5-uIYXRYDvmoXfv6zbg6uK7C3t2wsjRwaG5usdZS_ndRw6KiCaVn-KyxYIyy7Pjo7ceYicIHmvBAFakuY5WebsDWv3VA6SBau3KoUSS6j9KRGg34pv-gNde1B558u1lVtEaegMMubxQNBjTkMvkGJbthGl3sRPTD38L_87PIMzJaRr7fkSiElJsqfdKsOU8mHX4PAT63kpH7Kf3UzSWlfwcPRExIGxxEOv_T_a7Kgq3wPAS0cURFJumSXnSVMa_8_EkGo2iCQrV_dXwqrNqAzNwCcNIRADgI7unkZzPFPKRwpvZeFKH8hCNukyD_3QZfthSDXZxrpGPDVVFZ4Ju3GKli8i55e1k5DDrUdtCuCe18Iwht_UBs_-KDbqv7Fe2jUljGeQI7bHsTeQDaBa5fHemloRNOPGc4cj62wHW99Hy3mvAPu3Mtf7YbspIEnRIaqjC19r2jxcsMSiDtTsIRcq0jC7IZs2-pQC4CsvUiQgokMeiVNle31WxnBF9neVwF7sNgKvRJQ8y3uPjSxnbWwepbtS0TJUrL4Y66cbu1l5SFmNvJXxKjJa9xfrn6uwPabyyUN2vZ_Te7OjTQrU47LuJDFt4JptNkiVKA33yQUImjIGJGhFXdXHDkNoWPo6zAopmsOwVS85sJUM1iUmCXkUNkxOvnc" charset="UTF-8"></script></head>
+ <body>
+    <p> Bienvenue sur notre application TRANS ROAD </p>
+    <?php
+    // verifier si on est déja connecté
+    
+    if($_SESSION['username']){
+       echo "Welcome " . $_SESSION['username'];
+    }else{
+         header('Location: /database/login_page.php');
+    }
+
+    ?>
+    
+    <p style="background-color: yellow;">Site en construction</p>
+
+    <p>
+        <a href="http://www.transroad.online/adminlte/index.html">Un exemple de dashboards</a>
+        <br>
+        <a href="http://www.transroad.online/adminlte/index2.html">Un 2nd exemple de dashboards</a>
+        <br>
+
+        <a href="http://www.transroad.online/adminlte/index3.html" >Un 3e exemple de dashboards</a>
+        <br>
+    </p>
+</body>
+</html>
