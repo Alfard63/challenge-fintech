@@ -24,47 +24,39 @@ if(isset($_POST['email']) && isset($_POST['password']))
 
     
     // insert data sets
+    // insert data sets
     $email = $_POST['email'];
     $password = $_POST['password'];
-    
+
+
     if($email !== "" && $password !== "")
         {
             // **************** A revoir **********************************
             // prepare SQL statement
-            $sql = "SELECT username, surname, email, password FROM users WHERE username='John' ";
-            
-            /*
-            $statement = $my_Db_Connection->prepare("SELECT password, username 
+            // $sql = "SELECT username, surname, email, password FROM users WHERE username='John' ";            
+            $statement = $my_Db_Connection->prepare("SELECT username, surname, email, password 
                 FROM users 
-                WHERE username = :email ") ;
+                WHERE email = :email ") ;
            
-            
-            // bind parameter
-            $statement ->bindParam(':email', $email);
-            $statement ->bindParam(':password', $password);
-             */
-                     
-            // **************** A revoir **********************************
+           // bind parameter
+            $statement ->bindParam(':email', $email_db);
+                        
+            $email_db = $_POST['email'];
 
-            // $reponse  = $statement->fetch(PDO::FETCH_BOTH);
-            foreach ($my_Db_Connection->query($sql) as $row) {
+            $statement->execute();
+            $arr = $statement->fetchAll();  //recup of the value given by $statement (array with username, surname, email and password)
+
+            foreach ($arr as $row) {
                 if ($row['email']==$email && $row['password']==$password)
                 {
-                    $_SESSION['username'] = "John";
-                   var_dump($_SESSION["username"]);
+                    $_SESSION['username'] = $row['username'];
+                    $_SESSION['surname'] = $row['surname'];                    
                    header('Location: ../index.html');
                 }else
                 {
-                    if($row['email']==$email){
-                        echo "password incorrect";
-                    }
-                    else{
-                        echo "email incorrect";
-                    }
-                header('Location: login_page.php?erreur=2');
+                    header('Location: login_page.php?erreur=2');
                 }
-            }
-    
+            }  
         }
 }
 else

@@ -13,11 +13,11 @@
     // verifier si on est déja connecté
     
     if($_SESSION['username']){
-       echo "Welcome " . $_SESSION['username'];
+       echo "Welcome " . ucfirst($_SESSION['username']). " " . strtoupper($_SESSION['surname']);
     }else{
          header('Location: /database/login_page.php');
     }
-
+    unset($_SESSION["username"]);
     ?>
     
     <p style="background-color: yellow;">Site en construction</p>
