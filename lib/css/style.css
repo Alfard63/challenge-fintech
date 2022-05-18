@@ -86,22 +86,19 @@ header i:hover {
 
 aside {
   background-color: #235347;
-  width: 250px;
+  width: 5em;
   height: 100%;
   margin-top: 5rem;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1;
-  -webkit-transition: all 0s ease-in-out;
-  transition: all 0s ease-in-out;
-  -webkit-transform: translateX(-70%);
-          transform: translateX(-70%);
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 aside.show {
-  -webkit-transform: translateX(0);
-          transform: translateX(0);
+  width: 15em;
 }
 
 aside .menu-header {
@@ -111,9 +108,9 @@ aside .menu-header {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
   width: 100%;
   height: 6.5rem;
   border: 1px solid #051F20;
@@ -134,7 +131,6 @@ aside .menu-header .user-avatar {
   border-radius: 50%;
   border: 3px solid #051F20;
   background-color: #DAF1DE;
-  margin-left: 0.5rem;
 }
 
 aside .menu-header .user-avatar i {
@@ -179,8 +175,8 @@ aside #menuBtn {
   top: 5rem;
   right: -1.5rem;
   cursor: pointer;
-  -webkit-transition: all 0s ease;
-  transition: all 0s ease;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 aside #menuBtn.show {
@@ -190,7 +186,7 @@ aside #menuBtn.show {
 
 aside #menuBtn i {
   font-size: 2rem;
-  margin-left: 0.3rem;
+  margin-right: 0.3rem;
   font-weight: bold;
   color: #DAF1DE;
 }
@@ -208,7 +204,12 @@ aside .menu-content i {
 
 aside .menu-content a {
   color: #DAF1DE;
+  font-size: 0.9rem;
   font-weight: bold;
+}
+
+aside .menu-content a:hover {
+  color: #051F20;
 }
 
 footer {

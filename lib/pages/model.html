@@ -19,20 +19,22 @@
                 </a>
                 <h1 class="fw-bold">TABLEAU DE BORD</h1>
                 <div class="navbar-icons">
-                    <i class="bi bi-sun-fill"></i>
                     <i id="menuIcon" class="bi bi-list"></i>
-                    <i class="bi bi-bell-fill"></i>
-                    <i class="bi bi-gear-fill"></i>
-                    <i class="bi bi-box-arrow-right"></i>
+                    <i id="notifIcon" class="bi bi-bell-fill"></i>
+                    <i id="profilIcon" class="bi bi-person-fill"></i>
+                    <i id="disconnectIcon" class="bi bi-box-arrow-right"></i>
                 </div>
             </div>
         </nav>
     </header> 
-        <aside id="menu">
+        <aside id="menu" class="show">
             <div id="menuBtn">
-                <i class="bi bi-chevron-right"></i>
+                <i class="bi bi-chevron-left"></i>
             </div>
             <div class="menu-header">
+                <div class="user-avatar">
+                    <i class="bi bi-person"></i>
+                </div>
                 <div class="user-info">
                     <h4 class="fw-bold">
                         John Doe
@@ -41,36 +43,33 @@
                         Contrôleur de gestion
                     </h5>
                 </div>
-                <div class="user-avatar">
-                    <i class="bi bi-person"></i>
-                </div>
                 
             </div>
             <div class="menu-content">
-                <ul class="nav flex-column">
+                <ul class="nav">
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        TABLEAU DE BORD
                         <i class="bi bi-house-door-fill"></i>
+                        <strong>TABLEAU DE BORD</strong>                        
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        BASE DE DONNEES
                         <i class="bi bi-table"></i>
+                        <strong>BASE DE DONNEES</strong> 
                     </a>
 
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        CHIFFRAGE
                         <i class="bi bi-file-earmark-medical-fill"></i>
+                        <strong>CHIFFRAGE</strong>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        ADMINISTRATION
-                    <i class="bi bi-tools"></i>
+                        <i class="bi bi-tools"></i>
+                        <strong>ADMINISTRATION</strong> 
                     </a>
                 </li>
             </ul>
