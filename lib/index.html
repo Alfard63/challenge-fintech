@@ -1,16 +1,63 @@
+<?php session_start() ?> <!-- ne pas supprimer -->
+
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TransRoad</title>
+<?php require("./assets/std_page/header.html")?>
 
-    <link rel="stylesheet" href="css/style.css" />
-</head>
+<!-- voir ac thierry pr cmt insérer icônes draw.io en png (hors capt d'écran) -->
 
 <body>
-  <a href="pages/login.html">page de connexion</a>
+    <header>
+        <h1>transroad</h1>
+        <h2>- TransCompétences -</h2>
+    </header>
+    <main>
+        <div class="principalBlock">
+            <div class="blockImg">
+                <img src="./01_ASSETS/02_IMG/00_INDEX/user.png" alt="#">
+            </div>
+            <div class="blockForm">
+                <form action="./action/user_login.php" method="POST">
+                    <legend>Veuillez vous connecter pour accéder aux services</legend>
+                    <div class="form-group emailDiv">
+                        <label for="email">
+                            <img src="#" alt="#">
+                        </label>
+                        <input type="text" name="email" placeholder="Email" id="email" class="form-control" />
+                    </div>
+                    <div class="form-group mdpDiv">
+                        <input type="password" name="password" placeholder="Mot de passe" id="password"
+                            class="form-control" />
+                    </div>
+                    <div id="errorEmails" class="mt-1"></div>
+                    <div class="form-group rememberMe">
+                        <input type="checkbox" name="rememberMe" value="#" /> Se souvenir de moi
+                        <a href="#">Mot de passe oublié ?</a>
+                    </div>
+                    <div class="btnDiv">
+                        <button class="btn" type="submit">Envoyer</button>
+                    </div>
+                    
+                    <!-- Si l'utilisateur se trompe affichage d'un message d'erreur -->
+                <?php
+                // insertion d'un message d'erreur
+                if(isset($_GET['erreur'])){
+                    $err = $_GET['erreur'];
+                    if($err==1)
+                        echo "<p style='color:red'>Utilisateur ou mot de passe incorrect </p>";
+                }
+                ?>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- insertion of standard header -->
+    <?php require("./assets/std_page/footer.html") ?>
+    
+    <script src="../js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
