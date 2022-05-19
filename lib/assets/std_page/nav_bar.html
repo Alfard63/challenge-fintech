@@ -1,6 +1,4 @@
-<?php 
-include("../assets/php/var.php");
-?>
+<?php include "../../assets/php/var.php"?>
 
 <aside id="menu" class="show">
     <div id="menuBtn">
@@ -23,30 +21,30 @@ include("../assets/php/var.php");
     <div class="menu-content">
         <ul class="nav">
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="../../pages/dashboard/dashboard.html" class="nav-link">
                 <i class="bi bi-house-door-fill"></i>
                 <strong>TABLEAU DE BORD</strong>                        
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="../../pages/database/database_mgt.html" class="nav-link">
                 <i class="bi bi-table"></i>
                 <strong>BASE DE DONNEES</strong> 
             </a>
 
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="../../pages/chiffrage/offer_mgt.html" class="nav-link">
                 <i class="bi bi-file-earmark-medical-fill"></i>
                 <strong>CHIFFRAGE</strong>
             </a>
         </li>
         <!-- Afficher la page d'administration seulement si on fait partie du service IT -->
         <?php
-            if ($service === "it")
+            if ($is_admin)
             {
                 echo '<li class="nav-item">';
-                echo '<a href="#" class="nav-link">';
+                echo '<a href="../../pages/administration/user_mgt.html" class="nav-link">';
                 echo '<i class="bi bi-tools"></i>';
                 echo '<strong>ADMINISTRATION</strong>';
                 echo '</a>';

@@ -62,7 +62,7 @@ if(isset($_POST['email']) && isset($_POST['password']))
             $_SESSION['cost_estimation'] = $row['cost_estimation'];
             $_SESSION['cost_database'] = $row['cost_database'];                 
         }
-        header('Location: ../pages/dashboard.html');
+        header('Location: ../pages/dashboard/dashboard.html');
     }
     
 }
