@@ -15,7 +15,6 @@ body {
   font-family: 'helvetica', sans-serif;
   font-size: 16px;
   line-height: 1.5;
-  color: #333;
   margin: 0;
   padding: 0;
   min-width: 320px;
@@ -28,6 +27,10 @@ body {
   -webkit-tap-highlight-color: transparent;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body.dark {
+  background-image: url("../assets/img/bg_dark.png") !important;
 }
 
 header {
