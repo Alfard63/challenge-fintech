@@ -10,38 +10,38 @@
     </div>
     <div class="user-info">
       <h4 class="fw-bold">
-        John Doe
+        <?php printf("%s %s", ucfirst($username), strtoupper($surname))?> <!-- afficher le prénom et nom --> 
       </h4>
       <h5 class="fw-bold">
-        Contrôleur de gestion
+        <?php echo strtoupper($service)?> <!-- afficher le service --> 
       </h5>
     </div>
   </div>
   <div class="menu-content">
     <ul class="nav">
     <li class="nav-item">
-      <a href="#" class="nav-link">
+      <a href="../../pages/dashboard/dashboard.html" class="nav-link">
         <i class="bi bi-house-door-fill"></i>
         <strong class="menu-item">TABLEAU DE BORD</strong>                        
       </a>
     </li>
     <li class="nav-item">
-      <a href="#" class="nav-link">
+      <a href="../../pages/database/database_mgt.html" class="nav-link">
         <i class="bi bi-table"></i>
         <strong>BASE DE DONNEES</strong> 
       </a>
     </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="../../pages/chiffrage/offer_mgt.html" class="nav-link">
           <i class="bi bi-file-earmark-medical-fill"></i>
           <strong>CHIFFRAGE</strong>
         </a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="../../pages/administration/user_mgt.html" class="nav-link">
           <i class="bi bi-tools"></i>
           <strong>ADMINISTRATION</strong> 
         </a>
       </li>
   </ul>
-  </aside>
+</aside>
