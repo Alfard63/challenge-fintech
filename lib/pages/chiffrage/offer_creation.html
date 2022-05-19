@@ -30,32 +30,88 @@ include_once "../../assets/php/var.php";
                 <form action="../action/offer_creation.php" method="POST">
                    
                     <div>
-                        <h2>Les coûts de personnel de conduite affecté à l'exploitation du véhicule</h2>
+                        <h2>Détail du chiffrage</h2>
 
-                        <label>Nombre de conducteur(s) affecté(s) à l'exploitation du véhicule</label>
-                        <input type="nb_drivers" placeholder="Entrer le nombre de conducteur(s)" name="nb_drivers" required>
-                        <label>Nombre de jours d'activité par an d'un conducteur</label>
-                        <input type="days_activity" placeholder="Entrer le nombre de jours d'activité par an d'un conducteur" name="days_activity" required>
-                        <label>Temps de service mensuel (heures)</label>
-                        <input type="monthly_service_time" placeholder="Entrer le temps de service mensuel" name="monthly_service_time" required>
-                        <label>Temps de conduite mensuel (heures)</label>
-                        <input type="monthly_driving_time" placeholder="Entrer le temps de conduite mensuel" name="monthly_driving_time" required>
-                        <label>Nombre de jours travaillés par mois</label>
-                        <input type="monthly_worked_day" placeholder="Entrer le nombre de jours travaillés par mois" name="monthly_worked_day" required>
-                        <label>Salaire mensuel brut (€/mois)</label>
-                        <input type="monthly_paycheck" placeholder="Entrer le salaire mensuel brut" name="monthly_paycheck" required>
-                        <label>Primes annuelles (€/an)</label>
-                        <input type="annual_primes" placeholder="Entrer les primes annuelles" name="annual_primes" required>
-                        <label>Taux de cotisations employeurs (%)</label>
-                        <input type="tax_rate" placeholder="Entrer le taux de cotisations employeurs" name="tax_rate" required>
-                        <label>Indemnités de déplacement par an (€/an)</label>
-                        <input type="annual_indemnities" placeholder="Entrer les indemnités de déplacement par an" name="annual_indemnities" required>
-                        <label>Nombre de mois payés</label>
-                        <input type="nb_months_paid" placeholder="Entrer le nombre de mois payés" name="nb_months_paid" required>
+                        <p>Numero du chiffrage: <!-- Variable --></p>
+                        <p>Date de création: <!-- Variable -->  </p>
+                        <label>Nom du client <!-- Liste + possibilité de l'ajouter --> </label>
+                        <input type="text" placeholder="Sélectionner le nom du client" name="customer_name" required>
+                        <p>Sélection du véhicule de transport: <!-- Liste == Variable -->  </p>
+                    </div>
+
+                    <div>
+                        <h2>Description de l'opération</h2>
+
+                        <h3>Calcul des distances, temps de conduite et coût des péages</h3>
+
+                        <label>Adresse de départ du véhicule</label>
+                        <input type="text" placeholder="Entrer l'adresse de départ du véhicule" name="starting_transport_address" required>
+
+                        <label>Adresse de chargement</label>
+                        <input type="text" placeholder="Entrer l'adresse de chargement" name="starting_transport_address" required>
+                        <label>Temps de chargement</label>
+                        <input type="text" placeholder="Entrer le temps de chargement" name="uploading_time" required>
+
+                        <label>Adresse de déchargement</label>
+                        <input type="text" placeholder="Entrer l'adresse de déchargement" name="delivery_transport_address" required>
+                        <label>Temps de déchargement</label>
+                        <input type="text" placeholder="Entrer le temps de déchargement" name="downloading_time" required>
+
+                        <h3>Détail de la cargaison</h3>
+
+                        <label>Unité de chargement</label>
+                        <input type="text" placeholder="Entrer l'unité de chargement" name="load_unit" required>
+                        <label>chargement d'un tour (correspondant à l'unité ci-dessus)</label>
+                        <input type="text" placeholder="Entrer la valeur du chargement" name="load_value" required>
+                        <label>Temps de travail journalier pouvant être effectué</label>
+                        <input type="text" placeholder="Entrer le temps de travail journalier" name="daily_working_time" required>
+
+                        <label>Autre coût, lié au transport ou non, à inclure dans le calcul de coût d'un tour</label>
+                        <input type="text" placeholder="Entrer la valeur des autres coûts" name="alternative_cost">
+                    </div>
+
+                    <div>
+                        <h2>Journée d'exploitation optimale</h2>
+
+                        <!-- Affichage des données symbolisé par <p> -->
+                        <p>Nombre de tour(s) ou déchargement(s) possible(s): <!-- Variable --> </p>
+                        <p>Temps de service journalier requis pour effectuer <!-- Variable --> tours ou déchargements: <!-- Variable --> </p>
+
+                        <p>Kilométrage total parcouru: <!-- Variable --> </p>
+                        <p>"Chargement total transport  (exprimé en <!-- Variable -->) : <!-- Variable --> </p>
+                        <p>Temps de service nécessaire: <!-- Variable --> </p>
+                    </div>
+
+                    <div>
+                        <h2>Rappel de la formule du trinome</h2>
+
+                        <p>Coût des unités d'œuvre calculé à partir du "CR" annuel</p>
+
+                        <p>Terme kilométrique (1 km parcouru) hors péages: <!-- Variable --> </p>
+                        <label>Coûts alternatifs au choix de l'utilisateur</label>
+                        <input type="text" placeholder="Entrer le terme kilométrique alternatif" name="al_km_cost">
+
+                        <p>Terme horaire conducteur (1 heure de temps de service): <!-- Variable --> </p>
+                        <label>Coûts alternatifs au choix de l'utilisateur</label>
+                        <input type="text" placeholder="Entrer le terme horaide du conducteur alternatif" name="alt_hourly_rate_driver">
+
+                        <p>Terme journalier fixe (1 jour d'exploitation du véhicule): <!-- Variable --> </p>
+                        <label>Coûts alternatifs au choix de l'utilisateur</label>
+                        <input type="text" placeholder="Entrer le terme journalier fixe alternatif" name="alt_daily_rate">
+
+                        <p>Autre coût: <!-- Variable --> </p>
+                        <label>Coûts alternatifs au choix de l'utilisateur</label>
+                        <input type="text" placeholder="Entrer les autres couts alternatifs" name="alt_other_cost">
+                    </div>
+
+                    <div>
+                        <h2>Recomposition du cout de revient du véhicule étudié</h2>
+
+                        <!-- Détail du cout sous forme de tableau -->
                     </div>
 
                     <!-- Validation des données -->
-                    <input type="submit" id='submit' value='ENVOYER' >
+                    <input type="submit" id='submit' value='SAUVEGARDER' >
 
                 </form>
             </div>
