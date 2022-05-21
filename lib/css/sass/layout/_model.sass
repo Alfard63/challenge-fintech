@@ -15,7 +15,7 @@ header
         cursor: pointer
     .navbar-brand
         font-family: 'Saniretro'
-        font-size: 2.7rem
+        font-size: 1rem
         font-weight: bold
         color: $color-primary
         text-transform: uppercase
@@ -24,10 +24,21 @@ header
         align-items: center
         justify-content: center
         text-decoration: none
+        @media screen and (min-width: $phone)
+            font-size: 1.5rem
+        @media screen and (min-width: $tablet)
+            font-size: 2.7rem   
         img
-            width: 4.5rem
-            height: 4.5rem
+            width: 2.5rem
+            height: auto
             margin-right: 0.5rem
+            @media screen and (min-width: $phone)
+                width: 3rem
+            @media screen and (min-width: $tablet)
+                width: 4.5rem  
+
+        
+
 
 
 

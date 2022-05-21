@@ -56,7 +56,7 @@ header i {
 
 header .navbar-brand {
   font-family: 'Saniretro';
-  font-size: 2.7rem;
+  font-size: 1rem;
   font-weight: bold;
   color: #051F20;
   text-transform: uppercase;
@@ -73,10 +73,34 @@ header .navbar-brand {
   text-decoration: none;
 }
 
+@media screen and (min-width: 320px) {
+  header .navbar-brand {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  header .navbar-brand {
+    font-size: 2.7rem;
+  }
+}
+
 header .navbar-brand img {
-  width: 4.5rem;
-  height: 4.5rem;
+  width: 2.5rem;
+  height: auto;
   margin-right: 0.5rem;
+}
+
+@media screen and (min-width: 320px) {
+  header .navbar-brand img {
+    width: 3rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  header .navbar-brand img {
+    width: 4.5rem;
+  }
 }
 
 /* ASIDE MENU */
@@ -304,37 +328,41 @@ footer p {
   margin: 0;
 }
 
-.userManagement_page .modal-content {
+.modal-content {
   background-color: #DAF1DE;
   border-radius: 2rem;
   border: solid 2px #8EB69B;
-  max-width: 75%;
   margin: auto;
   margin-top: 2rem;
   color: #051F20;
 }
 
-.userManagement_page .modal-content .modal-header {
+.modal-content label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #051F20;
+  margin-bottom: 0.5rem;
+}
+
+.modal-content .modal-header {
   background: -webkit-gradient(linear, left top, left bottom, from(#8EB69B), to(#DAF1DE));
   background: linear-gradient(to bottom, #8EB69B, #DAF1DE);
   color: #051F20;
   font-size: 1.4rem;
-  font-weight: bold;
   padding: 1rem;
   border-radius: 2rem 2rem 0 0;
   border-bottom: solid 2px #8EB69B;
 }
 
-.userManagement_page .modal-content .modal-header .bi {
+.modal-content .modal-header .bi {
   color: #051F20;
 }
 
-.userManagement_page .modal-content .modal-body {
+.modal-content .modal-body {
   color: #051F20;
-  font-weight: bold;
 }
 
-.userManagement_page .modal-content .modal-body .form-group {
+.modal-content .modal-body .form-group {
   margin-bottom: 0.5rem;
 }
 

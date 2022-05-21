@@ -8,35 +8,330 @@ include_once "../../assets/php/var.php";
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Database - conducteurs</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../../css/style.css">
-</head>
-    <body>
-        <!-- insertion of standard header -->
-        <?php include_once("../../assets/std_page/header.html") ?>
-    
-        <!-- insertion of standard navbar -->
-        <?php include_once("../../assets/std_page/nav_bar.html") ?>
-    
-        <main>
-            <div>
-                <h1>Gestion des fiches de conducteurs</h1>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../../css/style.css" />
+  </head>
+  <body>
+    <!-- modal -->
+    <div
+      class="modal fade"
+      id="formModal"
+      tabindex="-1"
+      data-bs-backdrop="static"
+      aria-labelledby="formModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <form action="../../action/driver_creation.php" method="POST">
+            <div class="modal-header">
+              <div class="modal-title">
+                <h2>Création / Edition d'un conducteur</h2>
+              </div>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
             </div>
+            <div class="modal-body mx-3">
+              <div class="d-flex flex-wrap justify-content-between my-3">
+                <div class="form-group">
+                  <label>Nom du conducteur</label>
+                  <input
+                    class="form-control-sm ms-2"
+                    type="days_activity"
+                    placeholder="Entrer le nombre de jours d'activité par an d'un conducteur"
+                    name="driver_surname"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Prénom du conducteur</label>
+                  <input
+                    class="form-control-sm ms-2"
+                    type="nb_drivers"
+                    placeholder="Prénom du conducteur"
+                    name="driver_name"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Type de permis</label>
+                  <select
+                    class="form-control-sm"
+                    name="role"
+                    id="role"
+                    required
+                  >
+                    <option value="C">C</option>
+                    <option value="C1">C1</option>
+                    <option value="C1-E">C1-E</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Date du permis</label>
+                  <input
+                    class="form-control-sm ms-2"
+                    type="date"
+                    placeholder="Entrer le nombre de jours d'activité par an d'un conducteur"
+                    name="driver_surname"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Immatriculation du véhicule assigné</label>
+                  <!-- selection d'immatriculation de véhicules -->
+                  <select
+                    class="form-control-sm"
+                    name="role"
+                    id="role"
+                    required
+                  >
+                    <option value="BB-230-CZ">BB-230-CZ</option>
+                    <option value="AF-431-RF">AF-431-RF</option>
+                    <option value="JL-908-MD">JL-908-MD</option>
+                    <option value="ZX-147-VC">ZX-147-VC</option>
+                  </select>
+                </div>
+              </div>
+              <hr />
+              <h3 class="my-4">
+                Coûts de personnel de conduite affecté à l'exploitation du
+                véhicule
+              </h3>
+              <div class="my-2 ms-5">
+                <div class="form-group">
+                  <label
+                    >Nombre de jours d'activité par an d'un conducteur</label
+                  >
+                  <input
+                    type="days_activity"
+                    placeholder="Entrer le nombre de jours d'activité par an d'un conducteur"
+                    name="days_activity"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Temps de service mensuel (heures)</label>
+                  <input
+                    type="monthly_service_time"
+                    placeholder="Entrer le temps de service mensuel"
+                    name="monthly_service_time"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Temps de conduite mensuel (heures)</label>
+                  <input
+                    type="monthly_driving_time"
+                    placeholder="Entrer le temps de conduite mensuel"
+                    name="monthly_driving_time"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Nombre de jours travaillés par mois</label>
+                  <input
+                    type="monthly_worked_day"
+                    placeholder="Entrer le nombre de jours travaillés par mois"
+                    name="monthly_worked_day"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Salaire mensuel brut (€/mois)</label>
+                  <input
+                    type="monthly_paycheck"
+                    placeholder="Entrer le salaire mensuel brut"
+                    name="monthly_paycheck"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Primes annuelles (€/an)</label>
+                  <input
+                    type="annual_primes"
+                    placeholder="Entrer les primes annuelles"
+                    name="annual_primes"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Taux de cotisations employeurs (%)</label>
+                  <input
+                    type="tax_rate"
+                    placeholder="Entrer le taux de cotisations employeurs"
+                    name="tax_rate"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Indemnités de déplacement par an (€/an)</label>
+                  <input
+                    type="annual_indemnities"
+                    placeholder="Entrer les indemnités de déplacement par an"
+                    name="annual_indemnities"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Nombre de mois payés</label>
+                  <input
+                    type="nb_months_paid"
+                    placeholder="Entrer le nombre de mois payés"
+                    name="nb_months_paid"
+                  />
+                </div>
+                <button id="createUserBtn" type="submit" class="btn">
+                  <i class="bi bi-file-earmark-fill"></i>
+                  Enregistrer
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
 
-            <div>
-                <a href="./driver_creation.html">Création d'une nouvelle fiche de conducteur</a>
-            </div>           
-        </main>
+    <!-- insertion of standard header -->
+    <?php include_once("../../assets/std_page/header.html") ?>
 
-        <!-- insertion of standard header -->
-        <?php include_once("../../assets/std_page/footer.html") ?>
+    <!-- insertion of standard navbar -->
+    <?php include_once("../../assets/std_page/nav_bar.html") ?>
 
-        <script src="../../js/script.js"></script>
-    </body>
+    <main>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">
+                  <i class="bi bi-people"></i>
+                  Liste des conducteurs
+                </h4>
+                <div class="card-toolbar d-flex justify-content-end">
+                  <div class="btn-group">
+                    <button
+                      id="addUserBtn"
+                      type="button"
+                      class="btn"
+                      data-bs-toggle="modal"
+                      data-bs-target="#formModal"
+                    >
+                      Ajouter
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive text-center">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Email</th>
+                        <th>Permis</th>
+                        <th>Date d'obtention</th>
+                        <th>Véhicule attitré</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                      <tr>
+                        <td>Doe</td>
+                        <td>John</td>
+                        <td>john.doe@entreprise.com</td>
+                        <td>C1</td>
+                        <td>27/02/1998</td>
+                        <td>BB-230-CZ</td>
+                        <td>
+                          <a
+                            href="#"
+                            data-bs-toggle="modal"
+                            data-bs-target="#formModal"
+                          >
+                            <i class="bi bi-pencil-fill text-success edit"></i>
+                          </a>
+                          <a href="#">
+                            <i class="bi bi-trash-fill text-danger delete"></i>
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Doe</td>
+                        <td>Jane</td>
+                        <td>jane.doe@entreprise.com</td>
+                        <td>C1-E</td>
+                        <td>12/06/2017</td>
+                        <td>AF-431-RF</td>
+                        <td>
+                          <a
+                            href="#"
+                            data-bs-toggle="modal"
+                            data-bs-target="#formModal"
+                          >
+                            <i class="bi bi-pencil-fill text-success edit"></i>
+                          </a>
+                          <a href="#">
+                            <i class="bi bi-trash-fill text-danger delete"></i>
+                          </a>
+                        </td>
+                      </tr>
+                      <!-- creation d'une ligne depuis le serveur -->
+                      <?php
+                                $conducteurs = $bdd->query('SELECT * FROM
+                      conducteur'); while($conducteur = $conducteurs->fetch()) {
+                      ?>
+                      <tr>
+                        <td><?php echo $conducteur['nom']; ?></td>
+                        <td><?php echo $conducteur['prenom']; ?></td>
+                        <td><?php echo $conducteur['email']; ?></td>
+                        <td><?php echo $conducteur['permis']; ?></td>
+                        <td><?php echo $conducteur['date_permis']; ?></td>
+                        <td><?php echo $conducteur['vehicule']; ?></td>
+                        <td>
+                          <a
+                            href="#"
+                            data-bs-toggle="modal"
+                            data-bs-target="#formModal"
+                          >
+                            <i class="bi bi-pencil-fill text-success edit"></i>
+                          </a>
+                          <a href="#">
+                            <i class="bi bi-trash-fill text-danger delete"></i>
+                          </a>
+                        </td>
+                      </tr>
+                      <?php
+                                }
+                              ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- insertion of standard header -->
+    <?php include_once("../../assets/std_page/footer.html") ?>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../js/script.js"></script>
+  </body>
 </html>
