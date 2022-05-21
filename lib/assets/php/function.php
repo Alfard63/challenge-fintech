@@ -8,10 +8,9 @@ function db_connect($servername,$database1,$username,$password,)
     $dsn_Options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
     try { 
         $my_Db_Connection = new PDO($sql, $username, $password, $dsn_Options);
-        var_dump($sql);
-        echo "Connected successfully <br>";
+       // echo "Connected successfully <br>";
     } catch (PDOException $error) {
-        echo 'Connection error: ' . $error->getMessage();
+       // echo 'Connection error: ' . $error->getMessage();
         die('could not connect to database');
     }
 
