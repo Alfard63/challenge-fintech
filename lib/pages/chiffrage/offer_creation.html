@@ -27,12 +27,14 @@ include_once "../../assets/php/var.php";
             <div>
                 <h1>Bienvenue sur la page de création d'un nouveau chiffrage</h1>
                 
-                <form action="../action/offer_creation.php" method="POST">
+                <form action="../../action/offer_creation.php" method="POST">
                    
                     <div>
                         <h2>Détail du chiffrage</h2>
 
                         <p>Numero du chiffrage: <!-- Variable --></p>
+                        <label>Nom du chiffrage </label>
+                        <input type="text" placeholder="Sélectionner le nom du client" name="ope_name" required>
                         <p>Date de création: <!-- Variable -->  </p>
                         <label>Nom du client <!-- Liste + possibilité de l'ajouter --> </label>
                         <input type="text" placeholder="Sélectionner le nom du client" name="customer_name" required>
@@ -45,26 +47,26 @@ include_once "../../assets/php/var.php";
                         <h3>Calcul des distances, temps de conduite et coût des péages</h3>
 
                         <label>Adresse de départ du véhicule</label>
-                        <input type="text" placeholder="Entrer l'adresse de départ du véhicule" name="starting_transport_address" required>
+                        <input type="text" placeholder="Entrer l'adresse de départ du véhicule" name="starting_transport_address" >
 
                         <label>Adresse de chargement</label>
-                        <input type="text" placeholder="Entrer l'adresse de chargement" name="starting_transport_address" required>
+                        <input type="text" placeholder="Entrer l'adresse de chargement" name="starting_transport_address" >
                         <label>Temps de chargement</label>
-                        <input type="text" placeholder="Entrer le temps de chargement" name="uploading_time" required>
+                        <input type="text" placeholder="Entrer le temps de chargement" name="uploading_time" >
 
                         <label>Adresse de déchargement</label>
-                        <input type="text" placeholder="Entrer l'adresse de déchargement" name="delivery_transport_address" required>
+                        <input type="text" placeholder="Entrer l'adresse de déchargement" name="delivery_transport_address" >
                         <label>Temps de déchargement</label>
-                        <input type="text" placeholder="Entrer le temps de déchargement" name="downloading_time" required>
+                        <input type="text" placeholder="Entrer le temps de déchargement" name="downloading_time" >
 
                         <h3>Détail de la cargaison</h3>
 
                         <label>Unité de chargement</label>
-                        <input type="text" placeholder="Entrer l'unité de chargement" name="load_unit" required>
+                        <input type="text" placeholder="Entrer l'unité de chargement" name="load_unit" >
                         <label>chargement d'un tour (correspondant à l'unité ci-dessus)</label>
-                        <input type="text" placeholder="Entrer la valeur du chargement" name="load_value" required>
+                        <input type="text" placeholder="Entrer la valeur du chargement" name="load_value" >
                         <label>Temps de travail journalier pouvant être effectué</label>
-                        <input type="text" placeholder="Entrer le temps de travail journalier" name="daily_working_time" required>
+                        <input type="text" placeholder="Entrer le temps de travail journalier" name="daily_working_time" >
 
                         <label>Autre coût, lié au transport ou non, à inclure dans le calcul de coût d'un tour</label>
                         <input type="text" placeholder="Entrer la valeur des autres coûts" name="alternative_cost">

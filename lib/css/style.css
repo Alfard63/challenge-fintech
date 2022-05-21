@@ -11,10 +11,12 @@ a {
 }
 
 body {
+  position: relative;
   background-image: url("../assets/img/bg_light.png");
   font-family: 'helvetica', sans-serif;
   font-size: 16px;
   line-height: 1.5;
+  color: #333;
   margin: 0;
   padding: 0;
   min-width: 320px;
@@ -29,10 +31,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-body.dark {
-  background-image: url("../assets/img/bg_dark.png") !important;
-}
-
+/* HEADER */
 header {
   background-color: #8EB69B;
   color: #051F20;
@@ -45,9 +44,14 @@ header {
   width: 100%;
   height: 5rem;
   z-index: 100;
-  position: -webkit-sticky;
-  position: sticky;
-  /* header icons */
+  position: fixed;
+}
+
+header i {
+  font-size: 1.5rem;
+  margin: 0.5rem;
+  color: #051F20;
+  cursor: pointer;
 }
 
 header .navbar-brand {
@@ -67,31 +71,12 @@ header .navbar-brand {
       -ms-flex-pack: center;
           justify-content: center;
   text-decoration: none;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
 }
 
 header .navbar-brand img {
   width: 4.5rem;
   height: 4.5rem;
   margin-right: 0.5rem;
-}
-
-header i {
-  font-size: 1.5rem;
-  margin: 0.5rem;
-  color: #051F20;
-  cursor: pointer;
-  -webkit-transform: rotate(0deg);
-          transform: rotate(0deg);
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-
-header i:hover {
-  color: #163832;
-  -webkit-transform: rotate(180deg);
-          transform: rotate(180deg);
 }
 
 /* ASIDE MENU */
@@ -102,10 +87,11 @@ aside {
   margin-top: 5rem;
   position: fixed;
   top: 0;
+  bottom: 0;
   left: 0;
   z-index: 1;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
 aside.show {
@@ -196,8 +182,8 @@ aside #menuBtn {
   right: -1.5rem;
   cursor: pointer;
   z-index: 10;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
 aside #menuBtn.show {
@@ -213,7 +199,7 @@ aside #menuBtn i {
 }
 
 aside .menu-content {
-  padding: 0.5rem;
+  padding-top: 0.5rem;
 }
 
 aside .menu-content ul {
@@ -229,6 +215,7 @@ aside .menu-content ul {
 aside .menu-content i {
   font-size: 1.5rem;
   margin-right: 0.5rem;
+  margin-left: 0.5rem;
   color: #DAF1DE;
   text-shadow: -1px -1px 3px #051F20, 1px -1px 3px #051F20, -1px 1px 3px #051F20, 1px 1px 3px #051F20;
 }
@@ -246,17 +233,21 @@ aside .menu-content a:hover {
   color: #051F20;
 }
 
+/* MAIN CONTENT */
 main {
-  padding: 0.5rem;
+  position: relative;
+  padding: 1rem;
+  padding-top: 7rem;
   margin-left: 17rem;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
 main.show {
   margin-left: 5rem;
 }
 
+/* FOOTER */
 footer {
   width: 100%;
   height: 3rem;
@@ -285,5 +276,132 @@ footer p {
   font-size: 1rem;
   margin: 0;
   padding: 0;
+}
+
+.card {
+  background-color: #DAF1DE;
+  border-radius: 2rem;
+  border: solid 2px #8EB69B;
+  margin: auto;
+  color: #051F20;
+}
+
+.card .card-header {
+  background: -webkit-gradient(linear, left top, left bottom, from(#8EB69B), to(#DAF1DE));
+  background: linear-gradient(to bottom, #8EB69B, #DAF1DE);
+  color: #051F20;
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding: 1rem;
+  border-radius: 2rem 2rem 0 0;
+  border-bottom: solid 2px #8EB69B;
+}
+
+.card .card-header .card-title {
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 0.5rem;
+  margin: 0;
+}
+
+.userManagement_page .modal-content {
+  background-color: #DAF1DE;
+  border-radius: 2rem;
+  border: solid 2px #8EB69B;
+  max-width: 75%;
+  margin: auto;
+  margin-top: 2rem;
+  color: #051F20;
+}
+
+.userManagement_page .modal-content .modal-header {
+  background: -webkit-gradient(linear, left top, left bottom, from(#8EB69B), to(#DAF1DE));
+  background: linear-gradient(to bottom, #8EB69B, #DAF1DE);
+  color: #051F20;
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding: 1rem;
+  border-radius: 2rem 2rem 0 0;
+  border-bottom: solid 2px #8EB69B;
+}
+
+.userManagement_page .modal-content .modal-header .bi {
+  color: #051F20;
+}
+
+.userManagement_page .modal-content .modal-body {
+  color: #051F20;
+  font-weight: bold;
+}
+
+.userManagement_page .modal-content .modal-body .form-group {
+  margin-bottom: 0.5rem;
+}
+
+.btn {
+  background-color: #235347;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  border: solid 2px #8EB69B;
+  color: #DAF1DE;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.btn .bi {
+  color: #DAF1DE;
+  margin-right: 0.5rem;
+}
+
+.btn:hover {
+  background-color: #8EB69B;
+  color: #051F20;
+  color: #051F20;
+}
+
+.btn:active {
+  background-color: #8EB69B;
+  color: #051F20;
+  color: #051F20;
+}
+
+.btn:focus {
+  background-color: #8EB69B;
+  color: #051F20;
+  color: #051F20;
+}
+
+.btn:disabled {
+  background-color: #8EB69B;
+  color: #051F20;
+  border: solid 2px #8EB69B;
+  color: #051F20;
+  background-color: #8EB69B;
+  color: #051F20;
+  color: #051F20;
+  background-color: #8EB69B;
+  color: #051F20;
+  color: #051F20;
+  background-color: #8EB69B;
+  color: #051F20;
+  color: #051F20;
+}
+
+table th, table td {
+  color: #051F20;
+}
+
+table .bi {
+  font-size: 1.2em;
+  margin: 0.5em;
 }
 /*# sourceMappingURL=style.css.map */

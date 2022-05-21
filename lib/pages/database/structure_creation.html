@@ -27,12 +27,12 @@ include_once "../../assets/php/var.php";
             <div>
                 <h1>Bienvenue sur la page de création d''une nouvelle fiche de couts structure</h1>
                 
-                <form action="../action/user_creation.php" method="POST">
+                <form action="../../action/structure_creation.php" method="POST">
                    
                     <div>
 
                         <label>Année concernée par la fiche</label>
-                        <input type="text" placeholder="Entrer l'année concernée'" name="year_structure_cost" >
+                        <input type="text" placeholder="Entrer l'année concernée'" name="year_structure_cost" required >
 
                         <label> Part de l'activité étudiée imputable pour les coûts de structure</label>
                         <input type="text" placeholder="Entrer la part de l'activité imputable pour les coûts de structure" name="percentage_activity" >
