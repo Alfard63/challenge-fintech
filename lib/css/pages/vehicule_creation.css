@@ -1,0 +1,72 @@
+.card {
+    margin: 0 7rem;
+}
+
+/**** GLOBAL CARDS ****/
+.card-header {
+    text-align: center;
+}
+
+.card-header i {
+    padding-left: 1rem;
+}
+
+.formDiv {
+    margin: 1rem 1rem 2rem 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+legend {
+    margin: 0 0 1rem 3rem;
+    font-weight: bold;
+    color: #0B2B26;
+}
+
+label {
+    margin-bottom: 0.5rem;
+}
+
+.secondLabel {
+    display: flex;
+    gap: 0.3rem;
+    font-style: italic;
+}
+
+input {
+    margin-bottom: 1rem;
+}
+
+h3 {
+    color: #235347;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-left: 2rem;
+}
+
+/** INTRO CARD **/
+.introCard {
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #8EB69B;
+}
+
+/* BUTTON */
+.btnDiv {
+    text-align: center;
+}
+
+.submitBtn {
+    background-color: #0B2B26;
+    color: #8EB69B;
+    font-weight: bold;
+}
+
+/* MAG PAGES QUE JAI FAITES EN METTANT LE INCLUDE */
+
+/* voir pour faire une grid pour les form-group emprunt/credit/etc pour - de lourdeurs */
+
+/* JS : si tel input est renseigné -> accès à ça (et non obliger la réponse comme now avec required) -> voir avec Bin si incidence sur BDD (L271, .location-financiere, .credit-bail, .autofinancement, .emprunt) */
