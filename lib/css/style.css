@@ -47,6 +47,13 @@ header {
   position: fixed;
 }
 
+header i {
+  font-size: 1.5rem;
+  margin: 0.5rem;
+  color: #051F20;
+  cursor: pointer;
+}
+
 header .navbar-brand {
   font-family: 'Saniretro';
   font-size: 2.7rem;
@@ -70,14 +77,6 @@ header .navbar-brand img {
   width: 4.5rem;
   height: 4.5rem;
   margin-right: 0.5rem;
-}
-
-/* header icons */
-i {
-  font-size: 1.5rem;
-  margin: 0.5rem;
-  color: #051F20;
-  cursor: pointer;
 }
 
 /* ASIDE MENU */
@@ -200,7 +199,7 @@ aside #menuBtn i {
 }
 
 aside .menu-content {
-  padding: 0.5rem;
+  padding-top: 0.5rem;
 }
 
 aside .menu-content ul {
@@ -216,6 +215,7 @@ aside .menu-content ul {
 aside .menu-content i {
   font-size: 1.5rem;
   margin-right: 0.5rem;
+  margin-left: 0.5rem;
   color: #DAF1DE;
   text-shadow: -1px -1px 3px #051F20, 1px -1px 3px #051F20, -1px 1px 3px #051F20, 1px 1px 3px #051F20;
 }
@@ -236,8 +236,8 @@ aside .menu-content a:hover {
 /* MAIN CONTENT */
 main {
   position: relative;
-  padding: 0.8rem;
-  padding-top: 5rem;
+  padding: 1rem;
+  padding-top: 7rem;
   margin-left: 17rem;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
@@ -278,7 +278,33 @@ footer p {
   padding: 0;
 }
 
-.userEdit_page .modal-content {
+.card {
+  background-color: #DAF1DE;
+  border-radius: 2rem;
+  border: solid 2px #8EB69B;
+  margin: auto;
+  color: #051F20;
+}
+
+.card .card-header {
+  background: -webkit-gradient(linear, left top, left bottom, from(#8EB69B), to(#DAF1DE));
+  background: linear-gradient(to bottom, #8EB69B, #DAF1DE);
+  color: #051F20;
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding: 1rem;
+  border-radius: 2rem 2rem 0 0;
+  border-bottom: solid 2px #8EB69B;
+}
+
+.card .card-header .card-title {
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 0.5rem;
+  margin: 0;
+}
+
+.userManagement_page .modal-content {
   background-color: #DAF1DE;
   border-radius: 2rem;
   border: solid 2px #8EB69B;
@@ -288,9 +314,9 @@ footer p {
   color: #051F20;
 }
 
-.userEdit_page .modal-content .modal-header {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#8EB69B), to(#DAF1DE));
-  background-image: linear-gradient(to bottom, #8EB69B, #DAF1DE);
+.userManagement_page .modal-content .modal-header {
+  background: -webkit-gradient(linear, left top, left bottom, from(#8EB69B), to(#DAF1DE));
+  background: linear-gradient(to bottom, #8EB69B, #DAF1DE);
   color: #051F20;
   font-size: 1.4rem;
   font-weight: bold;
@@ -299,32 +325,41 @@ footer p {
   border-bottom: solid 2px #8EB69B;
 }
 
-.userEdit_page .modal-content .modal-header .bi {
+.userManagement_page .modal-content .modal-header .bi {
   color: #051F20;
 }
 
-.userEdit_page .modal-content .modal-body {
+.userManagement_page .modal-content .modal-body {
   color: #051F20;
   font-weight: bold;
 }
 
-.userEdit_page .modal-content .modal-body .form-group {
+.userManagement_page .modal-content .modal-body .form-group {
   margin-bottom: 0.5rem;
 }
 
 .btn {
   background-color: #235347;
-  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 0.5rem 1rem;
   border-radius: 2rem;
   border: solid 2px #8EB69B;
   color: #DAF1DE;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .btn .bi {
   color: #DAF1DE;
-  margin: 0;
+  margin-right: 0.5rem;
 }
 
 .btn:hover {
@@ -361,37 +396,12 @@ footer p {
   color: #051F20;
 }
 
-.userEdit_page .modal-content {
-  background-color: #DAF1DE;
-  border-radius: 2rem;
-  border: solid 2px #8EB69B;
-  max-width: 75%;
-  margin: auto;
-  margin-top: 2rem;
+table th, table td {
   color: #051F20;
 }
 
-.userEdit_page .modal-content .modal-header {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#8EB69B), to(#DAF1DE));
-  background-image: linear-gradient(to bottom, #8EB69B, #DAF1DE);
-  color: #051F20;
-  font-size: 1.4rem;
-  font-weight: bold;
-  padding: 1rem;
-  border-radius: 2rem 2rem 0 0;
-  border-bottom: solid 2px #8EB69B;
-}
-
-.userEdit_page .modal-content .modal-header .bi {
-  color: #051F20;
-}
-
-.userEdit_page .modal-content .modal-body {
-  color: #051F20;
-  font-weight: bold;
-}
-
-.userEdit_page .modal-content .modal-body .form-group {
-  margin-bottom: 0.5rem;
+table .bi {
+  font-size: 1.2em;
+  margin: 0.5em;
 }
 /*# sourceMappingURL=style.css.map */

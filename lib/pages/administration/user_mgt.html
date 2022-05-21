@@ -1,9 +1,12 @@
 <?php
-include_once "../../assets/php/var.php";
+session_start();
+include "../assets/php/function.php";
+include "../assets/php/var.php";
 
-// vérifier que l'on soit connecté pour accéder aux pages sinon retour vers index
-(!$is_connected)?header('Location: ../../index.html'):"";
+ // insert which DB to connect to
+$db_to_use = "user"; 
 
+$db= db_connect($servername,$db_to_use,$db_username,$password);
 ?>
 
 <!DOCTYPE html>
@@ -17,28 +20,165 @@ include_once "../../assets/php/var.php";
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../css/style.css">
 </head>
-    <body>
+    <body class="userManagement_page">
+
+        <!-- Modal for Edit/Creation user -->
+        <div class="modal fade" id="formModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="formModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="formModalLabel"><i class="bi bi-file-earmark-fill"></i>
+                        Création / Edition d'un utilisateur</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="userEditForm" action="../php/user_creation.php" method="POST">
+                            <div class="form-group">
+                                <label for="nom">Nom</label>
+                                <input type="text" class="form-control" name="nom" id="nom" placeholder="Entrez le nom de famille" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="prenom">Prénom</label>
+                                <input type="text" class="form-control" name="prenom" id="prenom" placeholder="Entrez le prénom" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Entrez l'email" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Service de l'utilisateur</label>
+                                <input type="text" class="form-control" placeholder="Entrer le temps de service mensuel" name="service" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Position (facultatif)</label>
+                                <input type="text" class="form-control" placeholder="Entrer le temps de conduite mensuel" name="position" >
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Mot de passe</label>
+                                <input type="password" class="form-control" name="password" id="password" placeholder="Mot de passe" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password_confirm">Confirmation du mot de passe</label>
+                                <input type="password" class="form-control" name="password_confirm" id="password_confirm" placeholder="Confirmation du mot de passe" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="role">Rôle</label>
+                                <select class="form-control" name="role" id="role" required>
+                                    <option value="Contrôleur de gestion">Contrôleur de gestion</option>
+                                    <option value="Commercial">Commercial</option>
+                                    <option value="Directeur">Directeur</option>
+                                    <option value="Administrateur">Administrateur</option>
+                                </select>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <button id="createUserBtn" type="submit" class="btn">
+                                    <i class="bi bi-file-earmark-fill"></i>
+                                    Enregistrer
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <!-- insertion of standard header -->
         <?php include_once("../../assets/std_page/header.html") ?>
     
         <!-- insertion of standard navbar -->
         <?php include_once("../../assets/std_page/nav_bar.html") ?>
     
+        <!-- Main Content -->
         <main>
-
-            <div>
-                <h1>Gestion des utilisateurs</h1>
+            <div class="container-fluid">
+                <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title ">
+                        <i class="bi bi-people"></i>
+                        Liste des utilisateurs
+                        </h4>
+                        <div class="card-toolbar d-flex justify-content-end">
+                        <div class="btn-group">
+                            <button id="addUserBtn" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#formModal">
+                            Ajouter
+                            </button>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive text-center">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Prénom</th>
+                                <th>Email</th>
+                                <th>Service</th>
+                                <th>Position</th>
+                                <th>Rôle</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tableBody">                    
+<!--                             <tr>
+                                <td>Doe</td>
+                                <td>John</td>
+                                <td>john.doe@entreprise.com</td>
+                                <td>IT</td>
+                                <td>test</td>
+                                <td>Administrateur</td>
+                                <td>
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#formModal">
+                                    <i class="bi bi-pencil-fill text-warning edit"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="bi bi-trash-fill text-danger delete"></i>
+                                </a>
+                                </td>
+                            </tr> 
+-->
+                            
+                            <?php
+                                $users = $db->query('SELECT * FROM users');
+                                while($user = $users->fetch()) {
+                            ?>
+                            <tr id=<?=>
+                                <td><?= $user['username'] ?></td>
+                                <td><?= $user['surname'] ?></td>
+                                <td><?= $user['email'] ?></td>
+                                <td><?= $user['service'] ?></td>
+                                <td><?= $user['position'] ?></td>
+                                <td>
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#formModal">
+                                    <i class="bi bi-pencil-fill text-warning"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="bi bi-trash-fill text-danger"></i>
+                                </a>
+                                </td>
+                            </tr>
+                            <?php
+                                }
+                            ?>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
             </div>
-
-            <div>
-                <a href="./user_creation.html">Création d'une nouvelle fiche utilisateur</a>
-            </div>
-
         </main>
+
 
         <!-- insertion of standard header -->
         <?php include_once("../../assets/std_page/footer.html") ?>
 
+        <!-- insertion of standard javascript -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
         <script src="../../js/script.js"></script>
     </body>
 </html>
