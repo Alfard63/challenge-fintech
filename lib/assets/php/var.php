@@ -25,5 +25,3 @@ if(isset($_SESSION["username"]))
         "cost_database" => $_SESSION["service"],
     );      
 }
-
-
