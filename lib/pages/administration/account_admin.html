@@ -1,36 +1,156 @@
-<?php
-include_once "../assets/php/var.php";
-
-// vérifier que l'on soit connecté pour accéder aux pages sinon retour vers index
-(!$is_connected)?header('Location: ../../index.html'):"";
-?>
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/user_administration/account_admin.css">
 </head>
-<body>
-    <!-- insertion of standard header -->
-    <?php include_once("../assets/std_page/header.html") ?>
 
-    <!-- insertion of standard navbar -->
-    <?php include_once("../assets/std_page/nav_bar.html") ?>
-
+<body class="">
+    <header>
+        <nav class="navbar w-100">
+            <div class="container-fluid">
+                <a href="#" class="navbar-brand">
+                    <img src="../../assets/img/logo.png" alt="">
+                    TRANSROAD
+                </a>
+                <h1 class="fw-bold flex-fill text-center">EDITION DU PROFIL</h1>
+                <div class="navbar-icons">
+                    <i id="menuIcon" class="bi bi-list"></i>
+                    <i id="notifIcon" class="bi bi-bell-fill"></i>
+                    <i id="profilIcon" class="bi bi-person-fill"></i>
+                    <i id="disconnectIcon" class="bi bi-box-arrow-right"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <aside id="menu" class="show">
+        <div id="menuBtn">
+            <i class="bi bi-chevron-left"></i>
+        </div>
+        <div class="menu-header">
+            <div class="user-avatar">
+                <i class="bi bi-person"></i>
+            </div>
+            <div class="user-info">
+                <h4 class="fw-bold">
+                    John Doe
+                </h4>
+                <h5 class="fw-bold">
+                    Contrôleur de gestion
+                </h5>
+            </div>
+        </div>
+        <div class="menu-content">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="bi bi-house-door-fill"></i>
+                        <strong class="menu-item">TABLEAU DE BORD</strong>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="bi bi-table"></i>
+                        <strong>BASE DE DONNEES</strong>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="bi bi-file-earmark-medical-fill"></i>
+                        <strong>CHIFFRAGE</strong>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="bi bi-tools"></i>
+                        <strong>ADMINISTRATION</strong>
+                    </a>
+                </li>
+            </ul>
+    </aside>
     <main>
+        <div class="principalBlock">
+            <div class="leftBlock">
+                <div class="idBlock">
+                    <img src="../../assets/img/user3.png" alt="user_icon">
+                    <p class="userTitle">John Doe</p>
+                    <p>Contrôleur de gestion</p>
+                </div>
+                <div class="managementBlock">
+                    <div class="accountBtn">
+                        <div class="accountBtnImg">
+                            <img src="../../assets/img/user2.png" alt="user_icon">
+                        </div>
+                        <div class="accountBtnLink">
+                            <a href="./account_admin.html">
+                                <p class="mb-0 account">Compte</p>
+                            </a>
+                        </div>
+                        <div class="accountBtnArrow">
+                            <a href="./account_admin.html">
+                                <img src="../../assets/img/next.png" alt="next_icon">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="pswSettingsBtn">
+                        <div class="pswSettingsImg">
+                            <img src="../../assets/img/darker_padlock.png" alt="user_icon">
+                        </div>
+                        <div class="pswSettingsLink">
+                            <a href="./psw_settings.html">
+                                <p class="mb-0 password">Modifier le mot de passe </p>
+                            </a>
+                        </div>
+                        <div class="pswSettingsArrow">
+                            <a href="./psw_settings.html">
+                                <img src="../../assets/img/next.png" alt="next_icon">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rightBlock">
+                <div class="rightBlockHeader">
+                    <img src="../../assets/img/user2.png" alt="user_icon">
+                    <p class="mb-0">Mettre à jour votre profil</p>
+                </div>
+                <form action="POST">
+                    <div class="form-group">
+                        <label for="name">Nom :</label>
+                        <input type="text" name="name" id="name"
+                        class="form-control mb-2" >
+                    </div>
+                    <div class="form-group">
+                        <label for="firstname">Prénom :</label>
+                        <input type="text" name="firstname" id="firstname"
+                        class="form-control mb-2" >
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Adresse email :</label>
+                        <input type="text" name="email" id="email"
+                        class="form-control" >
+                    </div>
+                </form>
+                <div class="btnDiv">
+                    <button type="button" class="btn submitBtn">Valider</button>
+                </div>
+            </div>
+        </div>
 
-        <!-- Vous pouvez écrire ce que vous voulez ici -->
-        
+
     </main>
-
-    <!-- insertion of standard header -->
-    <?php include_once("../assets/std_page/footer.html") ?>
-    <script src="../js/script.js"></script>
+    <footer>
+        <p>copyright Findev#11</p>
+    </footer>
+    <script src="../../js/script.js"></script>
 </body>
+
+</html>

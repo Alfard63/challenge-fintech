@@ -17,7 +17,7 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <!-- Custom styles for this template -->
-    <link href="./css/sass/pages/login_page.css" rel="stylesheet">
+    <link href="./css/index.css" rel="stylesheet">
 </head>
 
 <body>
@@ -50,14 +50,15 @@
                     </div>
                     <div class="form-group rememberMe">
                         <div class="remember">
-                            <input type="checkbox" name="rememberMe" value="#" /> Se souvenir de moi
+                            <input type="checkbox" name="rememberMe" value="#" />
+                            <p class="m-0">Se souvenir de moi</p>
                         </div>
-                        <div class="forgot-psw">
-                            <a href="#">Mot de passe oublié ?</a>
-                        </div>
+                        <button type="button" class="btn resetBtn" data-bs-toggle="modal" data-bs-target="#popup">
+                            Mot de passe oublié ?
+                        </button>
                     </div>
                     <div class="btnDiv">
-                        <button class="btn" type="submit">Envoyer</button>
+                        <button class="btn submitBtn" type="submit">Envoyer</button>
                     </div>
 
                     <!-- Si l'utilisateur se trompe affichage d'un message d'erreur -->
@@ -73,6 +74,17 @@
             </div>
         </div>
     </main>
+    <div id="popup" class="modal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Un email contenant la procédure de réinitialisation du mot de passe vient de vous être envoyé.</p>
+                </div>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer
+                </button>
+            </div>
+        </div>
+    </div>
     <footer>
         <p>copyright Findev#11</p>
     </footer>
