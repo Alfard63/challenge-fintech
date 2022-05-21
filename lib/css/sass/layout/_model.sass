@@ -1,3 +1,4 @@
+/* HEADER */
 header 
     background-color: $color-quinary
     color: $color-primary
@@ -6,7 +7,7 @@ header
     width: 100%
     height: 5rem
     z-index: 100
-    position: sticky
+    position: fixed
 
     .navbar-brand
         font-family: 'Saniretro'
@@ -19,27 +20,19 @@ header
         align-items: center
         justify-content: center
         text-decoration: none
-        transition: all 0.3s ease
 
         img
             width: 4.5rem
             height: 4.5rem
             margin-right: 0.5rem
 
-    /* header icons */
-        
-    i
-        font-size: 1.5rem
-        margin: 0.5rem
-        color: $color-primary
-        cursor: pointer
-        transform: rotate(0deg)
-        transition: all 0.3s ease
-
-        &:hover
-            color: $color-tertiary
-            transform: rotate(180deg)
-
+/* header icons */
+    
+i
+    font-size: 1.5rem
+    margin: 0.5rem
+    color: $color-primary
+    cursor: pointer
 
 /* ASIDE MENU */
 aside
@@ -49,9 +42,10 @@ aside
     margin-top: 5rem
     position: fixed
     top: 0
+    bottom: 0
     left: 0
     z-index: 1
-    transition: all $time-menu ease
+    transition: all $time-transition ease
     &.show
         width: 17em
 
@@ -114,7 +108,7 @@ aside
         right: -1.5rem
         cursor: pointer
         z-index: 10
-        transition: all $time-menu ease
+        transition: all $time-transition ease
         &.show
             transform: rotate(180deg)
 
@@ -147,14 +141,17 @@ aside
             &:hover
                 color: $color-primary
 
+/* MAIN CONTENT */
 main
-    padding: 0.5rem
+    position: relative
+    padding: 0.8rem
+    padding-top: 5rem
     margin-left: 17rem
-    transition: all $time-menu ease
+    transition: all $time-transition ease
     &.show
         margin-left: 5rem
-        
-    
+
+/* FOOTER */    
 footer
     width: 100%
     height: 3rem
@@ -171,7 +168,6 @@ footer
     color: $color-primary
     letter-spacing: 0.1rem
     text-transform: uppercase
-
     p
         font-size: 1rem
         margin: 0
