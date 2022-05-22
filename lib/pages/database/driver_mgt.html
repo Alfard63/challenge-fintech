@@ -75,8 +75,7 @@ include_once "../../assets/php/var.php";
                   <label>Type de permis</label>
                   <select
                     class="form-control-sm"
-                    name="role"
-                    id="role"
+                    name="licence_type"
                     required
                   >
                     <option value="C">C</option>
@@ -90,7 +89,7 @@ include_once "../../assets/php/var.php";
                     class="form-control-sm ms-2"
                     type="date"
                     placeholder="Entrer le nombre de jours d'activité par an d'un conducteur"
-                    name="driver_surname"
+                    name="licence_date"
                     required
                   />
                 </div>
@@ -99,8 +98,7 @@ include_once "../../assets/php/var.php";
                   <!-- selection d'immatriculation de véhicules -->
                   <select
                     class="form-control-sm"
-                    name="role"
-                    id="role"
+                    name="vehicule"
                     required
                   >
                     <option value="BB-230-CZ">BB-230-CZ</option>
@@ -238,7 +236,6 @@ include_once "../../assets/php/var.php";
                       <tr>
                         <th>Nom</th>
                         <th>Prénom</th>
-                        <th>Email</th>
                         <th>Permis</th>
                         <th>Date d'obtention</th>
                         <th>Véhicule attitré</th>
@@ -249,7 +246,6 @@ include_once "../../assets/php/var.php";
                       <tr>
                         <td>Doe</td>
                         <td>John</td>
-                        <td>john.doe@entreprise.com</td>
                         <td>C1</td>
                         <td>27/02/1998</td>
                         <td>BB-230-CZ</td>
@@ -269,7 +265,6 @@ include_once "../../assets/php/var.php";
                       <tr>
                         <td>Doe</td>
                         <td>Jane</td>
-                        <td>jane.doe@entreprise.com</td>
                         <td>C1-E</td>
                         <td>12/06/2017</td>
                         <td>AF-431-RF</td>
@@ -288,15 +283,22 @@ include_once "../../assets/php/var.php";
                       </tr>
                       <!-- creation d'une ligne depuis le serveur -->
                       <?php
-                                $conducteurs = $bdd->query('SELECT * FROM
-                      conducteur'); while($conducteur = $conducteurs->fetch()) {
+                      include "../../assets/php/function.php";
+                      include "../../assets/php/var.php";
+
+                      // insert which DB to connect to
+                      $db_to_use = "user"; 
+
+                      $bdd= db_connect($servername,$db_to_use,$db_username,$password);
+
+                      $conducteurs = $bdd->query('SELECT * FROM
+                      driver'); while($conducteur = $conducteurs->fetch()) {
                       ?>
                       <tr>
-                        <td><?php echo $conducteur['nom']; ?></td>
-                        <td><?php echo $conducteur['prenom']; ?></td>
-                        <td><?php echo $conducteur['email']; ?></td>
-                        <td><?php echo $conducteur['permis']; ?></td>
-                        <td><?php echo $conducteur['date_permis']; ?></td>
+                        <td><?php echo $conducteur['driver_name']; ?></td>
+                        <td><?php echo $conducteur['driver_surname']; ?></td>
+                        <td><?php echo $conducteur['licence_type']; ?></td>
+                        <td><?php echo $conducteur['licence_date']; ?></td>
                         <td><?php echo $conducteur['vehicule']; ?></td>
                         <td>
                           <a
