@@ -1,0 +1,15 @@
+.topLeftCard {
+    margin-top: 1.5rem;
+}
+
+.card {
+    min-height: 175px;
+}
+
+i {
+    font-size: 1.4rem;
+}
+
+button {
+    width: 100px;
+}
