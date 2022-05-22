@@ -1,12 +1,8 @@
 <?php
 session_start();
-include "../assets/php/function.php";
-include "../assets/php/var.php";
+include "../../assets/php/function.php";
+include "../../assets/php/var.php";
 
- // insert which DB to connect to
-$db_to_use = "user"; 
-
-$db= db_connect($servername,$db_to_use,$db_username,$password);
 ?>
 
 <!DOCTYPE html>
@@ -32,14 +28,14 @@ $db= db_connect($servername,$db_to_use,$db_username,$password);
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form id="userEditForm" action="../php/user_creation.php" method="POST">
+                        <form id="userEditForm" action="../../action/user_creation.php" method="POST">
                             <div class="form-group">
                                 <label for="nom">Nom</label>
-                                <input type="text" class="form-control" name="nom" id="nom" placeholder="Entrez le nom de famille" required>
+                                <input type="text" class="form-control" name="username" id="nom" placeholder="Entrez le nom de famille" required>
                             </div>
                             <div class="form-group">
                                 <label for="prenom">Prénom</label>
-                                <input type="text" class="form-control" name="prenom" id="prenom" placeholder="Entrez le prénom" required>
+                                <input type="text" class="form-control" name="surname" id="prenom" placeholder="Entrez le prénom" required>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
@@ -142,10 +138,16 @@ $db= db_connect($servername,$db_to_use,$db_username,$password);
 -->
                             
                             <?php
-                                $users = $db->query('SELECT * FROM users');
-                                while($user = $users->fetch()) {
+                                                        
+                            // insert which DB to connect to
+                            $db_to_use = "user"; 
+                            
+                            $db= db_connect($servername,$db_to_use,$db_username,$password);
+
+                            $users = $db->query('SELECT * FROM users');
+                            while($user = $users->fetch()) {
                             ?>
-                            <tr id=<?=>
+                            <tr id=>
                                 <td><?= $user['username'] ?></td>
                                 <td><?= $user['surname'] ?></td>
                                 <td><?= $user['email'] ?></td>
