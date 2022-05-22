@@ -3,16 +3,19 @@ include "../assets/php/function.php";
 include "../assets/php/var.php";
 
  // insert which DB to connect to
- $db_to_use = "user"; 
- $dbtable="structure";
+ $db_to_use = "vehicule"; 
+ $dbtable6="tires";
+ $dbtable7="energy";
 
 // create an array of all the POST variables you want to use
- $fields = array('year_structure_cost','percentage_activity','percentage_maintenance','actualisation_coefficient','consum_mainten_purch','consum_furniture_purch','consu_admin_furniture_purch',
-    'not_stockable_purch','other_consum_purch','other_supplier_not_transport','credit_loan','financial_rent','building_rent','other_rent','building_mainten',
-    'transport_mat_mainten','tool_shop_mainten','other_mainten','building_insurance','tooling_insurance','other_insurance','res_and_dev','interim_staff',
-    'commission_revenue','public_relation','merch_transport','mission_exp_note','communication_exp','shipping_exp','bank_exp','other_toll_exp','misc_exp',
-    'cet_exp','taxes_exp','mecanic_paycheck_exp','other_prod_paycheck_exp','dir_paycheck_exp','admin_paycheck_exp','other_paycheck_exp','loan_loss','finance_exp',
-    'excep_charges','roi_building','roi_tool_shop','roi_office_furniture','roi_dir_vehicule','roi_other',
+ 
+
+$fields_db6 = array(
+    'tires_brand','supplier','brand','lifetime','unit_cost',
+);
+
+$fields_db7 = array(
+    'energy_type','cost_road','cost_cistern','cost_other_type',
 );
 
  if(isset($_POST['year_structure_cost']))

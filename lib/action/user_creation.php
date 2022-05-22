@@ -16,7 +16,7 @@ include "../assets/php/var.php";
     $my_Db_Connection= db_connect($servername,$db_to_use,$db_username,$password);
         
     // create an array of all the POST variables you want to use
-    $fields = array('username','surname','service','position','email','password');
+    $fields = array('username','surname','service','position','email','password', 'password_confirm');
 
     // prepare SQL statement and bind values    
     $stm_insert = $my_Db_Connection->prepare(query_insert($dbtable,$fields)) ;
@@ -42,7 +42,7 @@ include "../assets/php/var.php";
         if($answers) 
         {
             //this email already exist
-            header('Location: ../pages/administration/user_creation.html?=erreur1');
+            header('Location: ../pages/administration/user_mgt.html?=erreur1');
         }
 
     }
@@ -58,7 +58,7 @@ include "../assets/php/var.php";
  }
  else
  {
-    header('Location: ../pages/administration/user_creation.html?=erreur2');
+    header('Location: ../pages/administration/user_mgt.html?=erreur2');
 
  }
 
