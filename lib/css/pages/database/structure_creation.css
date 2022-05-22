@@ -7,6 +7,10 @@
     text-align: center;
 }
 
+.card-header i {
+    padding-left: 1rem;
+}
+
 .formDiv {
     margin: 1rem 1rem 2rem 1rem;
 }
@@ -17,33 +21,14 @@
     justify-content: center;
 }
 
-.location-financiere, .credit-bail, .autofinancement, .emprunt {
-    font-variant: small-caps;
-    font-size: 17px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.location-financiere i, .credit-bail i, .autofinancement i, .emprunt i {
-    font-size: 15px;
-}
-
-
 legend {
     margin: 0 0 1rem 3rem;
     font-weight: bold;
-    color: #235347;
+    color: #0B2B26;
 }
 
 label {
     margin-bottom: 0.5rem;
-}
-
-.secondLabel {
-    display: flex;
-    gap: 0.3rem;
-    font-style: italic;
 }
 
 input {
@@ -55,11 +40,12 @@ select {
     margin-bottom: 1rem;
 }
 
-h3 {
+h2 {
     color: #235347;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-weight: bold;
     margin-left: 2rem;
+    margin-bottom: 1rem;
 }
 
 /** INTRO CARD **/
@@ -81,9 +67,4 @@ h3 {
     color: #8EB69B;
     font-weight: bold;
     width: 100%;
-}
-
-/* SELECT DISPLAY */
-#firstSelectEmprunt, #firstSelectAutofinancement, #firstSelectCreditBail, #firstSelectLocFinanciere, #secondSelectEmprunt, #secondSelectAutofinancement, #secondSelectCreditBail, #secondSelectLocFinanciere {
-    display: none;
 }

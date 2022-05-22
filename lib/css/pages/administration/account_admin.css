@@ -1,0 +1,117 @@
+/***** MAIN *****/
+.principalBlock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+/**** GLOBAL BLOCKS ****/
+.leftBlock, .rightBlock {
+    width: 40%;
+    margin: 2% 0;
+}
+
+/*** LEFT BLOCK ***/
+.leftBlock {
+    padding: 1rem;
+    background: #DAF1DE;
+}
+
+/* ID BLOCK */
+.idBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.userTitle {
+    font-size: 2.2rem;
+    margin: 0;
+    font-family: "Saniretro", sans-serif;
+}
+
+/* global blocks */
+.imgBlock, .infosBlock  {
+    text-align: center;
+}
+
+/* MANAGEMENT BLOCK */
+.accountBtn, .pswSettingsBtn {
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+}
+
+.accountBtnImg, .accountBtnLink, .accountBtnArrow, .pswSettingsImg, .pswSettingsLink, .pswSettingsArrow  {
+    border: 1px solid #0B2B26;
+}
+
+.accountBtnImg img, .accountBtnArrow img, .pswSettingsImg img, .pswSettingsArrow img {
+    width: 40px;
+    padding: 0.5rem;
+}
+
+.accountBtnLink, .pswSettingsLink {
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+}
+
+.pswSettingsLink a, .accountBtnLink a {
+    color: #0B2B26;
+}
+
+.account {
+    font-weight: bold;
+}
+
+/*** RIGHT BLOCK ***/
+.rightBlock {
+    border: 1px solid #8eb69b;
+    border-radius: 20px;
+    padding: 1.5rem;
+    background: linear-gradient(to bottom, #8eb69b 0%, #D8EFDC 100%) no-repeat top, white;
+}
+
+/* RIGHT BLOCK HEADER */
+/* img and title */
+.rightBlockHeader {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 1rem 0;
+}
+
+.rightBlockHeader img {
+    width: 40px;
+}
+
+.rightBlockHeader p {
+    font-size: 20px;
+}
+
+/* form */ 
+form {
+    padding: 1rem;
+}
+
+.form-group label {
+    margin-bottom: 0.5rem;
+}
+
+/* button */
+.btnDiv {
+    text-align: center;
+}
+
+/* button submit */
+.submitBtn {
+    background-color: #0B2B26;
+    color: #8EB69B;
+    font-weight: bold;
+    margin: 5% 0 0 0;
+}
