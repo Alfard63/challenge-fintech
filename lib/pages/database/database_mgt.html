@@ -1,5 +1,5 @@
 <?php
-include_once "../assets/php/var.php";
+include_once "../../assets/php/var.php";
 
 // vérifier que l'on soit connecté pour accéder aux pages sinon retour vers index
 (!$is_connected)?header('Location: ../../index.html'):"";
@@ -22,10 +22,10 @@ include_once "../assets/php/var.php";
 
 <body>
     <!-- insertion of standard header -->
-    <?php include_once("../assets/std_page/header.html") ?>
+    <?php include_once("../../assets/std_page/header.html") ?>
 
     <!-- insertion of standard navbar -->
-    <?php include_once("../assets/std_page/nav_bar.html") ?>
+    <?php include_once("../../assets/std_page/nav_bar.html") ?>
 
     <main>
         <div class="row topLeftCard">
@@ -103,7 +103,7 @@ include_once "../assets/php/var.php";
     </main>
 
     <!-- insertion of standard footer -->
-    <?php include_once("../assets/std_page/footer.html") ?>
+    <?php include_once("../../assets/std_page/footer.html") ?>
     <script src="../../js/script.js"></script>
 </body>
 </html>
