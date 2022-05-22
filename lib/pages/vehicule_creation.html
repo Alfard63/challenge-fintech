@@ -1,3 +1,10 @@
+<?php
+include_once "../assets/php/var.php";
+
+// vérifier que l'on soit connecté pour accéder aux pages sinon retour vers index
+(!$is_connected)?header('Location: ../../index.html'):"";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,69 +21,13 @@
 </head>
 
 <body class="">
-    <header>
-        <nav class="navbar w-100">
-            <div class="container-fluid">
-                <a href="#" class="navbar-brand">
-                    <img src="../assets/img/logo.png" alt="">
-                    TRANSROAD
-                </a>
-                <h1 class="fw-bold flex-fill d-none d-lg-block text-center">CRÉER UNE FICHE VÉHICULE</h1>
-                <div class="navbar-icons">
-                    <i id="menuIcon" class="bi bi-list"></i>
-                    <i id="notifIcon" class="bi bi-bell-fill"></i>
-                    <i id="profilIcon" class="bi bi-person-fill"></i>
-                    <i id="disconnectIcon" class="bi bi-box-arrow-right"></i>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <aside id="menu" class="show">
-        <div id="menuBtn">
-            <i class="bi bi-chevron-left"></i>
-        </div>
-        <div class="menu-header">
-            <div class="user-avatar">
-                <i class="bi bi-person"></i>
-            </div>
-            <div class="user-info">
-                <h4 class="fw-bold">
-                    John Doe
-                </h4>
-                <h5 class="fw-bold">
-                    Contrôleur de gestion
-                </h5>
-            </div>
-        </div>
-        <div class="menu-content">
-            <ul class="nav">
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="bi bi-house-door-fill"></i>
-                        <strong class="menu-item">TABLEAU DE BORD</strong>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="bi bi-table"></i>
-                        <strong>BASE DE DONNEES</strong>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="bi bi-file-earmark-medical-fill"></i>
-                        <strong>CHIFFRAGE</strong>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="bi bi-tools"></i>
-                        <strong>ADMINISTRATION</strong>
-                    </a>
-                </li>
-            </ul>
-    </aside>
-    <main>
+    <!-- insertion of standard header -->
+    <?php include_once("../assets/std_page/header.html") ?>
+
+    <!-- insertion of standard navbar -->
+    <?php include_once("../assets/std_page/nav_bar.html") ?>
+
+    <main class="mb-5">
         <div class="card">
             <div class="card-header">
                 <h1 class="title fw-bold">Formulaire de création</h1>
@@ -109,7 +60,7 @@
                     </div>
                 </div>
 
-                <div class="formDiv">
+                <div class="formDiv mt-4">
                     <legend>Conditions d'exploitation du véhicule étudié</legend>
                     <div class="form-group">
                         <label>
@@ -260,16 +211,25 @@
                         </div>
                         <div class="form-group">
                             <label> <i class="bi bi-chevron-bar-right"></i>
-                                Mode de financement du véhicule moteur (1 pour Emprunt, 2 pour Crédit Bail, 3 pour
-                                Location Financière)</label>
-                            <input type="payment_type" placeholder="Entrer le mode de financement du véhicule moteur"
-                                name="payment_type" required>
+                                Mode de financement du véhicule moteur</label>
+                            <select id="firstSelect" class="form-select mb-4" aria-label="Default select example">
+                                <option selected>Choisir...</option>
+                                <option value="1">Emprunt</option>
+                                <option value="2">Auto-financement</option>
+                                <option value="3">Crédit Bail</option>
+                                <option value="4">Location Financière</option>
+                            </select>
+                            <!--<input type="payment_type" placeholder="Entrer le mode de financement du véhicule moteur"
+                                name="payment_type" required>-->
                         </div>
+                        <!-- entrée dans une condition en fonction du mode de financement-->
                         <div class="form-group">
-                            <!-- entrée dans une condition en fonction du mode de financement-->
                             <!-- cas de l'emprunt -->
-                            <div class="emprunt">
-                                <legend>Emprunt</legend>
+                            <div id="firstSelectEmprunt">
+                                <legend class="emprunt">
+                                    <i class="bi bi-arrow-right-circle-fill"></i>
+                                    <p class="m-0">Emprunt</p>
+                                </legend>
                                 <div class="form-group">
                                     <label> <i class="bi bi-chevron-bar-right"></i>
                                         Valeur du véhicule moteur (€)</label>
@@ -301,88 +261,98 @@
                                         name="resell_cost" required>
                                 </div>
                             </div>
-                        </div>
-                        <!-- cas de l'autofinancement -->
-                        <div class="autofinancement">
-                            <legend>Auto-financement</legend>
-                            <div class="form-group">
-                                <label><i class="bi bi-chevron-bar-right"></i>
-                                    Valeur du véhicule moteur (€)</label>
-                                <input type="vehicule_cost" placeholder="Entrer la valeur du véhicule moteur"
-                                    name="vehicule_cost" required>
+                            <!-- cas de l'autofinancement -->
+                            <div id="firstSelectAutofinancement">
+                                <legend class="autofinancement">
+                                    <i class="bi bi-arrow-right-circle-fill"></i>
+                                    <p class="m-0">Auto-financement</p>
+                                </legend>
+                                <div class="form-group">
+                                    <label><i class="bi bi-chevron-bar-right"></i>
+                                        Valeur du véhicule moteur (€)</label>
+                                    <input type="vehicule_cost" placeholder="Entrer la valeur du véhicule moteur"
+                                        name="vehicule_cost" required>
+                                </div>
+                                <div class="form-group">
+                                    <label><i class="bi bi-chevron-bar-right"></i>
+                                        Montant de l'emprunt (€)</label> <!-- egal à 0 à cacher -->
+                                    <input type="loan_value" placeholder="Entrer le montant de l'emprunt"
+                                        name="loan_value" required>
+                                </div>
+                                <div class="form-group">
+                                    <label><i class="bi bi-chevron-bar-right"></i>
+                                        Taux d'intérêt de l'emprunt (%)</label>
+                                    <input type="payment_term" placeholder="Entrer la durée de l'emprunt"
+                                        name="payment_term" required>
+                                </div>
+                                <div class="form-group">
+                                    <label><i class="bi bi-chevron-bar-right"></i>
+                                        Valeur de revente (€)</label>
+                                    <input type="resell_cost" placeholder="Entrer la valeur de revente (€)"
+                                        name="resell_cost" required>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label><i class="bi bi-chevron-bar-right"></i>
-                                    Montant de l'emprunt (€)</label> <!-- egal à 0 à cacher -->
-                                <input type="loan_value" placeholder="Entrer le montant de l'emprunt" name="loan_value"
-                                    required>
+                            <!-- cas du crédit bail -->
+                            <div id="firstSelectCreditBail">
+                                <legend class="credit-bail">
+                                    <i class="bi bi-arrow-right-circle-fill"></i>
+                                    <p class="m-0">Crédit-bail</p>
+                                </legend>
+                                <div class="form-group">
+                                    <label><i class="bi bi-chevron-bar-right"></i>
+                                        Valeur du véhicule moteur (€)</label>
+                                    <input type="vehicule_cost" placeholder="Entrer la valeur du véhicule moteur"
+                                        name="vehicule_cost" required>
+                                </div>
+                                <div class="form-group">
+                                    <label><i class="bi bi-chevron-bar-right"></i>
+                                        Durée du contrat (mois)</label>
+                                    <input type="loan_value" placeholder="Entrer la durée du contrat" name="loan_value"
+                                        required>
+                                    <label><i class="bi bi-chevron-bar-right"></i>
+                                        Montant mensuel du loyer (€)</label>
+                                    <input type="monthly_cost" placeholder="Entrer le montant mensuel du loyer"
+                                        name="monthly_cost" required>
+                                </div>
+                                <div class="form-group">
+                                    <label><i class="bi bi-chevron-bar-right"></i>
+                                        Valeur optionnelle d'achat (€)</label>
+                                    <input type="optional_buying_value"
+                                        placeholder="Entrer la valeur optionnelle d'achat (€)"
+                                        name="optional_buying_value" required>
+                                </div>
+                                <div class="form-group">
+                                    <label><i class="bi bi-chevron-bar-right"></i>
+                                        Valeur de revente (€)</label>
+                                    <input type="resell_cost" placeholder="Entrer la valeur de revente (€)"
+                                        name="resell_cost" required>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label><i class="bi bi-chevron-bar-right"></i>
-                                    Taux d'intérêt de l'emprunt (%)</label>
-                                <input type="payment_term" placeholder="Entrer la durée de l'emprunt"
-                                    name="payment_term" required>
-                            </div>
-                            <div class="form-group">
-                                <label><i class="bi bi-chevron-bar-right"></i>
-                                    Valeur de revente (€)</label>
-                                <input type="resell_cost" placeholder="Entrer la valeur de revente (€)"
-                                    name="resell_cost" required>
-                            </div>
-                        </div>
-                        <!-- cas du crédit bail -->
-                        <div class="credit-bail">
-                            <legend>Crédit-bail</legend>
-                            <div class="form-group">
-                                <label><i class="bi bi-chevron-bar-right"></i>
-                                    Valeur du véhicule moteur (€)</label>
-                                <input type="vehicule_cost" placeholder="Entrer la valeur du véhicule moteur"
-                                    name="vehicule_cost" required>
-                            </div>
-                            <div class="form-group">
-                                <label><i class="bi bi-chevron-bar-right"></i>
-                                    Durée du contrat (mois)</label>
-                                <input type="loan_value" placeholder="Entrer la durée du contrat" name="loan_value"
-                                    required>
-                                <label><i class="bi bi-chevron-bar-right"></i>
-                                    Montant mensuel du loyer (€)</label>
-                                <input type="monthly_cost" placeholder="Entrer le montant mensuel du loyer"
-                                    name="monthly_cost" required>
-                            </div>
-                            <div class="form-group">
-                                <label><i class="bi bi-chevron-bar-right"></i>
-                                    Valeur optionnelle d'achat (€)</label>
-                                <input type="optional_buying_value"
-                                    placeholder="Entrer la valeur optionnelle d'achat (€)" name="optional_buying_value"
-                                    required>
-                            </div>
-                            <div class="form-group">
-                                <label><i class="bi bi-chevron-bar-right"></i>
-                                    Valeur de revente (€)</label>
-                                <input type="resell_cost" placeholder="Entrer la valeur de revente (€)"
-                                    name="resell_cost" required>
-                            </div>
-                        </div>
-                        <!-- cas de la location financière -->
-                        <div class="location-financiere">
-                            <legend>location-Financière</legend>
-                            <div class="form-group">
-                                <label><i class="bi bi-chevron-bar-right"></i>
-                                    Durée du contrat (mois)</label>
-                                <input type="loan_value" placeholder="Entrer la durée du contrat" name="loan_value"
-                                    required>
-                            </div>
-                            <div class="form-group">
-                                <label><i class="bi bi-chevron-bar-right"></i>
-                                    Montant mensuel du loyer (€)</label>
-                                <input type="monthly_cost" placeholder="Entrer le montant mensuel du loyer"
-                                    name="monthly_cost" required>
+                            <!-- cas de la location financière -->
+                            <div id="firstSelectLocFinanciere">
+                                <legend class="location-financiere">
+                                    <i class="bi bi-arrow-right-circle-fill"></i>
+                                    <p class="m-0">location-financière</p>
+                                </legend>
+                                <div class="form-group">
+                                    <label><i class="bi bi-chevron-bar-right"></i>
+                                        Durée du contrat (mois)</label>
+                                    <input type="loan_value" placeholder="Entrer la durée du contrat" name="loan_value"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label><i class="bi bi-chevron-bar-right"></i>
+                                        Montant mensuel du loyer (€)</label>
+                                    <input type="monthly_cost" placeholder="Entrer le montant mensuel du loyer"
+                                        name="monthly_cost" required>
+                                </div>
                             </div>
                         </div>
                     </div>
 
+
                     <div>
-                        <h3>2 - Les conditions de détention et de financement du véhicule tracté</h3>
+                        <h3>2 - Conditions de détention et de financement du véhicule tracté</h3>
                         <!-- Idem à prcédemment mais avec tracté au lieu de moteur ==> faire une boucle ?-->
                         <!-- Note: à afficher seulement si le véhicule moteur a un véhicule tracté-->
                         <div class="form-group">
@@ -394,19 +364,25 @@
                         </div>
                         <div class="form-group">
                             <label><i class="bi bi-chevron-bar-right"></i>
-                                Mode de financement du véhicule moteur (1 pour Emprunt, 2 pour Crédit
-                                Bail, 3
-                                pour
-                                Location Financière)</label>
-                            <input type="towed_payment_type"
-                                placeholder="Entrer le mode de financement du véhicule moteur" name="towed_payment_type"
-                                required>
+                                Mode de financement du véhicule moteur</label>
+                            <select id="secondSelect" class="form-select" aria-label="Default select example">
+                                <option selected>Choisir...</option>
+                                <option value="5">Emprunt</option>
+                                <option value="6">Auto-financement</option>
+                                <option value="7">Crédit Bail</option>
+                                <option value="8">Location Financière</option>
+                            </select>
+                            <!--<input type="payment_type" placeholder="Entrer le mode de financement du véhicule moteur"
+                                name="payment_type" required>-->
                         </div>
+                        <!-- entrée dans une condition en fonction du mode de financement-->
                         <div class="form-group">
-                            <!-- entrée dans une condition en fonction du mode de financement-->
                             <!-- cas de l'emprunt -->
-                            <div class="emprunt">
-                                <legend>emprunt</legend>
+                            <div id="secondSelectEmprunt">
+                                <legend class="emprunt">
+                                    <i class="bi bi-arrow-right-circle-fill"></i>
+                                    <p class="m-0">emprunt</p>
+                                </legend>
                                 <div class="form-group">
                                     <label><i class="bi bi-chevron-bar-right"></i>
                                         Valeur du véhicule moteur (€)</label>
@@ -438,138 +414,138 @@
                                         name="towed_resell_cost" required>
                                 </div>
                             </div>
+                        </div>
 
+                        <!-- cas de l'autofinancement -->
+                        <div id="secondSelectAutofinancement">
+                            <legend class="autofinancement">
+                                <i class="bi bi-arrow-right-circle-fill"></i>
+                                <p class="m-0">autofinancement</p>
+                            </legend>
                             <div class="form-group">
-                                <!-- cas de l'autofinancement -->
-                                <div class="autofinancement">
-                                    <legend class="autofinancement">autofinancement</legend>
-                                    <div class="form-group">
-                                        <label><i class="bi bi-chevron-bar-right"></i>
-                                            Valeur du véhicule moteur (€)</label>
-                                        <input type="towed_vehicule_cost"
-                                            placeholder="Entrer la valeur du véhicule moteur" name="towed_vehicule_cost"
-                                            required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label><i class="bi bi-chevron-bar-right"></i>
-                                        Montant de l'emprunt (€)</label> <!-- egale a 0 à cacher -->
-                                    <input type="towed_loan_value" placeholder="Entrer le montant de l'emprunt"
-                                        name="towed_loan_value" required>
-                                </div>
-                                <div class="form-group">
-                                    <label><i class="bi bi-chevron-bar-right"></i>
-                                        Taux d'intérêt de l'emprunt (%)</label>
-                                    <input type="towed_payment_term" placeholder="Entrer la durée de l'emprunt"
-                                        name="towed_payment_term" required>
-                                </div>
-                                <div class="form-group">
-                                    <label><i class="bi bi-chevron-bar-right"></i>
-                                        Valeur de revente (€)</label>
-                                    <input type="towed_resell_cost" placeholder="Entrer la valeur de revente (€)"
-                                        name="towed_resell_cost" required>
-                                </div>
+                                <label><i class="bi bi-chevron-bar-right"></i>
+                                    Valeur du véhicule moteur (€)</label>
+                                <input type="towed_vehicule_cost" placeholder="Entrer la valeur du véhicule moteur"
+                                    name="towed_vehicule_cost" required>
                             </div>
-
                             <div class="form-group">
-                                <!-- cas du crédit bail -->
-                                <div class="credit-bail">
-                                    <legend class="credit-bail">crédit-bail</legend>
-                                    <div class="form-group">
-                                        <label><i class="bi bi-chevron-bar-right"></i>
-                                            Valeur du véhicule moteur (€)</label>
-                                        <input type="towed_vehicule_cost"
-                                            placeholder="Entrer la valeur du véhicule moteur" name="towed_vehicule_cost"
-                                            required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label><i class="bi bi-chevron-bar-right"></i>
-                                            Durée du contrat (mois)</label>
-                                        <input type="towed_loan_value" placeholder="Entrer la durée du contrat"
-                                            name="towed_loan_value" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label><i class="bi bi-chevron-bar-right"></i>
-                                            Montant mensuel du loyer (€)</label>
-                                        <input type="towed_monthly_cost"
-                                            placeholder="Entrer le montant mensuel du loyer" name="towed_monthly_cost"
-                                            required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label><i class="bi bi-chevron-bar-right"></i>
-                                            Valeur optionnelle d'achat (€)</label>
-                                        <input type="towed_optional_buying_value"
-                                            placeholder="Entrer la valeur optionnelle d'achat (€)"
-                                            name="towed_optional_buying_value" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label><i class="bi bi-chevron-bar-right"></i>
-                                            Valeur de revente (€)</label>
-                                        <input type="towed_resell_cost" placeholder="Entrer la valeur de revente (€)"
-                                            name="towed_resell_cost" required>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <!-- cas de la location financière -->
-                                    <div class="location-financiere">
-                                        <legend class="location-financiere">location-financière</legend>
-                                        <div class="form-group">
-                                            <label><i class="bi bi-chevron-bar-right"></i>
-                                                Durée du contrat (mois)</label>
-                                            <input type="towed_loan_value" placeholder="Entrer la durée du contrat"
-                                                name="towed_loan_value" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label><i class="bi bi-chevron-bar-right"></i>
-                                                Montant mensuel du loyer (€)</label>
-                                            <input type="towed_monthly_cost"
-                                                placeholder="Entrer le montant mensuel du loyer"
-                                                name="towed_monthly_cost" required>
-                                        </div>
-                                    </div>
-                                </div>
+                                <label><i class="bi bi-chevron-bar-right"></i>
+                                    Montant de l'emprunt (€)</label> <!-- egale a 0 à cacher -->
+                                <input type="towed_loan_value" placeholder="Entrer le montant de l'emprunt"
+                                    name="towed_loan_value" required>
+                            </div>
+                            <div class="form-group">
+                                <label><i class="bi bi-chevron-bar-right"></i>
+                                    Taux d'intérêt de l'emprunt (%)</label>
+                                <input type="towed_payment_term" placeholder="Entrer la durée de l'emprunt"
+                                    name="towed_payment_term" required>
+                            </div>
+                            <div class="form-group">
+                                <label><i class="bi bi-chevron-bar-right"></i>
+                                    Valeur de revente (€)</label>
+                                <input type="towed_resell_cost" placeholder="Entrer la valeur de revente (€)"
+                                    name="towed_resell_cost" required>
                             </div>
                         </div>
-                    </div>
-                    <div>
-                        <h3>3 - Les assurances du véhicule</h3>
-                        <div class="form-group">
-                            <label><i class="bi bi-chevron-bar-right"></i>
-                                Montant annuel de l'assurance d'un véhicule RC + VI (€/an)</label>
-                            <input type="annual_vehic_insurance_cost"
-                                placeholder="Entrer le montant annuel de l'assurance d'un véhicule RC + VI"
-                                name="annual_vehic_insurance_cost" required>
-                        </div>
-                        <div class="form-group">
-                            <label><i class="bi bi-chevron-bar-right"></i>
-                                Montant annuel de l'assurance marchandises transportées par véhicule
-                                (€/an)</label>
-                            <input type="annual_load_insurance_cost"
-                                placeholder="Entrer le montant annuel de l'assurance marchandises"
-                                name="annual_load_insurance_cost" required>
-                        </div>
-                    </div>
 
-                    <div>
-                        <h3>4 - La taxe à l'essieu par véhicule</h3>
-                        <div class="form-group">
-                            <label><i class="bi bi-chevron-bar-right"></i>
-                                Montant annuel de taxe à l'essieu (€/an)</label>
-                            <input type="axles_tax_cost" placeholder="Entrer le montant annuel de taxe à l'essieu"
-                                name="axles_tax_cost" required>
+                        <!-- cas du crédit bail -->
+                        <div id="secondSelectCreditBail">
+                            <legend class="credit-bail">
+                                <i class="bi bi-arrow-right-circle-fill"></i>
+                                <p class="m-0">crédit-bail</p>
+                            </legend>
+                            <div class="form-group">
+                                <label><i class="bi bi-chevron-bar-right"></i>
+                                    Valeur du véhicule moteur (€)</label>
+                                <input type="towed_vehicule_cost" placeholder="Entrer la valeur du véhicule moteur"
+                                    name="towed_vehicule_cost" required>
+                            </div>
+                            <div class="form-group">
+                                <label><i class="bi bi-chevron-bar-right"></i>
+                                    Durée du contrat (mois)</label>
+                                <input type="towed_loan_value" placeholder="Entrer la durée du contrat"
+                                    name="towed_loan_value" required>
+                            </div>
+                            <div class="form-group">
+                                <label><i class="bi bi-chevron-bar-right"></i>
+                                    Montant mensuel du loyer (€)</label>
+                                <input type="towed_monthly_cost" placeholder="Entrer le montant mensuel du loyer"
+                                    name="towed_monthly_cost" required>
+                            </div>
+                            <div class="form-group">
+                                <label><i class="bi bi-chevron-bar-right"></i>
+                                    Valeur optionnelle d'achat (€)</label>
+                                <input type="towed_optional_buying_value"
+                                    placeholder="Entrer la valeur optionnelle d'achat (€)"
+                                    name="towed_optional_buying_value" required>
+                            </div>
+                            <div class="form-group">
+                                <label><i class="bi bi-chevron-bar-right"></i>
+                                    Valeur de revente (€)</label>
+                                <input type="towed_resell_cost" placeholder="Entrer la valeur de revente (€)"
+                                    name="towed_resell_cost" required>
+                            </div>
+                        </div>
+
+                        <!-- cas de la location financière -->
+                        <div id="secondSelectLocFinanciere">
+                            <legend class="location-financiere">
+                                <i class="bi bi-arrow-right-circle-fill"></i>
+                                <p class="m-0">location-financière</p>
+                            </legend>
+                            <div class="form-group">
+                                <label><i class="bi bi-chevron-bar-right"></i>
+                                    Durée du contrat (mois)</label>
+                                <input type="towed_loan_value" placeholder="Entrer la durée du contrat"
+                                    name="towed_loan_value" required>
+                            </div>
+                            <div class="form-group">
+                                <label><i class="bi bi-chevron-bar-right"></i>
+                                    Montant mensuel du loyer (€)</label>
+                                <input type="towed_monthly_cost" placeholder="Entrer le montant mensuel du loyer"
+                                    name="towed_monthly_cost" required>
+                            </div>
                         </div>
                     </div>
+                </div>
 
-                    <div>
-                        <h3>5 - Les coûts de structure par véhicule</h3>
-                        <div class="form-group">
-                            <label><i class="bi bi-chevron-bar-right"></i>
-                                Montant annuel des coûts de structure par véhicule (€/an)</label>
-                            <input type="annual_structure_cost"
-                                placeholder="Entrer le montant annuel des coûts de structure par véhicule"
-                                name="annual_structure_cost" required>
-                        </div>
+                <div class="formDiv">
+                    <h3>3 - Assurances du véhicule</h3>
+                    <div class="form-group">
+                        <label><i class="bi bi-chevron-bar-right"></i>
+                            Montant annuel de l'assurance d'un véhicule RC + VI (€/an)</label>
+                        <input type="annual_vehic_insurance_cost"
+                            placeholder="Entrer le montant annuel de l'assurance d'un véhicule RC + VI"
+                            name="annual_vehic_insurance_cost" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="bi bi-chevron-bar-right"></i>
+                            Montant annuel de l'assurance marchandises transportées par véhicule
+                            (€/an)</label>
+                        <input type="annual_load_insurance_cost"
+                            placeholder="Entrer le montant annuel de l'assurance marchandises"
+                            name="annual_load_insurance_cost" required>
+                    </div>
+                </div>
+
+                <div class="formDiv">
+                    <h3>4 - Taxe à l'essieu par véhicule</h3>
+                    <div class="form-group">
+                        <label><i class="bi bi-chevron-bar-right"></i>
+                            Montant annuel de taxe à l'essieu (€/an)</label>
+                        <input type="axles_tax_cost" placeholder="Entrer le montant annuel de taxe à l'essieu"
+                            name="axles_tax_cost" required>
+                    </div>
+                </div>
+
+                <div class="formDiv">
+                    <h3>5 - Coûts de structure par véhicule</h3>
+                    <div class="form-group">
+                        <label><i class="bi bi-chevron-bar-right"></i>
+                            Montant annuel des coûts de structure par véhicule (€/an)</label>
+                        <input type="annual_structure_cost"
+                            placeholder="Entrer le montant annuel des coûts de structure par véhicule"
+                            name="annual_structure_cost" required>
                     </div>
                 </div>
 
@@ -601,6 +577,7 @@
                             name="annual_other_cost_value">
                     </div>
                 </div>
+
                 <!-- Validation des données -->
                 <div class="btnDiv">
                     <button class="btn submitBtn" type="submit" id='submit' value='ENVOYER'>Envoyer</button>
@@ -610,13 +587,13 @@
         </div>
     </main>
 
-    <footer>
-        <p>copyright Findev#11</p>
-    </footer>
+    <!-- insertion of standard header -->
+    <?php include_once("../assets/std_page/footer.html") ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
     <script src="../js/script.js"></script>
+    <script src="../js/vehicule_creation.js"></script>
 </body>
 
 </html>
