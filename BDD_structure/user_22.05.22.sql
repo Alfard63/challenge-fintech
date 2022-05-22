@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : sam. 21 mai 2022 à 15:54
+-- Généré le : dim. 22 mai 2022 à 19:11
 -- Version du serveur : 10.4.21-MariaDB
 -- Version de PHP : 8.0.11
 
@@ -71,6 +71,9 @@ CREATE TABLE `driver` (
   `driver_id` int(11) NOT NULL,
   `driver_name` text NOT NULL,
   `driver_surname` text NOT NULL,
+  `licence_type` text NOT NULL,
+  `licence_date` text NOT NULL,
+  `vehicule` text NOT NULL,
   `days_activity` int(11) NOT NULL,
   `monthly_service_time` int(11) NOT NULL,
   `monthly_driving_time` int(11) NOT NULL,
@@ -81,6 +84,14 @@ CREATE TABLE `driver` (
   `annual_indemnities` int(11) NOT NULL,
   `nb_months_paid` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `driver`
+--
+
+INSERT INTO `driver` (`driver_id`, `driver_name`, `driver_surname`, `licence_type`, `licence_date`, `vehicule`, `days_activity`, `monthly_service_time`, `monthly_driving_time`, `monthly_worked_days`, `monthly_paycheck`, `annual_primes`, `tax_rate`, `annual_indemnities`, `nb_months_paid`) VALUES
+(51, 'Thomas', 'Moore', 'C', '2022-05-11', 'BB-230-CZ', 10, 10, 20, 0, 1500, 2000, 60, 700, 10),
+(52, 'ss', 'Moored', 'C1-E', '2022-05-02', 'JL-908-MD', 0, 1, 2, 0, 4, 5, 6, 7, 10);
 
 -- --------------------------------------------------------
 
@@ -122,7 +133,7 @@ CREATE TABLE `structure` (
   `actualisation_coefficient` tinyint(4) NOT NULL,
   `consum_mainten_purch` tinyint(4) NOT NULL,
   `consum_furniture_purch` int(11) NOT NULL,
-  `consu_admin_furniture_purch` int(11) NOT NULL,
+  `consum_admin_furniture_purch` int(11) NOT NULL,
   `not_stockable_purch` int(11) NOT NULL,
   `other_consum_purch` int(11) NOT NULL,
   `other_supplier_not_transport` int(11) NOT NULL,
@@ -139,12 +150,12 @@ CREATE TABLE `structure` (
   `other_insurance` int(11) NOT NULL,
   `res_and_dev` int(11) NOT NULL,
   `interim_staff` int(11) NOT NULL,
-  `commissions_revenue` int(11) NOT NULL,
+  `commission_revenue` int(11) NOT NULL,
   `public_relation` int(11) NOT NULL,
   `merch_transport` int(11) NOT NULL,
   `mission_exp_note` int(11) NOT NULL,
   `communication_exp` int(11) NOT NULL,
-  `sending_exp` int(11) NOT NULL,
+  `shipping_exp` int(11) NOT NULL,
   `bank_exp` int(11) NOT NULL,
   `other_toll_exp` int(11) NOT NULL,
   `misc_exp` int(11) NOT NULL,
@@ -161,7 +172,7 @@ CREATE TABLE `structure` (
   `roi_building` int(11) NOT NULL,
   `roi_tool_shop` int(11) NOT NULL,
   `roi_office_furniture` int(11) NOT NULL,
-  `roi_dir_vehicules` int(11) NOT NULL,
+  `roi_dir_vehicule` int(11) NOT NULL,
   `roi_other` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -190,6 +201,7 @@ CREATE TABLE `users` (
   `service` text NOT NULL,
   `position` text NOT NULL,
   `password` text NOT NULL,
+  `password_confirm` text NOT NULL,
   `email` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -197,9 +209,9 @@ CREATE TABLE `users` (
 -- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`id_employee`, `username`, `surname`, `service`, `position`, `password`, `email`) VALUES
-(1, 'john', 'doe', 'it', 'admin', 'qwertz', 'john.doe@entreprise.com'),
-(2, 'jane', 'doe', 'finance', 'controleur de gestion', 'qwertz', 'jane.doe@entreprise.com');
+INSERT INTO `users` (`id_employee`, `username`, `surname`, `service`, `position`, `password`, `password_confirm`, `email`) VALUES
+(1, 'john', 'doe', 'it', 'admin', 'qwertz', '', 'john.doe@entreprise.com'),
+(2, 'jane', 'doe', 'finance', 'controleur de gestion', 'qwertz', '', 'jane.doe@entreprise.com');
 
 --
 -- Index pour les tables déchargées
@@ -270,7 +282,7 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT pour la table `driver`
 --
 ALTER TABLE `driver`
-  MODIFY `driver_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `driver_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT pour la table `ope`
@@ -288,7 +300,7 @@ ALTER TABLE `test`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_employee` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_employee` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
