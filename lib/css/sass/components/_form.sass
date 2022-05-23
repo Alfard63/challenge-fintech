@@ -2,7 +2,6 @@
   background-color: $color-senary
   border-radius: 2rem
   border: solid 2px $color-quinary
-  margin: auto
   margin-top: 2rem
   color: $color-primary
   label
@@ -21,6 +20,66 @@
       color: $color-primary
   .modal-body
     color: $color-primary
+    .nav-tabs
+      border-bottom: solid 2px $color-quinary
+      .nav-link
+        color: $color-primary
+        font-weight: bold
+        &.active
+          background-color: $color-quinary
+          border-bottom: solid 2px $color-quinary
+        &:hover
+          background-color: $color-quinary
+          border-bottom: solid 2px $color-quinary
+    .tab-content
+      .tab-pane
+        .form-group
+          input
+            border-radius: 0.5rem
+            border: solid 2px $color-quinary
+            background-color: $color-senary
+            color: $color-primary
+            font-size: 1.2rem
+            font-weight: bold
+            padding: 0.5rem
+            &:focus
+              border-color: $color-primary
+            &:disabled
+              background-color: $color-senary
+              color: $color-primary
+              font-size: 1.2rem
+              font-weight: bold
+              padding: 0.5rem
+              &:focus
+                border-color: $color-primary
+          .form-floating
+            font-size: 1.2rem
+            font-weight: bold
+            &:focus
+              border-color: $color-primary
+            label
+              color:#707A81
+            
+          textarea
+            border-radius: 0.5rem
+            height: 10rem
+            border: solid 2px $color-quinary
+            background-color: $color-senary
+            color: $color-primary
+            font-size: 1.2rem
+            font-weight: bold
+            &:focus
+              border-color: $color-primary
+
+          select
+            border-radius: 0.5rem
+            border: solid 2px $color-quinary
+            background-color: $color-senary
+            color: $color-primary
+            font-size: 1.2rem
+            font-weight: bold
+            &:focus
+              border-color: $color-primary
     .form-group
       margin-bottom: 0.5rem
     

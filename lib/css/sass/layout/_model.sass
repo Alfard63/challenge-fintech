@@ -8,11 +8,31 @@ header
     height: 5rem
     z-index: 100
     position: fixed
+    h1
+        font-size: 1.25rem
+        font-weight: bold
+        color: $color-primary
+        text-transform: uppercase
+        margin: 0
+        @media screen and (min-width: $tablet)
+            font-size: 2rem
+        @media screen and (min-width: $laptop)
+            font-size: 2.7rem
     i
-        font-size: 1.5rem
-        margin: 0.5rem
+        font-size: 1.25rem
+        margin: 0.2rem
         color: $color-primary
         cursor: pointer
+        @media screen and (min-width: $tablet)
+            font-size: 1.5rem
+        @media screen and (min-width: $laptop)
+            font-size: 1.7rem
+        &:hover
+            color: $color-quaternary
+            transform: rotate(90deg)
+        &:active
+            color: $color-secondary
+            transform: rotate(90deg)
     .navbar-brand
         font-family: 'Saniretro'
         font-size: 1rem
@@ -27,7 +47,9 @@ header
         @media screen and (min-width: $phone)
             font-size: 1.5rem
         @media screen and (min-width: $tablet)
-            font-size: 2.7rem   
+            font-size: 2rem
+        @media screen and (min-width: $laptop)
+            font-size: 2.7rem
         img
             width: 2.5rem
             height: auto
@@ -35,7 +57,9 @@ header
             @media screen and (min-width: $phone)
                 width: 3rem
             @media screen and (min-width: $tablet)
-                width: 4.5rem  
+                width: 4rem 
+            @media screen and (min-width: $laptop)
+                width: 4.55rem
 
         
 
@@ -119,6 +143,11 @@ aside
         transition: all $time-transition ease
         &.show
             transform: rotate(180deg)
+        &:hover
+            background-color: $color-secondary
+            border: solid 2px $color-quinary
+            i
+                color: $color-quinary
         i
             font-size: 2rem
             margin-right: 0.3rem

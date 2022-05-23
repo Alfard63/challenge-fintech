@@ -47,11 +47,55 @@ header {
   position: fixed;
 }
 
+header h1 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #051F20;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+@media screen and (min-width: 768px) {
+  header h1 {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  header h1 {
+    font-size: 2.7rem;
+  }
+}
+
 header i {
-  font-size: 1.5rem;
-  margin: 0.5rem;
+  font-size: 1.25rem;
+  margin: 0.2rem;
   color: #051F20;
   cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  header i {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  header i {
+    font-size: 1.7rem;
+  }
+}
+
+header i:hover {
+  color: #235347;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+header i:active {
+  color: #0B2B26;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
 }
 
 header .navbar-brand {
@@ -81,6 +125,12 @@ header .navbar-brand {
 
 @media screen and (min-width: 768px) {
   header .navbar-brand {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  header .navbar-brand {
     font-size: 2.7rem;
   }
 }
@@ -99,7 +149,13 @@ header .navbar-brand img {
 
 @media screen and (min-width: 768px) {
   header .navbar-brand img {
-    width: 4.5rem;
+    width: 4rem;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  header .navbar-brand img {
+    width: 4.55rem;
   }
 }
 
@@ -215,6 +271,15 @@ aside #menuBtn.show {
           transform: rotate(180deg);
 }
 
+aside #menuBtn:hover {
+  background-color: #0B2B26;
+  border: solid 2px #8EB69B;
+}
+
+aside #menuBtn:hover i {
+  color: #8EB69B;
+}
+
 aside #menuBtn i {
   font-size: 2rem;
   margin-right: 0.3rem;
@@ -328,11 +393,16 @@ footer p {
   margin: 0;
 }
 
+@media screen and (max-width: 768px) {
+  .card .card-header .card-title {
+    font-size: 1.5rem;
+  }
+}
+
 .modal-content {
   background-color: #DAF1DE;
   border-radius: 2rem;
   border: solid 2px #8EB69B;
-  margin: auto;
   margin-top: 2rem;
   color: #051F20;
 }
@@ -360,6 +430,91 @@ footer p {
 
 .modal-content .modal-body {
   color: #051F20;
+}
+
+.modal-content .modal-body .nav-tabs {
+  border-bottom: solid 2px #8EB69B;
+}
+
+.modal-content .modal-body .nav-tabs .nav-link {
+  color: #051F20;
+  font-weight: bold;
+}
+
+.modal-content .modal-body .nav-tabs .nav-link.active {
+  background-color: #8EB69B;
+  border-bottom: solid 2px #8EB69B;
+}
+
+.modal-content .modal-body .nav-tabs .nav-link:hover {
+  background-color: #8EB69B;
+  border-bottom: solid 2px #8EB69B;
+}
+
+.modal-content .modal-body .tab-content .tab-pane .form-group input {
+  border-radius: 0.5rem;
+  border: solid 2px #8EB69B;
+  background-color: #DAF1DE;
+  color: #051F20;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0.5rem;
+}
+
+.modal-content .modal-body .tab-content .tab-pane .form-group input:focus {
+  border-color: #051F20;
+}
+
+.modal-content .modal-body .tab-content .tab-pane .form-group input:disabled {
+  background-color: #DAF1DE;
+  color: #051F20;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0.5rem;
+}
+
+.modal-content .modal-body .tab-content .tab-pane .form-group input:disabled:focus {
+  border-color: #051F20;
+}
+
+.modal-content .modal-body .tab-content .tab-pane .form-group .form-floating {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.modal-content .modal-body .tab-content .tab-pane .form-group .form-floating:focus {
+  border-color: #051F20;
+}
+
+.modal-content .modal-body .tab-content .tab-pane .form-group .form-floating label {
+  color: #707A81;
+}
+
+.modal-content .modal-body .tab-content .tab-pane .form-group textarea {
+  border-radius: 0.5rem;
+  height: 10rem;
+  border: solid 2px #8EB69B;
+  background-color: #DAF1DE;
+  color: #051F20;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.modal-content .modal-body .tab-content .tab-pane .form-group textarea:focus {
+  border-color: #051F20;
+}
+
+.modal-content .modal-body .tab-content .tab-pane .form-group select {
+  border-radius: 0.5rem;
+  border: solid 2px #8EB69B;
+  background-color: #DAF1DE;
+  color: #051F20;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.modal-content .modal-body .tab-content .tab-pane .form-group select:focus {
+  border-color: #051F20;
 }
 
 .modal-content .modal-body .form-group {
