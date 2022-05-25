@@ -1,7 +1,7 @@
 <?php
 
 // function for connection to Database
-function db_connect($servername,$database1,$username,$password,)
+function db_connect($servername,$database1,$username,$password)
 {
     $sql = "mysql:host=$servername;dbname=$database1;";
     

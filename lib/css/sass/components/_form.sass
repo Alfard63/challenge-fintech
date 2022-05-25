@@ -4,11 +4,13 @@
   border: solid 2px $color-quinary
   margin-top: 2rem
   color: $color-primary
+
   label
     font-size: 1.2rem
     font-weight: bold
     color: $color-primary
     margin-bottom: 0.5rem
+  
   .modal-header
     background: linear-gradient(to bottom, $color-quinary, $color-senary)
     color: $color-primary
@@ -16,12 +18,35 @@
     padding: 1rem
     border-radius: 2rem 2rem 0 0
     border-bottom: solid 2px $color-quinary
+
     .bi
       color: $color-primary
   .modal-body
     color: $color-primary
+
+    .form-group
+      margin-bottom: 0.5rem
+
+      input
+        border-radius: 0.5rem
+        border: solid 2px $color-quinary
+        background-color: $color-senary
+        color: $color-primary
+        font-size: 1.2rem
+        font-weight: bold
+        padding: 0.5rem
+        &:focus
+          border-color: $color-primary
+        &:disabled
+          background-color: $color-senary
+          color: $color-primary
+          font-size: 1.2rem
+          font-weight: bold
+          padding: 0.5rem
+
     .nav-tabs
       border-bottom: solid 2px $color-quinary
+      
       .nav-link
         color: $color-primary
         font-weight: bold
@@ -31,57 +56,32 @@
         &:hover
           background-color: $color-quinary
           border-bottom: solid 2px $color-quinary
-    .tab-content
-      .tab-pane
-        .form-group
-          input
-            border-radius: 0.5rem
-            border: solid 2px $color-quinary
-            background-color: $color-senary
-            color: $color-primary
-            font-size: 1.2rem
-            font-weight: bold
-            padding: 0.5rem
-            &:focus
-              border-color: $color-primary
-            &:disabled
-              background-color: $color-senary
-              color: $color-primary
-              font-size: 1.2rem
-              font-weight: bold
-              padding: 0.5rem
-              &:focus
-                border-color: $color-primary
-          .form-floating
-            font-size: 1.2rem
-            font-weight: bold
-            &:focus
-              border-color: $color-primary
-            label
-              color:#707A81
-            
-          textarea
-            border-radius: 0.5rem
-            height: 10rem
-            border: solid 2px $color-quinary
-            background-color: $color-senary
-            color: $color-primary
-            font-size: 1.2rem
-            font-weight: bold
-            &:focus
-              border-color: $color-primary
 
-          select
-            border-radius: 0.5rem
-            border: solid 2px $color-quinary
-            background-color: $color-senary
-            color: $color-primary
-            font-size: 1.2rem
-            font-weight: bold
-            &:focus
-              border-color: $color-primary
-    .form-group
-      margin-bottom: 0.5rem
-    
+    .form-floating
+      font-size: 1.2rem
+      font-weight: bold
+      &:focus
+        border-color: $color-primary
+      label
+        color:#5a6268
+          
+    textarea
+      border-radius: 0.5rem
+      height: 10rem
+      border: solid 2px $color-quinary
+      background-color: $color-senary
+      color: $color-primary
+      font-size: 1.2rem
+      font-weight: bold
+      &:focus
+        border-color: $color-primary
 
-
+    select
+      border-radius: 0.5rem
+      border: solid 2px $color-quinary
+      background-color: $color-senary
+      color: $color-primary
+      font-size: 1.2rem
+      font-weight: bold
+      &:focus
+        border-color: $color-primary

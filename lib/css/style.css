@@ -432,6 +432,32 @@ footer p {
   color: #051F20;
 }
 
+.modal-content .modal-body .form-group {
+  margin-bottom: 0.5rem;
+}
+
+.modal-content .modal-body .form-group input {
+  border-radius: 0.5rem;
+  border: solid 2px #8EB69B;
+  background-color: #DAF1DE;
+  color: #051F20;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0.5rem;
+}
+
+.modal-content .modal-body .form-group input:focus {
+  border-color: #051F20;
+}
+
+.modal-content .modal-body .form-group input:disabled {
+  background-color: #DAF1DE;
+  color: #051F20;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0.5rem;
+}
+
 .modal-content .modal-body .nav-tabs {
   border-bottom: solid 2px #8EB69B;
 }
@@ -451,46 +477,20 @@ footer p {
   border-bottom: solid 2px #8EB69B;
 }
 
-.modal-content .modal-body .tab-content .tab-pane .form-group input {
-  border-radius: 0.5rem;
-  border: solid 2px #8EB69B;
-  background-color: #DAF1DE;
-  color: #051F20;
-  font-size: 1.2rem;
-  font-weight: bold;
-  padding: 0.5rem;
-}
-
-.modal-content .modal-body .tab-content .tab-pane .form-group input:focus {
-  border-color: #051F20;
-}
-
-.modal-content .modal-body .tab-content .tab-pane .form-group input:disabled {
-  background-color: #DAF1DE;
-  color: #051F20;
-  font-size: 1.2rem;
-  font-weight: bold;
-  padding: 0.5rem;
-}
-
-.modal-content .modal-body .tab-content .tab-pane .form-group input:disabled:focus {
-  border-color: #051F20;
-}
-
-.modal-content .modal-body .tab-content .tab-pane .form-group .form-floating {
+.modal-content .modal-body .form-floating {
   font-size: 1.2rem;
   font-weight: bold;
 }
 
-.modal-content .modal-body .tab-content .tab-pane .form-group .form-floating:focus {
+.modal-content .modal-body .form-floating:focus {
   border-color: #051F20;
 }
 
-.modal-content .modal-body .tab-content .tab-pane .form-group .form-floating label {
-  color: #707A81;
+.modal-content .modal-body .form-floating label {
+  color: #5a6268;
 }
 
-.modal-content .modal-body .tab-content .tab-pane .form-group textarea {
+.modal-content .modal-body textarea {
   border-radius: 0.5rem;
   height: 10rem;
   border: solid 2px #8EB69B;
@@ -500,11 +500,11 @@ footer p {
   font-weight: bold;
 }
 
-.modal-content .modal-body .tab-content .tab-pane .form-group textarea:focus {
+.modal-content .modal-body textarea:focus {
   border-color: #051F20;
 }
 
-.modal-content .modal-body .tab-content .tab-pane .form-group select {
+.modal-content .modal-body select {
   border-radius: 0.5rem;
   border: solid 2px #8EB69B;
   background-color: #DAF1DE;
@@ -513,15 +513,11 @@ footer p {
   font-weight: bold;
 }
 
-.modal-content .modal-body .tab-content .tab-pane .form-group select:focus {
+.modal-content .modal-body select:focus {
   border-color: #051F20;
 }
 
-.modal-content .modal-body .form-group {
-  margin-bottom: 0.5rem;
-}
-
-.btn {
+button.btn {
   background-color: #235347;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -540,30 +536,30 @@ footer p {
   font-size: 1rem;
 }
 
-.btn .bi {
+button.btn .bi {
   color: #DAF1DE;
   margin-right: 0.5rem;
 }
 
-.btn:hover {
+button.btn:hover {
   background-color: #8EB69B;
   color: #051F20;
   color: #051F20;
 }
 
-.btn:active {
+button.btn:active {
   background-color: #8EB69B;
   color: #051F20;
   color: #051F20;
 }
 
-.btn:focus {
+button.btn:focus {
   background-color: #8EB69B;
   color: #051F20;
   color: #051F20;
 }
 
-.btn:disabled {
+button.btn:disabled {
   background-color: #8EB69B;
   color: #051F20;
   border: solid 2px #8EB69B;

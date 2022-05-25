@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -52,15 +52,15 @@
                       <div class="col-12 col-lg border-end border-success ">
                         <div class="form-group">
                           <label>Nom et prénom du client</label>
-                          <input class="form-control" type="text" placeholder="Sélectionner le nom du client" name="customer_name" required="">
+                          <input class="form-control" type="text" placeholder="Sélectionner le nom du client" name="customer_name" required>
                         </div>
                         <div class="form-group">
                           <label>Téléphone du client</label>
-                          <input class="form-control" type="text" placeholder="Téléphone du client" name="customer_phone" required="">
+                          <input class="form-control" type="text" placeholder="Téléphone du client" name="customer_phone" required>
                         </div>
                         <div class="form-group">
                           <label>Email du client</label>
-                          <input class="form-control" type="text" placeholder="Email du client" name="customer_email" required="">
+                          <input class="form-control" type="text" placeholder="Email du client" name="customer_email" required>
                         </div>
                       </div>
                       <div class="col-12 col-lg">
@@ -130,7 +130,7 @@
                         </div>
                       </div>
                       <div class="col-12 col-lg d-flex justify-content-center align-items-center">
-                        <i style="font-size:15em;" class="bi bi-truck"></i>
+                        <div id="map"></div>
                       </div>
                     </div>
 
@@ -207,97 +207,103 @@
                     </div>
                     
                     <!-- Validation des données -->
-                    <input type="submit" id="submit" value="SAUVEGARDER">
-                  </div>
-                  <div class="row my-5">
-                    <div class="btn-group">
-                      <button id="prevBtn" type="button" class="btn btn-lg btn-block">Précédent</button>
-                      <button id="nextBtn" type="button" class="btn btn-lg btn-block">Suivant</button>
-                    </div>
+                    <button type="submit" id="submit">
                   </div>
                 </div>
-              </form>
+              </div>
+            </form>
+            <div class="row my-5">
+              <div class="btn-group">
+                <button id="prevBtn" type="button" class="btn btn-lg btn-block">Précédent</button>
+                <button id="nextBtn" type="button" class="btn btn-lg btn-block">Suivant</button>
+              </div>
             </div>
           </div>
       </div>
     </div>
-<header>
-    <nav class="navbar w-100">
-        <div class="container-fluid">
-            <a href="#" class="navbar-brand">
-                <img src="../assets/img/logo.png" alt="">
-                TRANSROAD
-            </a>
-            <h1 class="fw-bold flex-fill d-none d-sm-block text-center">TABLEAU DE BORD</h1>
-            <div class="navbar-icons">
-                <i id="menuIcon" class="bi bi-list"></i>
-                <i id="notifIcon" class="bi bi-bell-fill"></i>
-                <i id="profilIcon" class="bi bi-person-fill"></i>
-                <i id="disconnectIcon" class="bi bi-box-arrow-right"></i>
-            </div>
-        </div>
-    </nav>
-</header> 
-<aside id="menu" class="show">
-  <div id="menuBtn">
-    <i class="bi bi-chevron-left"></i>
-  </div>
-  <div class="menu-header">
-    <div class="user-avatar">
-      <i class="bi bi-person"></i>
+  <header>
+      <nav class="navbar w-100">
+          <div class="container-fluid">
+              <a href="#" class="navbar-brand">
+                  <img src="../assets/img/logo.png" alt="">
+                  TRANSROAD
+              </a>
+              <h1 class="fw-bold flex-fill d-none d-sm-block text-center">TABLEAU DE BORD</h1>
+              <div class="navbar-icons">
+                  <i id="menuIcon" class="bi bi-list"></i>
+                  <i id="notifIcon" class="bi bi-bell-fill"></i>
+                  <i id="profilIcon" class="bi bi-person-fill"></i>
+                  <i id="disconnectIcon" class="bi bi-box-arrow-right"></i>
+              </div>
+          </div>
+      </nav>
+  </header> 
+  <aside id="menu" class="show">
+    <div id="menuBtn">
+      <i class="bi bi-chevron-left"></i>
     </div>
-    <div class="user-info">
-      <h4 class="fw-bold">
-        John Doe
-      </h4>
-      <h5 class="fw-bold">
-        Contrôleur de gestion
-      </h5>
+    <div class="menu-header">
+      <div class="user-avatar">
+        <i class="bi bi-person"></i>
+      </div>
+      <div class="user-info">
+        <h4 class="fw-bold">
+          John Doe
+        </h4>
+        <h5 class="fw-bold">
+          Contrôleur de gestion
+        </h5>
+      </div>
     </div>
-  </div>
-  <div class="menu-content">
-    <ul class="nav">
-    <li class="nav-item">
-      <a href="#" class="nav-link">
-        <i class="bi bi-house-door-fill"></i>
-        <strong class="menu-item">TABLEAU DE BORD</strong>                        
-      </a>
-    </li>
-    <li class="nav-item">
-      <a href="#" class="nav-link">
-        <i class="bi bi-table"></i>
-        <strong>BASE DE DONNEES</strong> 
-      </a>
-    </li>
+    <div class="menu-content">
+      <ul class="nav">
       <li class="nav-item">
         <a href="#" class="nav-link">
-          <i class="bi bi-file-earmark-medical-fill"></i>
-          <strong>CHIFFRAGE</strong>
+          <i class="bi bi-house-door-fill"></i>
+          <strong class="menu-item">TABLEAU DE BORD</strong>                        
         </a>
       </li>
       <li class="nav-item">
         <a href="#" class="nav-link">
-          <i class="bi bi-tools"></i>
-          <strong>ADMINISTRATION</strong> 
+          <i class="bi bi-table"></i>
+          <strong>BASE DE DONNEES</strong> 
         </a>
       </li>
-  </ul>
-</div></aside>
-<main>
-  <div>
-      <h1>Bienvenue sur la page de création d'un nouveau chiffrage</h1>
-      <!-- button to show modal -->
-      <button id="addOfferBtn" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#formModal">
-        Ajouter
-        </button>
-
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="bi bi-file-earmark-medical-fill"></i>
+            <strong>CHIFFRAGE</strong>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="bi bi-tools"></i>
+            <strong>ADMINISTRATION</strong> 
+          </a>
+        </li>
+    </ul>
   </div>
-</main>
-<footer>
-  <p>copyright Findev#11</p>
-</footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<script src="../js/script.js"></script>
-<script src="../js/offerboard.js"></script>
+  </aside>
+  <main>
+    <div>
+        <h1>Bienvenue sur la page de création d'un nouveau chiffrage</h1>
+        <!-- button to show modal -->
+        <button id="addOfferBtn" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#formModal">
+          Ajouter
+          </button>
+          <input id="firstAdress" type="text">
+          <input id="secondAdress" type="text">
+          <p id="result"></p>
+          <button id="btn1">id</button>
+          <button id="btn2">status</button>
+          <button id="btn3">matrix</button>
+    </div>
+  </main>
+  <footer>
+    <p>copyright Findev#11</p>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <script src="../js/script.js"></script>
+  <script src="../js/offerboard.js"></script>
 </body>
 </html>
