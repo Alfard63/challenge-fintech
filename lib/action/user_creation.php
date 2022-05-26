@@ -3,7 +3,6 @@ include "../assets/php/function.php";
 include "../assets/php/var.php";
 
  // insert which DB to connect to
- $db_to_use = "user"; 
  $dbtable="users";
 
  

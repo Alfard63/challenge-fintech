@@ -285,18 +285,66 @@
   </div>
   </aside>
   <main>
-    <div>
-        <h1>Bienvenue sur la page de création d'un nouveau chiffrage</h1>
-        <!-- button to show modal -->
-        <button id="addOfferBtn" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#formModal">
-          Ajouter
-          </button>
-          <input id="firstAdress" type="text">
-          <input id="secondAdress" type="text">
-          <p id="result"></p>
-          <button id="btn1">id</button>
-          <button id="btn2">status</button>
-          <button id="btn3">matrix</button>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title ">
+                <i class="bi bi-people"></i>
+                Liste des Devis
+              </h4>
+              <div class="card-toolbar d-flex justify-content-end">
+                <div class="btn-group">
+                  <button id="addBtn" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#formModal">
+                    Ajouter
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive text-center">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>N°</th>
+                      <th>Nom</th>
+                      <th>date de création</th>
+                      <th>Nom du client</th>
+                      <th>Nom de l'interlocuteur</th>
+                      <th>Montant HT</th>
+                      <th>Montant NET</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tableBody">
+                    <tr>
+                      <td>2205261454</td>
+                      <td>Devis 1</td>
+                      <td>01/01/2019</td>
+                      <td>Client 1</td>
+                      <td>Interlocuteur 1</td>
+                      <td>1500€</td>
+                      <td>1800€</td>
+                      <td>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#formModal">
+                          <i class="bi bi-eye-fill text-primary view"></i>
+                        </a>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#formModal">
+                          <i class="bi bi-pencil-fill text-success edit"></i>
+                        </a>
+                        <a href="#">
+                          <i class="bi bi-trash-fill text-danger delete" ></i>
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
   <footer>

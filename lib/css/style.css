@@ -480,6 +480,9 @@ footer p {
 .modal-content .modal-body .form-floating {
   font-size: 1.2rem;
   font-weight: bold;
+  color: #051F20;
+  margin-bottom: 0.5rem;
+  background-color: #DAF1DE;
 }
 
 .modal-content .modal-body .form-floating:focus {
@@ -488,6 +491,28 @@ footer p {
 
 .modal-content .modal-body .form-floating label {
   color: #5a6268;
+}
+
+.modal-content .modal-body .form-floating input {
+  border-radius: 0.5rem;
+  border: solid 2px #8EB69B;
+  background-color: #DAF1DE;
+  color: #051F20;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0.5rem;
+}
+
+.modal-content .modal-body .form-floating input:focus {
+  border-color: #051F20;
+}
+
+.modal-content .modal-body .form-floating input:disabled {
+  background-color: #DAF1DE;
+  color: #051F20;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0.5rem;
 }
 
 .modal-content .modal-body textarea {

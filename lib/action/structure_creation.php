@@ -7,7 +7,7 @@ include "../assets/php/var.php";
  $dbtable="structure";
 
 // create an array of all the POST variables you want to use
- $fields = array('year_structure_cost',"created_by",'percentage_activity','percentage_maintenance','actualisation_coefficient','consum_mainten_purch','consum_furniture_purch','consum_admin_furniture_purch',
+ $fields = array('year_structure_cost','percentage_activity','percentage_maintenance','actualisation_coefficient','consum_mainten_purch','consum_furniture_purch','consu_admin_furniture_purch',
     'not_stockable_purch','other_consum_purch','other_supplier_not_transport','credit_loan','financial_rent','building_rent','other_rent','building_mainten',
     'transport_mat_mainten','tool_shop_mainten','other_mainten','building_insurance','tooling_insurance','other_insurance','res_and_dev','interim_staff',
     'commission_revenue','public_relation','merch_transport','mission_exp_note','communication_exp','shipping_exp','bank_exp','other_toll_exp','misc_exp',
@@ -27,8 +27,6 @@ include "../assets/php/var.php";
     foreach($fields as $field){
         if (!isset($_POST[$field])){
             $$field=0;
-                //insertion of the name and surname of the person who is connected and create the form
-            ($field==="created_by")?$$field= ucfirst($username) ." ". strtoupper($surname):""; 
         }
         else{
             $$field=$_POST[$field];            
