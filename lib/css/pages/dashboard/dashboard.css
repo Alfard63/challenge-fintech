@@ -1,0 +1,15 @@
+.col-12 {
+    border: 3px solid #051F20;
+    border-radius: 20px;
+    padding: 0.5rem;
+    background-color: #DAF1DE;
+}
+
+p {
+    color: #235347;
+    font-size: 1.3rem;
+}
+
+canvas {
+    max-height: 250px;
+}
