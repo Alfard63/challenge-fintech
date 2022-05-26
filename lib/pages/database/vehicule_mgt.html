@@ -20,7 +20,8 @@ include_once "../../assets/php/var.php";
     <link rel="stylesheet" href="../../css/pages/database/vehicule_mgt.css">
 </head>
 
-<!-- JE NE SAVAIS PAS TROP CE QUI ALLAIT T'ARRANGER POUR LE PHP DONC J'AI LAISSE LES INPUT -->
+<!-- JE NE SAVAIS PAS TROP CE QUI ALLAIT T'ARRANGER POUR LE PHP DONC J'AI LAISSE LES INPUT 
+J'AI LAISSE LE SELECT DU MOYEN DE FINANCEMENT L194 & 327, JE NE SAIS PAS CE QUE VOUS ALLEZ UTILISER POUR RECUP LE CHOIX -->
 
 
 <body class="offersManagement_page">
@@ -29,6 +30,482 @@ include_once "../../assets/php/var.php";
 
     <!-- insertion of standard navbar -->
     <?php include_once("../../assets/std_page/nav_bar.html") ?>
+
+    <div class="modal fade" id="visuModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="visuModalLabel"
+        aria-modal="true" role="dialog">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="title fw-bold">Visualisation d'une fiche véhicule</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="introCard">
+                        <div class="formDiv">
+                            <h2 class="mb-3">Identification du véhicule</h2>
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Numéro de plaque</label>
+                                <input type="text" name="vehicule_plate" required>
+                                </input>
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Marque du véhicule</label>
+                                <input type="text" name="vehicule_brand" required>
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Modèle du véhicule</label>
+                                <input type="text" name="vehicule_model" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="formDiv mt-4">
+                        <h2 class="mb-3">Conditions d'exploitation du véhicule étudié</h2>
+                        <div class="form-group">
+                            <label>
+                                <i class="bi bi-chevron-bar-right"></i>
+                                Kilométrage annuel moyen du véhicule moteur (km)</label>
+                            <input type="number" name="average_km">
+                        </div>
+                        <div class="form-group">
+                            <label class="secondLabel">
+                                <p class="m-0">
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Dont kilométrage en charge (km)
+                                </p>
+                            </label>
+                            <input type="number" name="average_km_loaded">
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <i class="bi bi-chevron-bar-right"></i>
+                                Nombre de véhicules tractés pour un véhicule moteur</label>
+                            <input type="number" name="nb_towed_vehicule">
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <i class="bi bi-chevron-bar-right"></i>
+                                Plaque d'immatriculation du véhicule tracté</label>
+                            <input type="text" name="towed_vehicule_plate">
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <i class="bi bi-chevron-bar-right"></i>
+                                Nombre de jours d'exploitation du véhicule moteur par an</label>
+                            <input type="number" name="days_used_year">
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <i class="bi bi-chevron-bar-right"></i>
+                                Unité de chargement (texte libre)</label>
+                            <input type="text" name="load_unit">
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <i class="bi bi-chevron-bar-right"></i>
+                                Capacité de chargement (correspondant à l'unité ci-dessus)</label>
+                            <input type="number" name="load_capacity">
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <i class="bi bi-chevron-bar-right"></i>
+                                Coefficient d'utilisation de cette capacité (%)</label>
+                            <input type="number" name="capacity_use_percentage">
+                        </div>
+                    </div>
+
+                    <div class="formDiv">
+                        <h2 class="mb-3">Coûts variables kilométriques du véhicule étudié</h2>
+                        <div>
+                            <h3>1- Carburant</h3>
+                            <div class="form-group form-group2">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Type d'énergie du véhicule</label>
+                                <input type="text" name="number">
+                            </div>
+                            <div class="form-group">
+                                <label> <i class="bi bi-chevron-bar-right"></i>
+                                    Consommation du véhicule (litre pour 100 km)</label>
+                                <input type="number" name="consumption">
+                            </div>
+                            <div class="form-group">
+                                <label> <i class="bi bi-chevron-bar-right"></i>
+                                    Part de l'approvisionnement citerne (%)</label>
+                                <input type="number" name="cistern_percentage_use">
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="mt-3 mb-3">2- Pneumatiques</h3>
+                            <div class="form-group">
+                                <label> <i class="bi bi-chevron-bar-right"></i>
+                                    Nombre de pneus du véhicule moteur</label>
+                                <input type="number" name="nb_tires">
+                            </div>
+                            <div class="form-group">
+                                <label> <i class="bi bi-chevron-bar-right"></i>
+                                    Nombre de pneus du véhicule tracté</label>
+                                <input type="number" name="towed_nb_tires">
+                            </div>
+                            <div class="form-group">
+                                <label> <i class="bi bi-chevron-bar-right"></i>
+                                    Type de pneus</label>
+                                <input type="number" name="tires_brand">
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="mt-3 mb-3">3- Entretien - réparation</h3>
+                            <div class="form-group">
+                                <label> <i class="bi bi-chevron-bar-right"></i>
+                                    Dépenses annuelles d'entretien-réparations par véhicule (€)</label>
+                                <input type="number" name="annual_maintenance_cost">
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="mt-3 mb-3">4- Péages</h3>
+                            <div class="form-group">
+                                <label> <i class="bi bi-chevron-bar-right"></i>
+                                    Dépenses annuelles de péages (€)</label>
+                                <input type="number" name="annual_toll_cost">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="formDiv">
+                        <h2 class="mb-3">Coûts fixes journaliers du véhicule étudié</h2>
+                        <div>
+                            <h3 class="mt-3 mb-3">1 - Conditions de détention et de financement du véhicule moteur</h3>
+                            <div class="form-group">
+                                <label> <i class="bi bi-chevron-bar-right"></i>
+                                    Durée d'utilisation du véhicule moteur (ans)</label>
+                                <input type="number" name="days_used_year">
+                            </div>
+                            <div class="form-group selectGroup">
+                                <label> <i class="bi bi-chevron-bar-right"></i>
+                                    Mode de financement du véhicule moteur</label>
+                                <select id="firstSelect" class="form-select mb-4" aria-label="Default select example"
+                                    name="payment_type">
+                                    <option selected>Choisir...</option>
+                                    <option value="1">Emprunt</option>
+                                    <option value="2">Auto-financement</option>
+                                    <option value="3">Crédit Bail</option>
+                                    <option value="4">Location Financière</option>
+                                </select>
+                            </div>
+                            <!-- entrée dans une condition en fonction du mode de financement-->
+                            <div class="form-group">
+                                <!-- cas de l'emprunt -->
+                                <div id="firstSelectEmprunt">
+                                    <legend class="emprunt text-center">
+                                        <i class="bi bi-arrow-right-circle-fill"></i>
+                                        <p class="m-0">Emprunt</p>
+                                    </legend>
+                                    <div class="form-group">
+                                        <label> <i class="bi bi-chevron-bar-right"></i>
+                                            Valeur du véhicule moteur (€)</label>
+                                        <input type="number" name="vehicule_cost">
+                                    </div>
+                                    <div class="form-group">
+                                        <label> <i class="bi bi-chevron-bar-right"></i>
+                                            Montant de l'emprunt (€)</label>
+                                        <input type="number" name="loan_value">
+                                    </div>
+                                    <div class="form-group">
+                                        <label> <i class="bi bi-chevron-bar-right"></i>
+                                            Taux d'intérêt de l'emprunt (%)</label>
+                                        <input type="number" name="loan_rate">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><i class="bi bi-chevron-bar-right"></i>
+                                            Durée de l'emprunt (mois)</label>
+                                        <input type="number" name="payment_term">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><i class="bi bi-chevron-bar-right"></i>
+                                            Valeur de revente (€)</label>
+                                        <input type="number" name="resell_cost">
+                                    </div>
+                                </div>
+                                <!-- cas de l'autofinancement -->
+                                <div id="firstSelectAutofinancement">
+                                    <legend class="autofinancement">
+                                        <i class="bi bi-arrow-right-circle-fill"></i>
+                                        <p class="m-0">Auto-financement</p>
+                                    </legend>
+                                    <div class="form-group">
+                                        <label><i class="bi bi-chevron-bar-right"></i>
+                                            Valeur du véhicule moteur (€)</label>
+                                        <input type="number" name="vehicule_cost">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><i class="bi bi-chevron-bar-right"></i>
+                                            Montant de l'emprunt (€)</label> <!-- egal à 0 à cacher -->
+                                        <input type="number" name="loan_value">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><i class="bi bi-chevron-bar-right"></i>
+                                            Taux d'intérêt de l'emprunt (%)</label>
+                                        <input type="number" name="payment_term">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><i class="bi bi-chevron-bar-right"></i>
+                                            Valeur de revente (€)</label>
+                                        <input type="number" name="resell_cost">
+                                    </div>
+                                </div>
+                                <!-- cas du crédit bail -->
+                                <div id="firstSelectCreditBail">
+                                    <legend class="credit-bail">
+                                        <i class="bi bi-arrow-right-circle-fill"></i>
+                                        <p class="m-0">Crédit-bail</p>
+                                    </legend>
+                                    <div class="form-group">
+                                        <label><i class="bi bi-chevron-bar-right"></i>
+                                            Valeur du véhicule moteur (€)</label>
+                                        <input type="number" name="vehicule_cost">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><i class="bi bi-chevron-bar-right"></i>
+                                            Durée du contrat (mois)</label>
+                                        <input type="number" name="loan_value">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><i class="bi bi-chevron-bar-right"></i>
+                                            Montant mensuel du loyer (€)</label>
+                                        <input type="number" name="monthly_cost">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><i class="bi bi-chevron-bar-right"></i>
+                                            Valeur optionnelle d'achat (€)</label>
+                                        <input type="number" name="optional_buying_value">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><i class="bi bi-chevron-bar-right"></i>
+                                            Valeur de revente (€)</label>
+                                        <input type="number" name="resell_cost">
+                                    </div>
+                                </div>
+                                <!-- cas de la location financière -->
+                                <div id="firstSelectLocFinanciere">
+                                    <legend class="location-financiere">
+                                        <i class="bi bi-arrow-right-circle-fill"></i>
+                                        <p class="m-0">location-financière</p>
+                                    </legend>
+                                    <div class="form-group">
+                                        <label><i class="bi bi-chevron-bar-right"></i>
+                                            Durée du contrat (mois)</label>
+                                        <input type="number" name="loan_value">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><i class="bi bi-chevron-bar-right"></i>
+                                            Montant mensuel du loyer (€)</label>
+                                        <input type="number" name="monthly_cost">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <h3 class="mt-3 mb-3">2 - Conditions de détention et de financement du véhicule tracté</h3>
+                            <div class="form-group">
+                                <label><i class="bi bi-chevron-bar-right"></i>
+                                    Durée d'utilisation du véhicule tractés (ans)</label>
+                                <input type="number" name="towed_days_used_year">
+                            </div>
+                            <div class="form-group selectGroup">
+                                <label><i class="bi bi-chevron-bar-right"></i>
+                                    Mode de financement du véhicule moteur</label>
+                                <select id="secondSelect" class="form-select" aria-label="Default select example"
+                                    name="towed_payment_type">
+                                    <option selected>Choisir...</option>
+                                    <option value="5">Emprunt</option>
+                                    <option value="6">Auto-financement</option>
+                                    <option value="7">Crédit Bail</option>
+                                    <option value="8">Location Financière</option>
+                                </select>
+                            </div>
+                            <!-- entrée dans une condition en fonction du mode de financement-->
+                            <div class="form-group">
+                                <!-- cas de l'emprunt -->
+                                <div id="secondSelectEmprunt">
+                                    <legend class="emprunt">
+                                        <i class="bi bi-arrow-right-circle-fill"></i>
+                                        <p class="m-0">emprunt</p>
+                                    </legend>
+                                    <div class="form-group">
+                                        <label><i class="bi bi-chevron-bar-right"></i>
+                                            Valeur du véhicule moteur (€)</label>
+                                        <input type="number" name="towed_vehicule_cost">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><i class="bi bi-chevron-bar-right"></i>
+                                            Montant de l'emprunt (€)</label>
+                                        <input type="number" name="towed_loan_value">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><i class="bi bi-chevron-bar-right"></i>
+                                            Taux d'intérêt de l'emprunt (%)</label>
+                                        <input type="number" name="towed_loan_rate">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><i class="bi bi-chevron-bar-right"></i>
+                                            Durée de l'emprunt (mois)</label>
+                                        <input type="number" name="towed_payment_term">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Valeur de revente (€)</label>
+                                        <input type="number" name="towed_resell_cost">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- cas de l'autofinancement -->
+                            <div id="secondSelectAutofinancement">
+                                <legend class="autofinancement">
+                                    <i class="bi bi-arrow-right-circle-fill"></i>
+                                    <p class="m-0">autofinancement</p>
+                                </legend>
+                                <div class="form-group">
+                                    <label><i class="bi bi-chevron-bar-right"></i>
+                                        Valeur du véhicule moteur (€)</label>
+                                    <input type="number" name="towed_vehicule_cost">
+                                </div>
+                                <div class="form-group">
+                                    <label><i class="bi bi-chevron-bar-right"></i>
+                                        Taux d'intérêt de l'emprunt (%)</label>
+                                    <input type="number" name="towed_payment_term">
+                                </div>
+                                <div class="form-group">
+                                    <label><i class="bi bi-chevron-bar-right"></i>
+                                        Valeur de revente (€)</label>
+                                    <input type="number" name="towed_resell_cost">
+                                </div>
+                            </div>
+
+                            <!-- cas du crédit bail -->
+                            <div id="secondSelectCreditBail">
+                                <legend class="credit-bail">
+                                    <i class="bi bi-arrow-right-circle-fill"></i>
+                                    <p class="m-0">crédit-bail</p>
+                                </legend>
+                                <div class="form-group">
+                                    <label><i class="bi bi-chevron-bar-right"></i>
+                                        Valeur du véhicule moteur (€)</label>
+                                    <input type="towed_vehicule_cost" name="towed_vehicule_cost">
+                                </div>
+                                <div class="form-group">
+                                    <label><i class="bi bi-chevron-bar-right"></i>
+                                        Durée du contrat (mois)</label>
+                                    <input type="towed_loan_value" name="towed_loan_value">
+                                </div>
+                                <div class="form-group">
+                                    <label><i class="bi bi-chevron-bar-right"></i>
+                                        Montant mensuel du loyer (€)</label>
+                                    <input type="towed_monthly_cost" name="towed_monthly_cost">
+                                </div>
+                                <div class="form-group">
+                                    <label><i class="bi bi-chevron-bar-right"></i>
+                                        Valeur optionnelle d'achat (€)</label>
+                                    <input type="towed_optional_buying_value" name="towed_optional_buying_value">
+                                </div>
+                                <div class="form-group">
+                                    <label><i class="bi bi-chevron-bar-right"></i>
+                                        Valeur de revente (€)</label>
+                                    <input type="towed_resell_cost" name="towed_resell_cost">
+                                </div>
+                            </div>
+
+                            <!-- cas de la location financière -->
+                            <div id="secondSelectLocFinanciere">
+                                <legend class="location-financiere">
+                                    <i class="bi bi-arrow-right-circle-fill"></i>
+                                    <p class="m-0">location-financière</p>
+                                </legend>
+                                <div class="form-group">
+                                    <label><i class="bi bi-chevron-bar-right"></i>
+                                        Durée du contrat (mois)</label>
+                                    <input type="towed_loan_value" name="towed_loan_value">
+                                </div>
+                                <div class="form-group">
+                                    <label><i class="bi bi-chevron-bar-right"></i>
+                                        Montant mensuel du loyer (€)</label>
+                                    <input type="towed_monthly_cost" name="towed_monthly_cost">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="formDiv">
+                        <h3 class="mt-3 mb-3">3 - Assurances du véhicule</h3>
+                        <div class="form-group">
+                            <label><i class="bi bi-chevron-bar-right"></i>
+                                Montant annuel de l'assurance d'un véhicule RC + VI (€/an)</label>
+                            <input type="annual_vehic_insurance_cost" name="annual_vehic_insurance_cost">
+                        </div>
+                        <div class="form-group">
+                            <label><i class="bi bi-chevron-bar-right"></i>
+                                Montant annuel de l'assurance marchandises transportées par véhicule
+                                (€/an)</label>
+                            <input type="annual_load_insurance_cost" name="annual_load_insurance_cost">
+                        </div>
+                    </div>
+
+                    <div class="formDiv">
+                        <h3 class="mt-3 mb-3">4 - Taxe à l'essieu par véhicule</h3>
+                        <div class="form-group">
+                            <label><i class="bi bi-chevron-bar-right"></i>
+                                Montant annuel de taxe à l'essieu (€/an)</label>
+                            <input type="axles_tax_cost" name="axles_tax_cost">
+                        </div>
+                    </div>
+
+                    <div class="formDiv">
+                        <h3 class="mb-3">5 - Coûts de structure par véhicule</h3>
+                        <div class="form-group">
+                            <label><i class="bi bi-chevron-bar-right"></i>
+                                Montant annuel des coûts de structure par véhicule (€/an)</label>
+                            <input type="annual_structure_cost" name="annual_structure_cost">
+                        </div>
+                    </div>
+
+                    <div class="formDiv">
+                        <h2>Autre coût (lié au transport où non)</h2>
+                        <div class="form-group">
+                            <label><i class="bi bi-chevron-bar-right"></i>
+                                Libellé de la composante de coût (texte libre)</label>
+                            <input type="other_cost_name" name="other_cost_name">
+                        </div>
+                        <div class="form-group">
+                            <label><i class="bi bi-chevron-bar-right"></i>
+                                Unité d'œuvre correspondant (texte libre)</label>
+                            <input type="other_cost_unit" name="other_cost_unit">
+                        </div>
+                        <div class="form-group">
+                            <label><i class="bi bi-chevron-bar-right"></i>
+                                Nombre d'unité utilisé par an</label>
+                            <input type="annual_unit_value" name="annual_unit_value">
+                        </div>
+                        <div class="form-group">
+                            <label><i class="bi bi-chevron-bar-right"></i>
+                                Montant annuel imputable à ce coût (€/an)</label>
+                            <input type="annual_other_cost_value" name="annual_other_cost_value">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
 
     <div class="modal fade" id="formModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="formModalLabel"
         aria-modal="true" role="dialog">
@@ -679,7 +1156,7 @@ include_once "../../assets/php/var.php";
                                                 <?= $user['position'] ?>
                                             </td>
                                             <td>
-                                                <a href="./vehicule_creation.html">
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#visuModal">
                                                     <i class="bi bi-eye-fill text-primary"></i>
                                                 </a>
                                                 <a href="#" data-bs-toggle="modal" data-bs-target="#formModal">
@@ -706,7 +1183,7 @@ include_once "../../assets/php/var.php";
 
     <!-- insertion of standard footer -->
     <?php include_once("../../assets/std_page/footer.html") ?>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
