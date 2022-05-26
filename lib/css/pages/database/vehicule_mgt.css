@@ -8,8 +8,13 @@
 }
 
 .formDiv {
-    text-align: center;
     margin: 1rem 1rem 2rem 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .location-financiere, .credit-bail, .autofinancement, .emprunt {
@@ -24,12 +29,19 @@
     font-size: 15px;
 }
 
+
+legend {
+    margin: 0 0 1rem 3rem;
+    font-weight: bold;
+    color: #235347;
+}
+
 label {
     margin-bottom: 0.5rem;
-    margin-right: 1rem;
 }
 
 .secondLabel {
+    display: flex;
     gap: 0.3rem;
     font-style: italic;
 }
@@ -44,25 +56,29 @@ select {
 }
 
 h3 {
+    color: #235347;
     font-size: 1.3rem;
     font-weight: bold;
-    margin: 0 0 1rem 3rem;
-    color: #235347;
-}
-
-.selectGroup {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#firstSelect, #secondSelect {
-    width: 30%;
+    margin-left: 2rem;
 }
 
 /** INTRO CARD **/
 .introCard {
     border-bottom: 1px solid #8EB69B;
+}
+
+/* BUTTON */
+.btnDiv {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.submitBtn {
+    font-weight: bold;
+    width: 100%;
 }
 
 /* SELECT DISPLAY */
