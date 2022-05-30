@@ -12,10 +12,10 @@ include "../assets/php/var.php";
  if(isset($_POST['username']) && isset($_POST['surname'])&& isset($_POST['service'])&& isset($_POST['email'])&& isset($_POST['password']))
  {
  
-    $my_Db_Connection= db_connect($servername,$db_to_use,$db_username,$password);
+    $my_Db_Connection= db_connect($servername,$db_to_use,$db_username,$db_password);
         
     // create an array of all the POST variables you want to use
-    $fields = array('username','surname','service','position','email','password', 'password_confirm');
+    $fields = array('username','surname','service','position','email','password');
 
     // prepare SQL statement and bind values    
     $stm_insert = $my_Db_Connection->prepare(query_insert($dbtable,$fields)) ;

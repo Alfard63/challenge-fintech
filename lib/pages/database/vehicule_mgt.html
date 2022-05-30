@@ -1,37 +1,31 @@
 <?php
-include_once "../../assets/php/var.php";
-include_once "../../assets/php/function.php";
+    include_once "../../assets/php/var.php";
+    include_once "../../assets/php/function.php";
 
 
-// vérifier que l'on soit connecté pour accéder aux pages sinon retour vers index
-(!$is_connected)?header('Location: ../../index.html'):"";
+    // vérifier que l'on soit connecté pour accéder aux pages sinon retour vers index
+    (!$is_connected)?header('Location: ../../index.html'):"";
 
-$db_to_use = "vehicule"; 
+    $db= db_connect($servername,$db_to_use,$db_username,$db_password);
 
-$db= db_connect($servername,$db_to_use,$db_username,$db_password);
+        // connection a la base de donnée et suppression des valeurs
+    if (isset($_POST['Delete']))
+    { 
+        // List of all database table to empty:
+        $dbtable1="vehicule";
+        $dbtable2="towed_vehicule";
+        $dbtable3="vehicule_payment"; 
+        $dbtable4="vehicule_ind_cost";
+        $dbtable5="other_cost";
 
+        db_dump($db, $dbtable1,"vehicule_plate", $_POST['Delete']);
+        db_dump($db, $dbtable2,"vehicule_plate", $_POST['Delete']);
+        db_dump($db, $dbtable3,"vehicule_plate", $_POST['Delete']);
+        db_dump($db, $dbtable4,"vehicule_plate", $_POST['Delete']);
+        $message=db_dump($db, $dbtable5,"vehicule_plate", $_POST['Delete']);
 
-if (isset($_POST['Delete'])) 
-{
-$message=db_dump($db, "vehicule","vehicule_id", $_POST['Delete']);
-
-/*
-    try{
-
-        $delete = 'DELETE FROM vehicule WHERE vehicule_id = :vehicule_id';
-        $stmt = $db->prepare($delete);
-        $stmt->bindValue(":vehicule_id",$_POST['Delete']);
-        $stmt->execute();
-
-        $message="la ligne a été supprimée";
-     }
-    catch(PDOException $error)
-    {
-        echo 'Connection error: ' . $error->getMessage() ."<br>";
-        die();
     }
-*/
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -544,22 +538,23 @@ J'AI LAISSE LE SELECT DU MOYEN DE FINANCEMENT L194 & 327, JE NE SAIS PAS CE QUE 
                     <h2 class="modal-title fw-bold">Nouveau véhicule</h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                
                 <div class="modal-body">
                     <form action="../../action/vehicule_creation.php" method="POST">
                         <div class="d-flex justify-content-evenly align-items-center mt-3">
                             <label class="form-group d-flex flex-column">
                                 <label for="ope_name">Identification du véhicule : </label>
                                 <input class="form-control-sm mx-2" type="text" placeholder="Plaque d'immatriculation"
-                                    name="ope_name" required="">
+                                    name="vehicule_plate" required="">
                             </label>
                             <label class="form-group d-flex flex-column">
                                 <label for="ope_name">Marque du véhicule : </label>
-                                <input class="form-control-sm mx-2" type="text" placeholder="Marque" name="ope_name"
+                                <input class="form-control-sm mx-2" type="text" placeholder="Marque" name="vehicule_brand"
                                     required="">
                             </label>
                             <label class="form-group d-flex flex-column">
                                 <label for="ope_name">Modèle du véhicule : </label>
-                                <input class="form-control-sm mx-2" type="text" placeholder="Modèle" name="ope_name"
+                                <input class="form-control-sm mx-2" type="text" placeholder="Modèle" name="vehicule_model"
                                     required="">
                             </label>
                         </div>
@@ -568,19 +563,26 @@ J'AI LAISSE LE SELECT DU MOYEN DE FINANCEMENT L194 & 327, JE NE SAIS PAS CE QUE 
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                         <button class="nav-link active link-dark fw-bold" id="nav-client-tab" data-bs-toggle="tab"
                             data-bs-target="#nav-client" type="button" role="tab" aria-controls="nav-client"
-                            aria-selected="false">Conditions d'exploitation</button>
+                            aria-selected="false">Conditions d'exploitation
+                        </button>
+
                         <button class="nav-link link-dark fw-bold" id="nav-ope-tab" data-bs-toggle="tab"
                             data-bs-target="#nav-ope" type="button" role="tab" aria-controls="nav-ope"
                             aria-selected="true">Coûts variables
-                            kilométriques</button>
+                            kilométriques
+                        </button>
+
                         <button class="nav-link link-dark fw-bold" id="nav-couts-tab" data-bs-toggle="tab"
                             data-bs-target="#nav-couts" type="button" role="tab" aria-controls="nav-couts"
                             aria-selected="false">Coûts fixes
-                            journaliers</button>
+                            journaliers
+                        </button>
+
                         <button class="nav-link link-dark fw-bold" id="nav-details-tab" data-bs-toggle="tab"
                             data-bs-target="#nav-details" type="button" role="tab" aria-controls="nav-details"
                             aria-selected="false">Autres
-                            coûts</button>
+                            coûts
+                        </button>
                     </div>
                 </nav>
                 <div class="tab-content clearfix" id="nav-tabContent">
@@ -661,7 +663,7 @@ J'AI LAISSE LE SELECT DU MOYEN DE FINANCEMENT L194 & 327, JE NE SAIS PAS CE QUE 
                                     <label>
                                         <i class="bi bi-chevron-bar-right"></i>
                                         Type d'énergie du véhicule</label>
-                                    <input type="text" placeholder="Entrer le type d'énergie du véhicule" name="number">
+                                    <input type="text" placeholder="Entrer le type d'énergie du véhicule" name="energy_type">
                                 </div>
                                 <div class="form-group">
                                     <label> <i class="bi bi-chevron-bar-right"></i>
@@ -1141,23 +1143,7 @@ J'AI LAISSE LE SELECT DU MOYEN DE FINANCEMENT L194 & 327, JE NE SAIS PAS CE QUE 
                                             </tr>
                                         </thead>
                                         <tbody id="tableBody">
-                                            <!--                             <tr>
-                                <td>Doe</td>
-                                <td>John</td>
-                                <td>john.doe@entreprise.com</td>
-                                <td>IT</td>
-                                <td>test</td>
-                                <td>Administrateur</td>
-                                <td>
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#formModal">
-                                    <i class="bi bi-pencil-fill text-warning edit"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="bi bi-trash-fill text-danger delete"></i>
-                                </a>
-                                </td>
-                            </tr> 
-    -->
+
                                         <?php
                                                                                                 
                                         // insert which DB to connect to
@@ -1180,7 +1166,7 @@ J'AI LAISSE LE SELECT DU MOYEN DE FINANCEMENT L194 & 327, JE NE SAIS PAS CE QUE 
                                                     <i class="bi bi-pencil-fill text-warning"></i>
                                                 </a>
 
-                                                <button type="submit" name="Delete" value=" <?php echo $vehicule['vehicule_id'] ?> ">
+                                                <button type="submit" name="Delete" value="<?php echo $vehicule['vehicule_plate'] ?>">
                                                     <i class="bi bi-trash-fill text-danger"></i>
                                                 </button>
                                             </td>

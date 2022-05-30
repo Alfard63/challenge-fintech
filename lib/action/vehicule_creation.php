@@ -4,7 +4,6 @@ include "../assets/php/var.php";
 
 
  // insert which DB to connect to
- $db_to_use = "vehicule"; 
  
  $dbtable1="vehicule";
  $dbtable2="towed_vehicule";
@@ -21,7 +20,7 @@ include "../assets/php/var.php";
 );
 
 $fields_db2 = array(
-    'towed_vehicule_plate','tires_brand','towed_nb_tires','towed_days_used_year',
+    'towed_vehicule_plate','vehicule_plate','tires_brand','towed_nb_tires','towed_days_used_year',
     'towed_vehicule_cost','towed_loan_value','towed_loan_rate','towed_payment_term','towed_monthly_cost',
     'towed_resell_cost','towed_optional_buying_value',
 );
@@ -43,7 +42,7 @@ $fields_db5 = array(
  if(isset($_POST['vehicule_plate']))
  {
  
-    $my_Db_Connection= db_connect($servername,$db_to_use,$db_username,$password);
+    $my_Db_Connection= db_connect($servername,$db_to_use,$db_username,$db_password);
         
     // prepare SQL statement and bind values    
     $stm_insert_db1 = $my_Db_Connection->prepare(query_insert($dbtable1,$fields_db1)) ;
@@ -125,10 +124,18 @@ $fields_db5 = array(
 
         $query_check_vehicule->execute();
         $answers = $query_check_vehicule->fetch();
+        var_dump($answers);
+
+        if($answers) 
+        {
+            //this year already exist
+            header('Location: ../pages/database/vehicule_mgt.html?=erreur2');
+            die;
+        }
 
             // verification for towed_vehicule table
-        $query_check_towed_vehicule= $my_Db_Connection->prepare("SELECT towed_vehicule_plate
-        from vehicule
+        $query_check_towed_vehicule= $my_Db_Connection->prepare("SELECT *
+        from towed_vehicule
         where
         towed_vehicule_plate = :towed_vehicule_plate");
         $query_check_towed_vehicule ->bindParam(":towed_vehicule_plate", $_POST["towed_vehicule_plate"]);
@@ -136,18 +143,10 @@ $fields_db5 = array(
         $query_check_towed_vehicule->execute();
         $answers2 = $query_check_towed_vehicule->fetch();
 
-
-        if($answers) 
-        {
-            //this year already exist
-            header('Location: ../pages/database/vehicule_creation.html?=erreur2');
-            die;
-        }
-
         if($answer2) 
         {
             //this year already exist
-            header('Location: ../pages/database/vehicule_creation.html?=erreur3');
+            header('Location: ../pages/database/vehicule_mgt.html?=erreur3');
             die;
         }
     }
@@ -161,11 +160,11 @@ $fields_db5 = array(
     try
     {
 
-        // $stm_insert_db1->execute();
-         $stm_insert_db2->execute();
-        // $stm_insert_db3->execute();
-        // $stm_insert_db4->execute();
-        // $stm_insert_db5->execute();
+        $stm_insert_db1->execute();
+        $stm_insert_db2->execute();
+        $stm_insert_db3->execute();
+        $stm_insert_db4->execute();
+        $stm_insert_db5->execute();
     }
     catch (PDOException $ex2)
     {
@@ -177,6 +176,6 @@ $fields_db5 = array(
  }
  else
  {
-    header('Location: ../pages/database/vehicule_creation.html?=erreur1');
+    header('Location: ../pages/database/vehicule_mgt.html?=erreur1');
 
  }
