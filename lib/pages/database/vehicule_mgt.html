@@ -1,8 +1,37 @@
 <?php
 include_once "../../assets/php/var.php";
+include_once "../../assets/php/function.php";
+
 
 // vérifier que l'on soit connecté pour accéder aux pages sinon retour vers index
 (!$is_connected)?header('Location: ../../index.html'):"";
+
+$db_to_use = "vehicule"; 
+
+$db= db_connect($servername,$db_to_use,$db_username,$db_password);
+
+
+if (isset($_POST['Delete'])) 
+{
+$message=db_dump($db, "vehicule","vehicule_id", $_POST['Delete']);
+
+/*
+    try{
+
+        $delete = 'DELETE FROM vehicule WHERE vehicule_id = :vehicule_id';
+        $stmt = $db->prepare($delete);
+        $stmt->bindValue(":vehicule_id",$_POST['Delete']);
+        $stmt->execute();
+
+        $message="la ligne a été supprimée";
+     }
+    catch(PDOException $error)
+    {
+        echo 'Connection error: ' . $error->getMessage() ."<br>";
+        die();
+    }
+*/
+}
 ?>
 
 <!DOCTYPE html>
@@ -516,7 +545,7 @@ J'AI LAISSE LE SELECT DU MOYEN DE FINANCEMENT L194 & 327, JE NE SAIS PAS CE QUE 
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="../../action/offer_creation.php" method="POST">
+                    <form action="../../action/vehicule_creation.php" method="POST">
                         <div class="d-flex justify-content-evenly align-items-center mt-3">
                             <label class="form-group d-flex flex-column">
                                 <label for="ope_name">Identification du véhicule : </label>
@@ -1079,105 +1108,102 @@ J'AI LAISSE LE SELECT DU MOYEN DE FINANCEMENT L194 & 327, JE NE SAIS PAS CE QUE 
         </div>
     </div>
     <main>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title ">
-                                <i class="bi bi-people"></i>
-                                Liste des véhicules
-                            </h4>
-                            <div class="card-toolbar d-flex justify-content-end">
-                                <div class="btn-group">
-                                    <button id="addOfferBtn" type="button" class="btn" data-bs-toggle="modal"
-                                        data-bs-target="#formModal">
-                                        Ajouter
-                                    </button>
+        <form method="POST">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title ">
+                                    <i class="bi bi-people"></i>
+                                    Liste des véhicules
+                                </h4>
+                                <div class="card-toolbar d-flex justify-content-end">
+                                    <div class="btn-group">
+                                        <button id="addOfferBtn" type="button" class="btn" data-bs-toggle="modal"
+                                            data-bs-target="#formModal">
+                                            Ajouter
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive text-center">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Plaque</th>
-                                            <th>Marque</th>
-                                            <th>Modèle</th>
-                                            <th>Nb de véhicules tractés</th>
-                                            <th>Plaque du véhicule tracté</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tableBody">
-                                        <!--                             <tr>
-                            <td>Doe</td>
-                            <td>John</td>
-                            <td>john.doe@entreprise.com</td>
-                            <td>IT</td>
-                            <td>test</td>
-                            <td>Administrateur</td>
-                            <td>
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#formModal">
-                                <i class="bi bi-pencil-fill text-warning edit"></i>
-                            </a>
-                            <a href="#">
-                                <i class="bi bi-trash-fill text-danger delete"></i>
-                            </a>
-                            </td>
-                        </tr> 
--->
-
+                            <div class="card-body">
+                                <div class="table-responsive text-center">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Plaque</th>
+                                                <th>Marque</th>
+                                                <th>Modèle</th>
+                                                <th>Nb de véhicules tractés</th>
+                                                <th>Plaque du véhicule tracté</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tableBody">
+                                            <!--                             <tr>
+                                <td>Doe</td>
+                                <td>John</td>
+                                <td>john.doe@entreprise.com</td>
+                                <td>IT</td>
+                                <td>test</td>
+                                <td>Administrateur</td>
+                                <td>
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#formModal">
+                                    <i class="bi bi-pencil-fill text-warning edit"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="bi bi-trash-fill text-danger delete"></i>
+                                </a>
+                                </td>
+                            </tr> 
+    -->
                                         <?php
-                                                    
-                        // insert which DB to connect to
-                        $db_to_use = "user"; 
-                        
-                        $db= db_connect($servername,$db_to_use,$db_username,$password);
+                                                                                                
+                                        // insert which DB to connect to
+                                        
+                                        $vehicules = $db->query('SELECT * FROM vehicule');
 
-                        $users = $db->query('SELECT * FROM users');
-                        while($user = $users->fetch()) {
-                        ?>
+                                        while($vehicule = $vehicules->fetch()) {
+                                        ?>
                                         <tr id=>
+                                            <td><?= $vehicule['vehicule_plate'] ?></td>
+                                            <td><?= $vehicule['vehicule_brand'] ?></td>
+                                            <td><?= $vehicule['vehicule_model'] ?></td>
+                                            <td><?= $vehicule['nb_towed_vehicule'] ?></td>
+                                            <td><?= $vehicule['towed_vehicule_plate'] ?></td>
                                             <td>
-                                                <?= $user['username'] ?>
-                                            </td>
-                                            <td>
-                                                <?= $user['surname'] ?>
-                                            </td>
-                                            <td>
-                                                <?= $user['email'] ?>
-                                            </td>
-                                            <td>
-                                                <?= $user['service'] ?>
-                                            </td>
-                                            <td>
-                                                <?= $user['position'] ?>
-                                            </td>
-                                            <td>
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#visuModal">
-                                                    <i class="bi bi-eye-fill text-primary"></i>
-                                                </a>
                                                 <a href="#" data-bs-toggle="modal" data-bs-target="#formModal">
-                                                    <i class="bi bi-pencil-fill text-warning"></i>
+                                                    <i class="bi bi-eye-fill text-success"></i>
                                                 </a>
                                                 <a href="#">
-                                                    <i class="bi bi-trash-fill text-danger"></i>
+                                                    <i class="bi bi-pencil-fill text-warning"></i>
                                                 </a>
+
+                                                <button type="submit" name="Delete" value=" <?php echo $vehicule['vehicule_id'] ?> ">
+                                                    <i class="bi bi-trash-fill text-danger"></i>
+                                                </button>
                                             </td>
                                         </tr>
                                         <?php
-                            }
-                        ?>
-                                    </tbody>
-                                </table>
+                                            }
+
+                                        ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
+        <?php
+
+            if (isset($message)){
+                echo '<div  class="p-5 text-uppercase font-weight-bold text-center text-danger ">' . $message . '</div>';
+            }
+         ?>   
     </main>
 
 

@@ -53,3 +53,23 @@ function query_select_where(string $table, array $datafields)
     return $query;
 }
 
+    // function to delete from a DB ($db_name is the connected to) into a specific table using a key_ref
+function db_dump($db_name, $db_table,$primary_key_name, $primary_key){
+    
+    try{
+
+        $delete = 'DELETE FROM '.$db_table .' WHERE '.$primary_key_name.' = :primary_key';
+        $stmt = $db_name->prepare($delete);
+        $stmt->bindValue(":primary_key",$primary_key);
+        $stmt->execute();
+
+        $message="la ligne a été supprimée";
+     }
+    catch(PDOException $error)
+    {
+        echo 'Connection error: ' . $error->getMessage() ."<br>";
+        die();
+    }
+
+    return $message;
+}
