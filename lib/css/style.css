@@ -405,6 +405,7 @@ footer p {
   border: solid 2px #8EB69B;
   margin-top: 2rem;
   color: #051F20;
+  min-height: 95vh;
 }
 
 .modal-content label {
@@ -456,6 +457,27 @@ footer p {
   font-size: 1.2rem;
   font-weight: bold;
   padding: 0.5rem;
+}
+
+.modal-content .modal-body .form-group input:-moz-read-only {
+  background-color: #DAF1DE;
+  color: #051F20;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0.5rem;
+}
+
+.modal-content .modal-body .form-group input:read-only {
+  background-color: #DAF1DE;
+  color: #051F20;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0.5rem;
+}
+
+.modal-content .modal-body .form-group input.form-control-sm {
+  font-size: 1rem;
+  padding: 0.25rem;
 }
 
 .modal-content .modal-body .nav-tabs {
@@ -607,5 +629,27 @@ table th, table td {
 table .bi {
   font-size: 1.2em;
   margin: 0.5em;
+}
+
+table select {
+  border-radius: 0.5rem;
+  border: 0;
+  background-color: #ffffff00;
+  color: #051F20;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-color: #051F20;
+}
+
+table input {
+  border-radius: 0.5rem;
+  border: 0;
+  background-color: #ffffff00;
+  color: #051F20;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0.5rem;
+  border-color: #051F20;
+  background-color: #ffffff00;
 }
 /*# sourceMappingURL=style.css.map */

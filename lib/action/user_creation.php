@@ -1,10 +1,15 @@
 <?php
 include "../assets/php/function.php";
-include "../assets/php/var.php";
 
  // insert which DB to connect to
+ $db_name="u933389189_transroad_user";
+ $servername = "mysql.hostinger.com";
+ $db_username = "u933389189_transroad";
+ $db_password = "Findeveleven_11";
+ $db_to_use = "u933389189_transroad_user"; 
  $dbtable="users";
 
+ 
  
  //Insert which value we check to avoid insert data
  $checkfield = array('email');

@@ -4,6 +4,7 @@
   border: solid 2px $color-quinary
   margin-top: 2rem
   color: $color-primary
+  min-height: 95vh
 
   label
     font-size: 1.2rem
@@ -43,7 +44,16 @@
           font-size: 1.2rem
           font-weight: bold
           padding: 0.5rem
-
+        &:read-only
+          background-color: $color-senary
+          color: $color-primary
+          font-size: 1.2rem
+          font-weight: bold
+          padding: 0.5rem
+        &.form-control-sm
+          font-size: 1rem
+          padding: 0.25rem
+          
     .nav-tabs
       border-bottom: solid 2px $color-quinary
       

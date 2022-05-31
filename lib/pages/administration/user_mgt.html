@@ -1,15 +1,10 @@
 <?php
-  include_once "../../assets/php/function.php";
-  include_once "../../assets/php/var.php";
-
-
-  $db= db_connect($servername,$db_to_use,$db_username,$db_password);
-
-      // connection a la base de donnée et suppression des valeurs
-  if (isset($_POST['Delete']))
-  { 
-    $message=db_dump($db, "users","id_employee", $_POST['Delete']);
-  }
+include_once "../../assets/php/function.php";
+include_once "../../assets/php/var.php";
+// vérifier que l'on soit connecté pour accéder aux pages sinon retour vers index
+(!$is_connected)?header('Location: ../../index.html'):"";
+// vérifier que l'on soit admin pour accéder aux pages sinon retour vers dashboard
+(!$is_admin)?header('Location: ../dashboard/dashboard.html'):"";
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +32,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form id="editForm" action="../../action/user_creation.php" method="POST">
+          <form id="editForm" name="editForm" action="/" method="POST">
             <div class="form-group">
               <label for="nom">Nom</label>
               <input type="text" class="form-control" name="username" id="nom" placeholder="Entrez le nom de famille" required>
@@ -65,10 +60,10 @@
             </div>
             <div class="form-group" id="pwd-group">
               <label for="password">Mot de passe</label>
-              <input type="password" class="form-control" name="password" id="password" placeholder="Mot de passe" required="true">
+              <input type="password" class="form-control" name="password" id="password" placeholder="Mot de passe" required>
             </div>
             <div class="d-flex justify-content-end">
-              <button id="createBtn" type="submit" class="btn">
+              <button id="formBtn" type="submit" class="btn">
                 <i class="bi bi-file-earmark-fill"></i>
                 Enregistrer
               </button>
