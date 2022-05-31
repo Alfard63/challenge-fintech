@@ -1,8 +1,19 @@
 <?php
 include_once "../../assets/php/var.php";
+include_once "../../assets/php/function.php";
 
 // vérifier que l'on soit connecté pour accéder aux pages sinon retour vers index
 (!$is_connected)?header('Location: ../../index.html'):"";
+
+
+
+$db= db_connect($servername,$db_to_use,$db_username,$db_password);
+
+// connection a la base de donnée et suppression des valeurs
+if (isset($_POST['Delete']))
+{ 
+$message=db_dump($db, "structure","year_structure_cost ", $_POST['Delete']);
+}
 
 ?>
 
@@ -23,21 +34,514 @@ include_once "../../assets/php/var.php";
     
         <!-- insertion of standard navbar -->
         <?php include_once("../../assets/std_page/nav_bar.html") ?>
-    
-        <main>
-            <div>
-                <h1>Gestion des coûts de la structure</h1>
-            </div>
 
-            <div>
-                <a href="./structure_creation.html">Création d'une nouvelle fiche de structure</a>
+        <div class="modal fade" id="formModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="formModalLabel"
+        aria-modal="true" role="dialog">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fw-bold">Nouvelle fiche de modélisation des données</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                
+                <div class="modal-body">
+                    <form action="../../action/structure_creation.php" method="POST">
+                        <div class="d-flex justify-content-evenly align-items-center mt-3">
+                            <label class="form-group d-flex flex-column">
+                                <label for="ope_name">Année concernée par la fiche : 
+                                </label>
+                                <input class="form-control-sm mx-2" type="text" placeholder="Entrer l'année concernée"
+                                name="year_structure_cost" required="">
+                            </label>
+                        </div>
+                </div>
+                <nav class="my-2">
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">                      
+                        <button class="nav-link active link-dark fw-bold" id="nav-data-tab" data-bs-toggle="tab"
+                            data-bs-target="#nav-data" type="button" role="tab" aria-controls="nav-data-"
+                            aria-selected="false">DONNEES METIER
+                        </button>
+
+                        <button class="nav-link link-dark fw-bold" id="nav-maintenance-tab" data-bs-toggle="tab"
+                            data-bs-target="#nav-maintenance" type="button" role="tab" aria-controls="nav-maintenance"
+                            aria-selected="true">COUTS D’ENTRETIEN ET REPARATION
+                        </button>
+
+                        <button class="nav-link link-dark fw-bold" id="nav-human-tab" data-bs-toggle="tab"
+                            data-bs-target="#nav-human" type="button" role="tab" aria-controls="nav-human"
+                            aria-selected="false">OUTS SALARIAUX
+                        </button>
+
+                        <button class="nav-link link-dark fw-bold" id="nav-finance-tab" data-bs-toggle="tab"
+                            data-bs-target="#nav-finance" type="button" role="tab" aria-controls="nav-finance"
+                            aria-selected="false">CONDITIONS DE FINANCEMENT ET DE DÉTENTION
+                        </button>
+                        
+                        <button class="nav-link link-dark fw-bold" id="nav-structure-tab" data-bs-toggle="tab"
+                            data-bs-target="#nav-structure" type="button" role="tab" aria-controls="nav-structure"
+                            aria-selected="false">CHARGES DE STRUCTURE
+                        </button>
+                    </div>
+                </nav>
+
+                <div class="tab-content clearfix" id="nav-tabContent">
+
+                    <div class="tab-pane fade" id="nav-data" role="tabpanel" aria-labelledby="nav-data-tab">
+                        <div class="col-12 col-lg border-end border-success mt-3 px-5">
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Kilomètres annuels réalisés (Km)
+                                </label>
+                                <input type="number"
+                                placeholder="Entrer les kilomètres annuels réalisés"
+                                name="annual_km">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Nombre d'heures de services annuel (h)
+                                </label>
+                                <input type="text"
+                                placeholder="Entrer le nombre d'heures de services annuel"
+                                name="annual_hours">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Nombre de véhicules
+                                </label>
+                                <input type="text"
+                                placeholder="Entrer le nombre de véhicules"
+                                name="vehicule_nb">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="nav-maintenance" role="tabpanel" aria-labelledby="nav-maintenance-tab">
+                        <div class="col-12 col-lg border-end border-success mt-3 px-5">
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Carburant
+                                </label>
+                                <input type="number"
+                                placeholder="Entrer les coûts de carburant"
+                                name="energy_cost">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    GNR (Groupe froid)
+                                </label>
+                                <input type="number"
+                                placeholder="Entrer les coûts de GNR (Groupe froid)"
+                                name="cold_group_cost">
+                            </div>
+                            <h3 class="my-3 mt-3">Maintenance :</h3>
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Achat pneumatique
+                                </label>
+                                <input type="number" placeholder="Entrer les coûts d'achat pneumatique"
+                                name="pneumatic_cost">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Achats consommés pour l’entretien (huile, pièces, lubrifiant…)
+                                </label>
+                                <input type="text"
+                                placeholder="Entrer les achats consommés pour l’entretien"
+                                name="maintenance_purch">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Achats pièces (semi/tracteur/frais)
+                                </label>
+                                <input type="text"
+                                placeholder="Entrer les achats pièces"
+                                name="parts_purch">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Entretien (semi/tracteur/frigo)
+                                </label>
+                                <input type="text"
+                                placeholder="Entrer les coûts d’entretien"
+                                name="maintenance_cost">
+                            </div>
+                    </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="nav-human" role="tabpanel" aria-labelledby="nav-human-tab">
+                        <div class="col-12 col-lg border-end border-success mt-3 px-5">
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Salaires et autre rémunérations
+                                </label>
+                                <input type="number"
+                                placeholder="Entrer les salaires et autre rémunérations"
+                                name="salary_cost">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Frais de déplacement
+                                </label>
+                                <input type="number" placeholder="Entrer les frais de déplacement"
+                                name="travel_cost">
+                            </div>
+
+                            <h3 class="my-3 mt-3">Cotisations employeurs :</h3>
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Charges sociales
+                                </label>
+                                <input type="text"
+                                placeholder="Entrer les charges sociales"
+                                name="social_charges">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Cours formation
+                                </label>
+                                <input type="text"
+                                placeholder="Entrer les coûts de formation"
+                                name="formation_cost">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Formation professionnel continue
+                                </label>
+                                <input type="text"
+                                placeholder="Entrer les coûts de formation professionnel continue"
+                                name="prof_formation_cost">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Taxe d'apprentissage
+                                </label>
+                                <input type="text"
+                                placeholder="Entrer les coûts de la taxe d'apprentissage"
+                                name="learning_tax">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="nav-finance" role="tabpanel" aria-labelledby="nav-finance-tab">
+                        <div class="col-12 col-lg border-end border-success mt-3 px-5">
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Crédit bail mobilier
+                                </label>
+                                <input type="number"
+                                placeholder="Entrer le crédit bail mobilier"
+                                name="mobile_credit">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Locations (semi/tracteurs)
+                                </label>
+                                <input type="number" placeholder="Entrer les frais de locations"
+                                name="location_cost">
+                            </div>                        
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Intérêts et charges assimilés
+                                </label>
+                                <input type="text"
+                                placeholder="Entrer les intérêts et charges assimilés"
+                                name="interest_cost">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Frais de dossiers
+                                </label>
+                                <input type="text"
+                                placeholder="Entrer les frais de dossiers"
+                                name="file_cost">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    <b>Primes assurances</b>
+                                </label>
+                                <input type="text"
+                                placeholder="Entrer les frais de dossiers"
+                                name="insurance_cost">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    <b>Taxe à l'essieu</b>
+                                </label>
+                                <input type="text"
+                                placeholder="Entrer les frais de dossiers"
+                                name="axle_tax">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="nav-structure" role="tabpanel" aria-labelledby="nav-structure-tab">
+                        <div class="col-12 col-lg border-end border-success mt-3 px-5">
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Dotations amortissements immo.corporelles
+                                </label>
+                                <input type="text"
+                                placeholder="Entrer les dotations amortissements"
+                                name="dotation_immo">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Locations matériels et équipements
+                                </label>
+                                <input type="text"
+                                placeholder="Entrer les frais de location"
+                                name="equipment_location">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Prestation refacturage
+                                </label>
+                                <input type="text"
+                                placeholder="Entrer les prestations de refacturage"
+                                name="refactured_prestation">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Assurance Homme Clé
+                                </label>
+                                <input type="text"
+                                placeholder="Entrer l'assurance homme Clé"
+                                name="key_man_insurance">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Documentation téléroute
+                                </label>
+                                <input type="text"
+                                placeholder="Entrer les frais de documentation"
+                                name="road_documentation">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Sous-traitance
+                                </label>
+                                <input type="text"
+                                placeholder="Entrer les frais de sous-traitance"
+                                name="external_work">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Fournitures et produits d'entretien et équipements
+                                </label>
+                                <input type="text"
+                                placeholder="Entrer les frais de produits d'entretien"
+                                name="maintenance_furniture">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    RRR obt/achats matériels et équipements
+                                </label>
+                                <input type="text"
+                                placeholder="Entrer les achats de matériel"
+                                name="equipmnent_purchase">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Fournitures administratives
+                                </label>
+                                <input type="text"
+                                placeholder="Entrer les frais de fournitures administratives"
+                                name="admin_furniture">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Achats consommés (atelier)
+                                </label>
+                                <input type="text"
+                                placeholder="Entrer les achats consommés"
+                                name="purchase_consumed">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Entretien/maintenance (atelier/informatique)
+                                </label>
+                                <input type="text"
+                                placeholder="Entrer les frais d'entretien/maintenance"
+                                name="maintenance_shop">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Entretien terrains/bâtiments/locaux
+                                </label>
+                                <input type="text"
+                                placeholder="Entrer les frais d'entretien terrains/bâtiments/locaux"
+                                name="maintenance_building">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Communication et relation publique
+                                </label>
+                                <input type="text"
+                                placeholder="Entrer les frais de relation publique"
+                                name="public_relation">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Frais télécommunication et postaux
+                                </label>
+                                <input type="text"
+                                placeholder="Entrer les frais de  télécommunication et postaux"
+                                name="communication_exp">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Autres frais et divers
+                                </label>
+                                <input type="text"
+                                placeholder="Entrer les frais divers"
+                                name="other_cost">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                    Impôts, taxes et versements assimilés
+                                </label>
+                                <input type="text"
+                                placeholder="Entrer les impôts, taxes et versements assimilés"
+                                name="taxes_exp">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end">
+                    <button id="createUserBtn" type="submit" class="btn m-3">
+                        <i class="bi bi-file-earmark-fill"></i>
+                        Enregistrer
+                    </button>
+                </div>
+                </form>
             </div>
-        </main>
+        </div>
+    </div>
+
+        <!-- !!!!!!!!!! Start of table to show the data-->
+    <main>
+        <form method="POST">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title ">
+                                    <i class="bi bi-house"></i>
+                                    Modélisation des coûts
+                                </h4>
+                                <div class="card-toolbar d-flex justify-content-end">
+                                    <div class="btn-group">
+                                        <button id="addstructureCostBtn" type="button" class="btn" data-bs-toggle="modal"
+                                            data-bs-target="#formModal">
+                                            Ajouter
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive text-center">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Année</th>
+                                                <th>Date de création </th>
+                                                <th>Date de mise à jour</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tableBody">
+                                            <?php                                                                                             
+                                            // insert which DB to connect to                                            
+                                            $structures = $db->query('SELECT * FROM structure');
+                                            while($structure = $structures->fetch()) {
+                                            ?>
+
+                                            <tr id=>
+                                                <td><?= $structure['year_structure_cost'] ?></td>
+                                                <td><?= $structure['date_of_creation'] ?></td>
+                                                <td><?= $structure['date_of_modification'] ?></td>
+                                                <td>
+                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#formModal">
+                                                        <i class="bi bi-eye-fill text-success"></i>
+                                                    </a>
+                                                    <a href="#">
+                                                        <i class="bi bi-pencil-fill text-warning"></i>
+                                                    </a>
+
+                                                    <button type="submit" name="Delete" value="<?php echo $structure['year_structure_cost'] ?>">
+                                                        <i class="bi bi-trash-fill text-danger"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                                }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <?php
+
+        if (isset($message)){
+            echo '<div  class="p-5 text-uppercase font-weight-bold text-center text-danger ">' . $message . '</div>';
+        }
+    ?>   
+    </main>
 
         <!-- insertion of standard header -->
         <?php include_once("../../assets/std_page/footer.html") ?>
 
-        <script src="../../js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+    <script src="../../js/script.js"></script>
+    <script src="../../js/offerboard.js"></script>
+    <script src="../../js/vehicule_creation.js"></scripts>
     </body>
 </html>
 

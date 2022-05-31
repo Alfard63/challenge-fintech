@@ -7,18 +7,20 @@ include "../assets/php/var.php";
  $dbtable="structure";
 
 // create an array of all the POST variables you want to use
- $fields = array('year_structure_cost','percentage_activity','percentage_maintenance','actualisation_coefficient','consum_mainten_purch','consum_furniture_purch','consu_admin_furniture_purch',
-    'not_stockable_purch','other_consum_purch','other_supplier_not_transport','credit_loan','financial_rent','building_rent','other_rent','building_mainten',
-    'transport_mat_mainten','tool_shop_mainten','other_mainten','building_insurance','tooling_insurance','other_insurance','res_and_dev','interim_staff',
-    'commission_revenue','public_relation','merch_transport','mission_exp_note','communication_exp','shipping_exp','bank_exp','other_toll_exp','misc_exp',
-    'cet_exp','taxes_exp','mecanic_paycheck_exp','other_prod_paycheck_exp','dir_paycheck_exp','admin_paycheck_exp','other_paycheck_exp','loan_loss','finance_exp',
-    'excep_charges','roi_building','roi_tool_shop','roi_office_furniture','roi_dir_vehicule','roi_other',
+ 
+$fields = array(
+	'year_structure_cost','annual_km','annual_hours','vehicule_nb','energy_cost','cold_group_cost',
+	'pneumatic_cost','maintenance_purch','parts_purch','maintenance_cost','salary_cost','travel_cost','social_charges','formation_cost',
+	'prof_formation_cost','learning_tax','mobile_credit','location_cost',
+	'interest_cost','file_cost','insurance_cost','axle_tax','dotation_immo','equipment_location','refactured_prestation','key_man_insurance',
+	'road_documentation','external_work','maintenance_furniture','equipmnent_purchase',
+	'admin_furniture','purchase_consumed','maintenance_shop','maintenance_building','public_relation','communication_exp','other_cost','taxes_exp',
 );
 
  if(isset($_POST['year_structure_cost']))
  {
  
-    $my_Db_Connection= db_connect($servername,$db_to_use,$db_username,$password);
+    $my_Db_Connection= db_connect($servername,$db_to_use,$db_username,$db_password);
         
     // prepare SQL statement and bind values    
     $stm_insert = $my_Db_Connection->prepare(query_insert($dbtable,$fields)) ;
