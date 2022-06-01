@@ -14,7 +14,7 @@ $fields = array(
 	'prof_formation_cost','learning_tax','mobile_credit','location_cost',
 	'interest_cost','file_cost','insurance_cost','axle_tax','dotation_immo','equipment_location','refactured_prestation','key_man_insurance',
 	'road_documentation','external_work','maintenance_furniture','equipmnent_purchase',
-	'admin_furniture','purchase_consumed','maintenance_shop','maintenance_building','public_relation','communication_exp','other_cost','taxes_exp',
+	'admin_furniture','purchase_consumed','maintenance_shop','maintenance_building','public_relation','communication_exp','other_cost','taxes_exp','function_car',
 );
 
  if(isset($_POST['year_structure_cost']))
