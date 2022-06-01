@@ -5,7 +5,7 @@
                 <img src="../../assets/img/logo.png" alt="">
                 TRANSROAD
             </a>
-            <h1 class="fw-bold flex-fill d-none d-md-block text-center">TABLEAU DE BORD</h1>
+            <h1 class="fw-bold flex-fill d-none d-md-block text-center"><? if(isset($page_name)){echo $page_name;}else{echo "TABLEAU DE BORD";}?></h1>
             <div class="navbar-icons">
                 <i id="menuIcon" class="bi bi-list"></i>
                 <i id="notifIcon" class="bi bi-bell-fill"></i>
