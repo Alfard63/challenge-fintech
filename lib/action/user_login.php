@@ -4,12 +4,11 @@ include "../assets/php/function.php";
 include "../assets/php/var.php";
 
  // insert which DB to connect to
-$db_to_use = "user"; 
 
 if(isset($_POST['email']) && isset($_POST['password']))
 {
 
-    $my_Db_Connection= db_connect($servername,$db_to_use,$db_username,$password);
+    $my_Db_Connection= db_connect($servername,$db_to_use,$db_username,$db_password);
     
     // insert data sets
     $email = $_POST['email'];

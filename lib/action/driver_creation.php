@@ -3,7 +3,7 @@ include "../assets/php/function.php";
 include "../assets/php/var.php";
 
  // insert which DB to connect to
- $db_to_use = "user"; 
+
  $dbtable="driver";
 
 // create an array of all the POST variables you want to use
@@ -14,7 +14,7 @@ include "../assets/php/var.php";
  if(isset($_POST['driver_name']) && isset($_POST['driver_surname']))
  {
  
-    $my_Db_Connection= db_connect($servername,$db_to_use,$db_username,$password);
+    $my_Db_Connection= db_connect($servername,$db_to_use,$db_username,$db_password);
         
     // prepare SQL statement and bind values    
     $stm_insert = $my_Db_Connection->prepare(query_insert($dbtable,$fields)) ;
