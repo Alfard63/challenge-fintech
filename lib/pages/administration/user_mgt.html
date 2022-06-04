@@ -41,8 +41,7 @@ include_once "../../assets/php/var.php";
         <div class="modal-content">
           <div class="modal-header">
             <h2 class="modal-title" id="formTitle">
-              <i class="bi bi-file-earmark-fill"></i> Création / Edition d'un
-              utilisateur
+              <i class="bi bi-file-earmark-fill"></i> Création / Edition d'un utilisateur
             </h2>
             <button
               type="button"
@@ -57,6 +56,7 @@ include_once "../../assets/php/var.php";
               action="../../action/user_creation.php"
               method="POST"
             >
+              <input id="id_employee" type="hidden" name="id_employee">
               <div class="form-group">
                 <label for="nom">Nom</label>
                 <input
@@ -94,8 +94,9 @@ include_once "../../assets/php/var.php";
                 <label>Service de l'utilisateur</label>
                 <input
                   type="text"
+                  id="service"
                   class="form-control"
-                  placeholder="Entrer le temps de service mensuel"
+                  placeholder="Entrez le nom du service"
                   name="service"
                   required
                 />
@@ -111,12 +112,13 @@ include_once "../../assets/php/var.php";
                   <option value="contrôleur de gestion">
                     contrôleur de gestion
                   </option>
-                  <option value="commercial">commercial</option>
+                  <option value="controleur de gestion">controleur de gestion</option>
+                  <option value="responsable commercial">commercial</option>
                   <option value="directeur">directeur</option>
                   <option value="admin">admin</option>
                 </select>
               </div>
-              <div class="form-group">
+              <div id="pwd-group" class="form-group">
                 <label for="password">Mot de passe</label>
                 <input
                   type="password"
@@ -128,7 +130,7 @@ include_once "../../assets/php/var.php";
                 />
               </div>
               <div class="d-flex justify-content-end">
-                <button id="createBtn" type="submit" class="btn">
+                <button id="formBtn" type="submit" class="btn">
                   <i class="bi bi-file-earmark-fill"></i>
                   Enregistrer
                 </button>
