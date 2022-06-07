@@ -6,7 +6,7 @@ $input = json_decode(file_get_contents('php://input'), true);
 $servername = "mysql.hostinger.com";
 $db_username = "u933389189_transroad";
 $db_password = "Findeveleven_11";
-$primary_key = $input['id'];
+$primary_key_value = $input['primaryKeyValue'];
 $primary_key_name = $input['primaryKeyName'];
 $db_name = "u933389189_transroad_user";
 $db_table = $input['table'];
@@ -17,7 +17,7 @@ try {
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
   // sql to delete a record
-  $sql = "DELETE FROM $db_table WHERE $primary_key_name = $primary_key";
+  $sql = "DELETE FROM $db_table WHERE $primary_key_name = $primary_key_value";
 
   // use exec() because no results are returned
   $conn->exec($sql);

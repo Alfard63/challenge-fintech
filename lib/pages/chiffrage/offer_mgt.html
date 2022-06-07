@@ -29,21 +29,21 @@ include_once "../../assets/php/var.php";
               <form action="../../action/offer_creation.php" method="POST">
                 <div class="d-flex flex-wrap align-items-center justify-content-between mt-3">
                   <div id="offerName" class="form-group">
-                    <label for="offer_name">Nom du devis</label>
-                    <input class="form-control-sm mx-2" type="text" placeholder="Nom du devis" name="offer_name" required>
+                    <label for="name">Nom du devis</label>
+                    <input class="form-control-sm mx-2" type="text" placeholder="Nom du devis" name="name" required>
                   </div>
                   <div class="d-flex ms-lg-2 flex-column justify-content-center align-items-start">
                     <div id="offerDate" class="form-group">
-                      <label for="creation_date">Date de création: </label>
-                      <input class="form-control-sm border-0 bg-transparent" disabled>
+                      <label for="date">Date de création: </label>
+                      <input class="form-control-sm border-0 bg-transparent" name="date" disabled>
                     </div>
                     <div id="offerNb" class="form-group">
-                      <label for="creation_date">Devis N°: </label>
-                      <input class="form-control-sm border-0 bg-transparent" disabled>
+                      <label for="nb">Devis N°: </label>
+                      <input class="form-control-sm border-0 bg-transparent" name="nb" disabled>
                     </div>
                     <div id="offerStatus" class="form-group">
-                      <label for="status_select">Status:</label>
-                      <select class="form-select-sm bg-transparent" name="status_select">
+                      <label for="status">Status:</label>
+                      <select class="form-select-sm bg-transparent" name="status">
                         <option value="0">En cours</option>
                         <option value="1">Validé</option>
                         <option value="2">Refusé</option>
@@ -65,30 +65,30 @@ include_once "../../assets/php/var.php";
                     <div class="row">
                       <div class="col-12 col-lg border-end border-success ">
                         <div id="customerEnterpriseName" class="form-group">
-                          <label for="customer_enterprise_name">Nom de l'entreprise</label>
-                          <input class="form-control" type="text" placeholder="entrer le nom de l'entreprise destinataire" name="customer_entreprise_name" required>
+                          <label for="enterprise_name">Nom de l'entreprise</label>
+                          <input class="form-control" type="text" placeholder="entrer le nom de l'entreprise destinataire" name="entreprise_name" required>
                         </div>
                         <div id="customerName" class="form-group">
-                          <label for="customer_name">Nom et prénom du contact</label>
-                          <input class="form-control" type="text" placeholder="Sélectionner le nom du client" name="customer_name" required>
+                          <label for="contact_name">Nom et prénom du contact</label>
+                          <input class="form-control" type="text" placeholder="Sélectionner le nom du client" name="contact_name" required>
                         </div>
                         <div id="customerPhone" class="form-group">
-                          <label for="customer_phone">Téléphone du contact</label>
-                          <input class="form-control" type="tel" placeholder="Téléphone du client" name="customer_phone" required>
+                          <label for="contact_phone">Téléphone du contact</label>
+                          <input class="form-control" type="tel" placeholder="Téléphone du client" name="contact_phone" required>
                         </div>
                         <div id="customerEmail" class="form-group">
-                          <label for="customer_email">Email de contact</label>
-                          <input class="form-control" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="email du client" name="customer_email" required>
+                          <label for="contact_email">Email de contact</label>
+                          <input class="form-control" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="email du client" name="contact_email" required>
                         </div>
                       </div>
                       <div class="col-12 col-lg">
                         <div id="customerAdress" class="form-group">
                           <label>Adresse du client</label>
-                          <input class="form-control mb-2" type="text" placeholder="N° et nom de la voie" name="customer_street_address" required>
-                          <input class="form-control mb-2" type="text" placeholder="ville" name="customer_town_address" required>
-                          <input class="form-control mb-2" type="text" placeholder="code postale" name="customer_code_address" required>
+                          <input class="form-control mb-2" type="text" placeholder="N° et nom de la voie" name="contact_street_name" required>
+                          <input class="form-control mb-2" type="text" placeholder="ville" name="contact_city" required>
+                          <input class="form-control mb-2" type="text" placeholder="code postale" name="contact_postal_code" required>
                           <div id="comments" class="form-floating">
-                            <textarea class="form-control" placeholder="un commentaire qui apparaitra sur le devis"></textarea>
+                            <textarea class="form-control" name="comment" placeholder="un commentaire qui apparaitra sur le devis"></textarea>
                             <label for="floatingTextarea">Commentaires</label>
                           </div>
                         </div>
@@ -102,9 +102,9 @@ include_once "../../assets/php/var.php";
                       <div class="col-12 col-lg">
                         <div id="startAdress" class="form-group">
                           <label>Adresse de départ du véhicule <em>(A)</em></label>
-                          <input class="form-control mb-2" type="text" placeholder="N° et nom de la voie" name="start_street_address" required>
-                          <input class="form-control mb-2" type="text" placeholder="ville" name="start_town_address" required>
-                          <input class="form-control mb-2" type="text" placeholder="code postale" name="start_code_address" required>
+                          <input class="form-control mb-2" type="text" placeholder="N° et nom de la voie" name="start_street_name" required>
+                          <input class="form-control mb-2" type="text" placeholder="ville" name="start_city" required>
+                          <input class="form-control mb-2" type="text" placeholder="code postale" name="start_postal_code" required>
                         </div>
                         <div id="vehiculeSelect" class="form-group">
                           <label for="vehicule_select">Choisir type de véhicule:</label>
@@ -117,13 +117,13 @@ include_once "../../assets/php/var.php";
                       <div class="col-12 col-lg">
                         <div id="loadAdress" class="form-group">
                           <label>Adresse de chargement <em>(B)</em></label>
-                          <input class="form-control mb-2" type="text" placeholder="N° et nom de la voie" name="load_street_address" required>
-                          <input class="form-control mb-2" type="text" placeholder="ville" name="load_town_address" required>
-                          <input class="form-control mb-2" type="text" placeholder="code postal" name="load_code_address" required>
+                          <input class="form-control mb-2" type="text" placeholder="N° et nom de la voie" name="load_street_name" required>
+                          <input class="form-control mb-2" type="text" placeholder="ville" name="load_city" required>
+                          <input class="form-control mb-2" type="text" placeholder="code postal" name="load_postal_code" required>
                         </div>
                         <div id="loadingTime"class="form-group">
-                          <label>Temps de chargement estimé (en heure)</label>
-                          <input class="form-control" type="text" placeholder="Entrer le temps de chargement" name="uploading_time">
+                          <label for="loading_time">Temps de chargement estimé (en heure)</label>
+                          <input class="form-control" type="text" placeholder="Entrer le temps de chargement" name="loading_time">
                         </div>
                       </div>
                     </div>
@@ -132,12 +132,12 @@ include_once "../../assets/php/var.php";
                       <div class="col-12 col-lg-8">
                         <div id="downloadAdress" class="form-group">
                           <label>Adresse de déchargement <em>(C)</em></label>
-                          <input class="form-control mb-2" type="text" placeholder="N° et nom de la voie" name="download_street_address" required>
-                          <input class="form-control mb-2" type="text" placeholder="ville" name="download_street_address" required>
-                          <input class="form-control mb-2" type="text" placeholder="code postal" name="download_code_address" required>
+                          <input class="form-control mb-2" type="text" placeholder="N° et nom de la voie" name="download_street_name" required>
+                          <input class="form-control mb-2" type="text" placeholder="ville" name="download_city" required>
+                          <input class="form-control mb-2" type="text" placeholder="code postal" name="download_postal_code" required>
                         </div>
                         <div id="downloadingTime" class="form-group">
-                          <label>Temps de déchargement estimé (en heure)</label>
+                          <label for="downloading_time">Temps de déchargement estimé (en heure)</label>
                           <input class="form-control" type="text" placeholder="Entrer le temps de déchargement" name="downloading_time">
                         </div>
                       </div>
@@ -152,15 +152,15 @@ include_once "../../assets/php/var.php";
                       <div class="col-12 col-lg-8">
                         <h3 class="my-3 fw-bold">Détail de la cargaison</h3>
                         <div id="loadUnit" class="form-group">
-                          <label>Unité de chargement</label>
+                          <label for="load_unit">Unité de chargement</label>
                           <input class="form-control" type="text" placeholder="Entrer l'unité de chargement" name="load_unit">
                         </div>
                         <div id="loadValue" class="form-group">
-                          <label>chargement total (correspondant à l'unité ci-dessus)</label>
+                          <label for="load_value">chargement total (correspondant à l'unité ci-dessus)</label>
                           <input class="form-control" type="text" placeholder="Entrer la valeur du chargement" name="load_value">
                         </div>
                         <div id="dailyWorkingTime" class="form-group">
-                          <label>Temps de travail journalier pouvant être effectué</label>
+                          <label for="daily_working_time">Temps de travail journalier pouvant être effectué</label>
                           <input class="form-control" type="text" placeholder="Entrer le temps de travail journalier" name="daily_working_time">
                         </div>
                       </div>
@@ -251,13 +251,13 @@ include_once "../../assets/php/var.php";
                     </div>
                   </section>
                 </div>
+                <div class="row my-5 mx-1">
+                  <div class="btn-group">
+                    <button id="prevBtn" type="button" class="btn btn-lg btn-block">Précédent</button>
+                    <button id="nextBtn" type="submit" class="btn btn-lg btn-block">Suivant</button>
+                  </div>
+                </div>
               </form>
-            </div>
-            <div class="row my-5 mx-1">
-              <div class="btn-group">
-                <button id="prevBtn" type="button" class="btn btn-lg btn-block">Précédent</button>
-                <button id="nextBtn" type="button" class="btn btn-lg btn-block">Suivant</button>
-              </div>
             </div>
           </div>
         </div>
