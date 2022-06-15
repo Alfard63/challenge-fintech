@@ -1,10 +1,4 @@
-<?php session_start(); 
-
-if ($_GET["out"]="yes")
-{
-    $_SESSION = array();
-}
-?>
+<?php session_start() ?>
 <!-- ne pas supprimer -->
 
 <!DOCTYPE html>
@@ -70,17 +64,10 @@ if ($_GET["out"]="yes")
                     <!-- Si l'utilisateur se trompe affichage d'un message d'erreur -->
                     <?php
                 // insertion d'un message d'erreur
-                if(isset($_GET['error'])){
-                    $err = $_GET['error'];
-                    if($err==1){
-                        echo "<p style='color:red'>Rentrer un email ou un mot de passe </p>";
-                        }
-                    if($err==2){
-                        echo "<p style='color:red'>L'email utilisé n'est pas correct</p>";
-                        }
-                    if($err==3){
-                        echo "<p style='color:red'>Mot de passe incorrect </p>";
-                        }
+                if(isset($_GET['erreur'])){
+                    $err = $_GET['erreur'];
+                    if($err==1)
+                        echo "<p style='color:red'>Utilisateur ou mot de passe incorrect </p>";
                 }
                 ?>
                 </form>

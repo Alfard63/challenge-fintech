@@ -1,0 +1,43 @@
+[
+  {
+    "nb": "225301401",
+    "date": "30 / 5 / 22  -  14:01",
+    "name": "Test devis",
+    "status": "0",
+    "entreprise_name": "GLOBAL FROZEN",
+    "contact_name": " M. BOULANGER ERIC",
+    "contact_phone": "06-00-00-00-00",
+    "contact_email": "eric.boulanger@globalfrozen.fr",
+    "contact_adress": ["401 rue du glaçon", "bourg-en-bresse", "01000"],
+    "comment": "le transporteur devra se présenter au poste de garde",
+    "vehicule": "1",
+    "start_adress": ["1 rue de la paix", "paris", "75000"],
+    "load_adress": ["22 rue de la condamine", "clermont-ferrand", "63000"],
+    "download_adress": [
+      "401 roude des rieux",
+      "saint geoire en valdaine",
+      "38540"
+    ],
+    "loading_time": 2,
+    "downloading_time": 2.5,
+    "load_unit": "tonnes",
+    "load_value": 32,
+    "daily_working_time": 7.5,
+    "route1": {
+      "time": 7.41,
+      "dist": 545.39,
+      "toll": 124.09
+    },
+    "route2": {
+      "time": 5.49,
+      "dist": 416.73,
+      "toll": 113.58
+    },
+    "route3": {
+      "time": 7.37,
+      "dist": 544.84,
+      "toll": 124.09
+    },
+    "total_cost": 2606.49
+  }
+]

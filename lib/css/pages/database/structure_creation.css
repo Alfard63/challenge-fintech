@@ -1,0 +1,68 @@
+.card {
+    margin: 0 7rem;
+}
+
+/**** GLOBAL CARDS ****/
+.card-header {
+    text-align: center;
+}
+
+.card-header i {
+    padding-left: 1rem;
+}
+
+.formDiv {
+    margin: 1rem 1rem 2rem 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+legend {
+    margin: 0 0 1rem 3rem;
+    font-weight: bold;
+    color: #0B2B26;
+}
+
+label {
+    margin-bottom: 0.5rem;
+}
+
+input {
+    margin-bottom: 1rem;
+    padding-left: 0.5rem;
+}
+
+select {
+    margin-bottom: 1rem;
+}
+
+h2 {
+    color: #235347;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+/** INTRO CARD **/
+.introCard {
+    border-bottom: 1px solid #8EB69B;
+}
+
+/* BUTTON */
+.btnDiv {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.submitBtn {
+    font-weight: bold;
+    width: 100%;
+}

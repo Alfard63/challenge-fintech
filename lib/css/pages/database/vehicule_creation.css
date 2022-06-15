@@ -1,0 +1,71 @@
+.card {
+    margin: 0 7rem;
+}
+
+/**** GLOBAL CARDS ****/
+.card-header {
+    text-align: center;
+}
+
+.formDiv {
+    text-align: center;
+    margin: 1rem 1rem 2rem 1rem;
+}
+
+.location-financiere, .credit-bail, .autofinancement, .emprunt {
+    font-variant: small-caps;
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.location-financiere i, .credit-bail i, .autofinancement i, .emprunt i {
+    font-size: 15px;
+}
+
+label {
+    margin-bottom: 0.5rem;
+    margin-right: 1rem;
+}
+
+.secondLabel {
+    gap: 0.3rem;
+    font-style: italic;
+}
+
+input {
+    margin-bottom: 1rem;
+    padding-left: 0.5rem;
+}
+
+select {
+    margin-bottom: 1rem;
+}
+
+h3 {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 0 0 1rem 3rem;
+    color: #235347;
+}
+
+.selectGroup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#firstSelect, #secondSelect {
+    width: 30%;
+}
+
+/** INTRO CARD **/
+.introCard {
+    border-bottom: 1px solid #8EB69B;
+}
+
+/* SELECT DISPLAY */
+#firstSelectEmprunt, #firstSelectAutofinancement, #firstSelectCreditBail, #firstSelectLocFinanciere, #secondSelectEmprunt, #secondSelectAutofinancement, #secondSelectCreditBail, #secondSelectLocFinanciere {
+    display: none;
+}

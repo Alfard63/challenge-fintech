@@ -1,0 +1,325 @@
+<?php
+include_once "../../assets/php/var.php";
+
+// vérifier que l'on soit connecté pour accéder aux pages sinon retour vers index
+(!$is_connected)?header('Location: ../../index.html'):"";
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des chiffrages</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+    <body class="">
+      <div class="modal fade" id="formModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="formModalLabel" aria-modal="true" role="dialog">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">     
+            <div class="modal-header">
+              <h2 class="modal-title fw-bold">Nouveau devis</h2>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>         
+            <div class="modal-body">           
+              <form action="../../action/offer_creation.php" method="POST">
+                <div class="d-flex flex-wrap align-items-center justify-content-between mt-3">
+                  <div id="offerName" class="form-group">
+                    <label for="name">Nom du devis</label>
+                    <input class="form-control-sm mx-2" type="text" placeholder="Nom du devis" name="name" required>
+                  </div>
+                  <div class="d-flex ms-lg-2 flex-column justify-content-center align-items-start">
+                    <div id="offerDate" class="form-group">
+                      <label for="date">Date de création: </label>
+                      <input class="form-control-sm border-0 bg-transparent" name="date" disabled>
+                    </div>
+                    <div id="offerNb" class="form-group">
+                      <label for="nb">Devis N°: </label>
+                      <input class="form-control-sm border-0 bg-transparent" name="nb" disabled>
+                    </div>
+                    <div id="offerStatus" class="form-group">
+                      <label for="status">Status:</label>
+                      <select class="form-select-sm bg-transparent" name="status">
+                        <option value="0">En cours</option>
+                        <option value="1">Validé</option>
+                        <option value="2">Refusé</option>
+                      </select>
+                    </div>
+  
+                  </div>
+                </div>
+                <nav class="my-2">
+                  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <button class="nav-link disabled active" id="nav-client-tab" data-bs-toggle="tab" data-bs-target="#nav-client" type="button" role="tab" aria-controls="nav-client" aria-selected="false" disabled>Données Client</button>
+                    <button class="nav-link disabled" id="nav-ope-tab" data-bs-toggle="tab" data-bs-target="#nav-ope" type="button" role="tab" aria-controls="nav-ope" aria-selected="true" disabled>Opération</button>
+                    <button class="nav-link disabled" id="nav-details-tab" data-bs-toggle="tab" data-bs-target="#nav-details" type="button" role="tab" aria-controls="nav-details" aria-selected="false" disabled>Détails des coûts</button>
+                  </div>
+                </nav>
+                <div class="tab-content clearfix" id="nav-tabContent">
+                  <section class="tab-pane fade active show" id="nav-client" role="tabpanel" aria-labelledby="nav-client-tab">
+                    <h2>Informations sur le destinataire</h2>
+                    <div class="row">
+                      <div class="col-12 col-lg border-end border-success ">
+                        <div id="customerEnterpriseName" class="form-group">
+                          <label for="enterprise_name">Nom de l'entreprise</label>
+                          <input class="form-control" type="text" placeholder="entrer le nom de l'entreprise destinataire" name="entreprise_name" required>
+                        </div>
+                        <div id="customerName" class="form-group">
+                          <label for="contact_name">Nom et prénom du contact</label>
+                          <input class="form-control" type="text" placeholder="Sélectionner le nom du client" name="contact_name" required>
+                        </div>
+                        <div id="customerPhone" class="form-group">
+                          <label for="contact_phone">Téléphone du contact</label>
+                          <input class="form-control" type="tel" placeholder="Téléphone du client" name="contact_phone" required>
+                        </div>
+                        <div id="customerEmail" class="form-group">
+                          <label for="contact_email">Email de contact</label>
+                          <input class="form-control" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="email du client" name="contact_email" required>
+                        </div>
+                      </div>
+                      <div class="col-12 col-lg">
+                        <div id="customerAdress" class="form-group">
+                          <label>Adresse du client</label>
+                          <input class="form-control mb-2" type="text" placeholder="N° et nom de la voie" name="contact_street_name" required>
+                          <input class="form-control mb-2" type="text" placeholder="ville" name="contact_city" required>
+                          <input class="form-control mb-2" type="text" placeholder="code postale" name="contact_postal_code" required>
+                          <div id="comments" class="form-floating">
+                            <textarea class="form-control" name="comment" placeholder="un commentaire qui apparaitra sur le devis"></textarea>
+                            <label for="floatingTextarea">Commentaires</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                  <section class="tab-pane fade" id="nav-ope" role="tabpanel" aria-labelledby="nav-ope-tab">
+                    <h2 class="text-center my-3">Description de l'opération</h2>
+                    <h3 class="my-3 fw-bold">Information sur le chargement</h3>
+                    <div class="row">  
+                      <div class="col-12 col-lg">
+                        <div id="startAdress" class="form-group">
+                          <label>Adresse de départ du véhicule <em>(A)</em></label>
+                          <input class="form-control mb-2" type="text" placeholder="N° et nom de la voie" name="start_street_name" required>
+                          <input class="form-control mb-2" type="text" placeholder="ville" name="start_city" required>
+                          <input class="form-control mb-2" type="text" placeholder="code postale" name="start_postal_code" required>
+                        </div>
+                        <div id="vehiculeSelect" class="form-group">
+                          <label for="vehicule_select">Choisir type de véhicule:</label>
+                          <select class="form-select bg-transparent" name="vehicule_select">
+                            <option value="0">Frigo surgelé</option>
+                            <option value="1">Frigo frais</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-12 col-lg">
+                        <div id="loadAdress" class="form-group">
+                          <label>Adresse de chargement <em>(B)</em></label>
+                          <input class="form-control mb-2" type="text" placeholder="N° et nom de la voie" name="load_street_name" required>
+                          <input class="form-control mb-2" type="text" placeholder="ville" name="load_city" required>
+                          <input class="form-control mb-2" type="text" placeholder="code postal" name="load_postal_code" required>
+                        </div>
+                        <div id="loadingTime"class="form-group">
+                          <label for="loading_time">Temps de chargement estimé (en heure)</label>
+                          <input class="form-control" type="text" placeholder="Entrer le temps de chargement" name="loading_time">
+                        </div>
+                      </div>
+                    </div>
+                    <h3 class="my-3 fw-bold">Information sur le déchargement</h3>
+                    <div class="row">
+                      <div class="col-12 col-lg-8">
+                        <div id="downloadAdress" class="form-group">
+                          <label>Adresse de déchargement <em>(C)</em></label>
+                          <input class="form-control mb-2" type="text" placeholder="N° et nom de la voie" name="download_street_name" required>
+                          <input class="form-control mb-2" type="text" placeholder="ville" name="download_city" required>
+                          <input class="form-control mb-2" type="text" placeholder="code postal" name="download_postal_code" required>
+                        </div>
+                        <div id="downloadingTime" class="form-group">
+                          <label for="downloading_time">Temps de déchargement estimé (en heure)</label>
+                          <input class="form-control" type="text" placeholder="Entrer le temps de déchargement" name="downloading_time">
+                        </div>
+                      </div>
+                      <div class="col-12 col-lg-4 d-flex text-center justify-content-center align-items-center">
+                        <i class="bi bi-truck" style="font-size: 15rem;"></i>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12 col-lg-4 d-flex text-center justify-content-center align-items-center">
+                        <i class="bi bi-boxes" style="font-size: 15rem;"></i>
+                      </div>
+                      <div class="col-12 col-lg-8">
+                        <h3 class="my-3 fw-bold">Détail de la cargaison</h3>
+                        <div id="loadUnit" class="form-group">
+                          <label for="load_unit">Unité de chargement</label>
+                          <input class="form-control" type="text" placeholder="Entrer l'unité de chargement" name="load_unit">
+                        </div>
+                        <div id="loadValue" class="form-group">
+                          <label for="load_value">chargement total (correspondant à l'unité ci-dessus)</label>
+                          <input class="form-control" type="text" placeholder="Entrer la valeur du chargement" name="load_value">
+                        </div>
+                        <div id="dailyWorkingTime" class="form-group">
+                          <label for="daily_working_time">Temps de travail journalier pouvant être effectué</label>
+                          <input class="form-control" type="text" placeholder="Entrer le temps de travail journalier" name="daily_working_time">
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                  <section class="tab-pane fade" id="nav-details" role="tabpanel" aria-labelledby="nav-details-tab">
+                    <h2 class="fw-bold">Détails des coûts</h2>
+                    <div class="row my-5">
+                      <div class="col-12 text-center">
+                        <h3 class="fw-bold my-3">Calcul des trajets</h3>
+                        <div id="table-responsive text-center">
+                          <table class="table table-striped">
+                            <thead>
+                              <tr>
+                                <th>Trajets</th>
+                                <th>Distance <br> (km)</th>
+                                <th>Péages <br> (en €)</th>
+                                <th>Temps <br> (en heures)</th>
+                              </tr>
+                            </thead>
+                            <tbody id="routesTable"></tbody>
+                          </table>
+                          <button id="calculateBtn" class="btn m-auto my-5">Calculer</button>
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <div class="table-responsive">
+                          <table class="table table-striped">
+                            <thead>
+                              <tr>
+                                <th colspan="2">Coûts unitaires</th>
+                                <th>saisie</th>
+                                <th>Total</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>
+                                  Terme Kilometrique <br>
+                                  <small>(1 km parcouru)</small>
+                                </td>
+                                <td><strong id="costKm"></strong> € / km</td>
+                                <td><input id="totalKm" class="form-control-sm bg-transparent border-0 disabled" type="text" name="total_km" value="0" disabled></td>
+                                <td><input id="nbCostByKm" class="form-control-sm bg-transparent border-0 disabled" type="text" name="nb_cost_by_km" value="0" disabled></td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  Terme horaire <br>
+                                  <small>(1 heure de temps de service)</small>
+                                </td>
+                                <td><strong id="costTime"></strong> € / h</td>
+                                <td><input id="totalTime" class="form-control-sm bg-transparent border-0 disabled" type="text" name="total_time" value="0" disabled></td>
+                                <td><input id="nbCostByTime" class="form-control-sm bg-transparent border-0 disabled" type="text" name="nb_cost_by_time" value="0" disabled></td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  Terme journalier <br>
+                                  <small>(coût de véhicule + coût de structure)</small>
+                                </td>
+                                <td><strong id="costDay"></strong>€ / j</td>
+                                <td><input id="totalDay" class="form-control-sm bg-transparent border-0 disabled" type="text" name="total_day" value="0" disabled></td>
+                                <td><input id="nbCostByDay" class="form-control-sm bg-transparent border-0 disabled" type="text" name="nb_cost_by_day" value="0" disabled></td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  Terme horaire carburant groupe froid <br>
+                                  <small>(1 heure d'utilisation du groupe froid)</small>
+                                </td>
+                                <td><strong id="costColdGroup"></strong>€ / h</td>
+                                <td><input id="totalColdGroup" class="form-control-sm bg-transparent border-0 disabled" type="text" name="total_time_use_cold_group" value="0" disabled></td>
+                                <td><input id="nbCostByColdGroup" class="form-control-sm bg-transparent border-0 disabled" type="text" name="nb_cost_by_cold_group" value="0" disabled></td>
+                              </tr>
+                              <tr class="fs-5">
+                                <td colspan="3" class="fw-bold text-end">TOTAL:</td>
+                                <td class="fw-bold"><input id="totalCost" class="form-control-sm bg-transparent border-0 disabled" type="text" name="total_cost" value="0" disabled></td>
+                              </tr>
+                              <tr class="fs-5">
+                                <td colspan="3" class="fw-bold text-end">+ Péages:</td>
+                                <td class="fw-bold"><input id="totalTolls" class="form-control-sm bg-transparent border-0 disabled" type="text" name="total_tolls" value="0" disabled></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div class="text-center fs-1 bg-success text-light">
+                          Coût Total de l'opération : <strong id="totalCostWithTolls"></strong>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+                <div class="row my-5 mx-1">
+                  <div class="btn-group">
+                    <button id="prevBtn" type="button" class="btn btn-lg btn-block">Précédent</button>
+                    <button id="nextBtn" type="submit" class="btn btn-lg btn-block">Suivant</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+        <!-- insertion of standard header -->
+        <?php include_once("../../assets/std_page/header.html") ?>
+    
+        <!-- insertion of standard navbar -->
+        <?php include_once("../../assets/std_page/nav_bar.html") ?>
+    
+        <main>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h4 class="card-title ">
+                      <i class="bi bi-people"></i>
+                      Liste des Devis
+                    </h4>
+                    <div class="card-toolbar d-flex justify-content-end">
+                      <div class="btn-group">
+                        <button id="addBtn" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#formModal">
+                          Ajouter
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive text-center">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th>N°</th>
+                            <th>Nom</th>
+                            <th>date de création</th>
+                            <th>Nom de l'entreprise</th>
+                            <th>Nom de l'interlocuteur</th>
+                            <th>Montant HT</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody id="offersTableBody">
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <!-- insertion of standard header -->
+        <?php include_once("../../assets/std_page/footer.html") ?>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="../../js/script.js"></script>
+        <script src="../../js/routing.js"></script>
+        <script src="../../js/offerboard.js"></script>
+    </body>
+</html>
+
