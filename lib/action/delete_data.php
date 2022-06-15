@@ -23,7 +23,7 @@ try {
   $conn->exec($sql);
   echo json_encode($message = "success");
 } catch(PDOException $e) {
-  echo json_encode($message = $sql . "<br>" . $e->getMessage());
+  echo json_encode($message = [$sql . "<br>" . $e->getMessage(), $input]);
 }
 
 $conn = null;
