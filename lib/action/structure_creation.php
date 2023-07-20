@@ -3,7 +3,7 @@ include "../assets/php/function.php";
 include "../assets/php/var.php";
 
  // insert which DB to connect to
- $db_to_use = "user"; 
+
  $dbtable="structure";
 
 // create an array of all the POST variables you want to use
@@ -14,7 +14,7 @@ $fields = array(
 	'prof_formation_cost','learning_tax','mobile_credit','location_cost',
 	'interest_cost','file_cost','insurance_cost','axle_tax','dotation_immo','equipment_location','refactured_prestation','key_man_insurance',
 	'road_documentation','external_work','maintenance_furniture','equipmnent_purchase',
-	'admin_furniture','purchase_consumed','maintenance_shop','maintenance_building','public_relation','communication_exp','other_cost','taxes_exp',
+	'admin_furniture','purchase_consumed','maintenance_shop','maintenance_building','public_relation','communication_exp','other_cost','taxes_exp','function_car',
 );
 
  if(isset($_POST['year_structure_cost']))

@@ -36,12 +36,18 @@
           <i class="bi bi-file-earmark-medical-fill"></i>
           <strong>CHIFFRAGE</strong>
         </a>
-      </li>
-      <li class="nav-item">
-        <a href="../../pages/administration/user_mgt.html" class="nav-link">
-          <i class="bi bi-tools"></i>
-          <strong>ADMINISTRATION</strong> 
-        </a>
-      </li>
+        
+    </li>
+    <?php 
+      if(strtoupper($service)==="IT")
+      {
+          echo '<li class="nav-item">';
+          echo '<a href="../../pages/administration/user_mgt.html" class="nav-link">';
+          echo '<i class="bi bi-tools"></i>';
+          echo '<strong>ADMINISTRATION</strong>';
+          echo '</a>^';
+          echo '</li>';
+      }
+    ?>
   </ul>
 </aside>

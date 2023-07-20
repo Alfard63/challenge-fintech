@@ -4,12 +4,10 @@ include "../assets/php/function.php";
 include "../assets/php/var.php";
 
  // insert which DB to connect to
-$db_to_use = "user"; 
 
-if(isset($_POST['email']) && isset($_POST['password']))
+if(isset($_POST['email']) && isset($_POST['password']) && !empty($_POST['password']) && !empty($_POST['password']))
 {
-
-    $my_Db_Connection= db_connect($servername,$db_to_use,$db_username,$password);
+    $my_Db_Connection= db_connect($servername,$db_to_use,$db_username,$db_password);
     
     // insert data sets
     $email = $_POST['email'];
@@ -35,7 +33,12 @@ if(isset($_POST['email']) && isset($_POST['password']))
 
     $stm_login->execute();
     $arr_login = $stm_login->fetchAll();  //recup of the value given by $statement (array with username, surname, email and password)
-
+    
+    // if the email is not inserted in the database the $arr_login is empty
+    if (empty($arr_login)){
+        header('Location: ../index.html?error=2');
+    }
+    
         // check that the password and the email match the DB entries
     foreach ($arr_login as $row) {
         if ($row['email']==$email && $row['password']==$password)
@@ -47,7 +50,7 @@ if(isset($_POST['email']) && isset($_POST['password']))
             include("../assets/php/var.php"); //used to insert new value with session active                 
         }else
         {
-            header('Location: ../index.html?erreur=1');
+            header('Location: ../index.html?error=3');
         }
     }  
 
@@ -68,7 +71,7 @@ if(isset($_POST['email']) && isset($_POST['password']))
 }
 else
 {
-   header('Location: ../index.html');
+   header('Location: ../index.html?error=1');
 }
 
 ?> 

@@ -5,12 +5,12 @@
                 <img src="../../assets/img/logo.png" alt="">
                 TRANSROAD
             </a>
-            <h1 class="fw-bold flex-fill d-none d-md-block text-center">TABLEAU DE BORD</h1>
+            <h1 class="fw-bold flex-fill d-none d-md-block text-center"><? if(isset($page_name)){echo $page_name;}else{echo "TABLEAU DE BORD";}?></h1>
             <div class="navbar-icons">
                 <i id="menuIcon" class="bi bi-list"></i>
-                <i id="notifIcon" class="bi bi-bell-fill"></i>
-                <i id="profilIcon" class="bi bi-person-fill"></i>
-                <i id="disconnectIcon" class="bi bi-box-arrow-right"></i>
+                <i id="themeIcon" class="bi bi-sun-fill"></i>
+                <a href="/pages/administration/account_admin.html"><i id="profilIcon" class="bi bi-person-fill"></i></a> 
+                <a href="/index.html?out=yes"><i id="disconnectIcon" class="bi bi-box-arrow-right"></i></a>
             </div>
         </div>
     </nav>

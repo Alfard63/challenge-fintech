@@ -17,3 +17,7 @@ body
     -webkit-tap-highlight-color: transparent
     -webkit-font-smoothing: antialiased
     -moz-osx-font-smoothing: grayscale
+    &.dark
+        background-image: $bg_dark
+        header, main, footer, .modal
+            filter: invert(1) hue-rotate(180deg) !important
